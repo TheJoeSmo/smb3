@@ -101,6 +101,7 @@ new_inputs					= Pad_Input
 is_holding					= Player_IsHolding
 is_climbing					= Player_IsClimbing
 
+wand_state 					= Level_GetWandState
 active_powerup				= Player_Suit
 
 no_exit_to_map				= Level_PipeNotExit
