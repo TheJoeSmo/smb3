@@ -375,6 +375,9 @@ graphics_buffer 				= Graphics_Buffer
 status_bar_update_frame 		= StatusBar_UpdFl
 
 
+level_objects 					= Level_Objects
+
+
 ; object functions
 
 object_handle_movement			= Object_Move
@@ -385,3 +388,4 @@ object_handle_external_collision	= Object_HandleBumpUnderneath
 object_quick_calc_position		=Object_CalcSpriteXY_NoHi
 
 music_queue_2					= Sound_QMusic2
+
