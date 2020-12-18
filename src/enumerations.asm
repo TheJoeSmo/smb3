@@ -104,6 +104,8 @@ is_climbing					= Player_IsClimbing
 wand_state 					= Level_GetWandState
 active_powerup				= Player_Suit
 
+debug_enable 				= Debug_Flag
+
 no_exit_to_map				= Level_PipeNotExit
 level_junction_type			= Level_JctCtl
 return_status_from_level	= Map_ReturnStatus
