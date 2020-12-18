@@ -423,6 +423,7 @@ PRG008_A20C:
 
 
     ; Just amounts to calling Player_Draw, but takes care of switching to page 29 and back
+_player_draw:
 Player_Draw29:
     JSR PChg_C000_To_29  ; Change page @ C000 to 29
     JSR Player_Draw     ; Draw Player
