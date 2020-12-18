@@ -26,6 +26,7 @@ player_invisability_flash	= Player_FlashInv
 player_star_wear_off		= Player_StarOff
 player_sprite_offset		= Player_SprOff ; Where the player sprite shows up in spr ram
 player_offscreen 			= Player_OffScreen
+player_suit_queue			= Player_QueueSuit
 
 player_pipe_x				= Pipe_PlayerX
 player_pipe_y				= Pipe_PlayerY
