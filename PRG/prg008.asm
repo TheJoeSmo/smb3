@@ -860,9 +860,8 @@ PRG008_A3FA:
     STA Player_Suit ; Player_Suit = PLAYERSUIT_SMALL
 
     JSR Player_Die   ; Begin death sequence
-
-    ; This jumps the initial part of the death sequence
-    LDA #$c0
+; Skip the first portion of the death sequence as the player has already fell of the level
+    LDA #$C0
     STA Event_Countdown ; Event_Countdown = $C0
     LDA #$02
     STA Player_IsDying ; Player_IsDying = 2 (already dropped off screen)
