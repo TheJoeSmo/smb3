@@ -1,4 +1,7 @@
 
+; TODO: Fix Vertical Level Rendering Error
+; TODO: Fix Sprite Rendering Error From Kick 
+
 mario_frame_offset_hi:
     .byte >PF00, >PF01, >PF02, >PF03, >PF04, >PF05, >PF06, >PF07
     .byte >PF08, >PF09, >PF0A, >PF0B, >PF0C, >PF0D, >PF0E, >PF0F
