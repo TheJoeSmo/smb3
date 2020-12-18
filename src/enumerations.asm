@@ -395,3 +395,12 @@ controller_pressed_inputs	= Controller1Press 		; Player 1's controller "pressed 
 controller_pressed_inputs2  = Controller2Press		; Player 2's controller "pressed this frame only" (see Controller2 for values)
 controller_new_input  		= Controller1 			; Player 1's controller inputs -- R01 L02 D04 U08 S10 E20 B40 A80
 controller_new_input2		= Controller2 			; Player 2's controller inputs -- R01 L02 D04 U08 S10 E20 B40 A80
+
+vram_pointer_hi				= Scroll_ToVRAMHi 		; The high partition of the vram pointer
+vram_attr_pointer_hi		= Scroll_ToVRAMHA		; The high partition of the vram attribute pointer
+last_horz_column 			= Scroll_LastCol8 		; The last horizontal column updated
+scroll_buffer				= Scroll_PatStrip		; Buffer of patterns
+scroll_attr_buffer			= Scroll_AttrStrip		; Buffer of attributes
+scroll_attr_idx				= Scroll_LastAttr		; Idx into the scroll_attr_buffer
+
+
