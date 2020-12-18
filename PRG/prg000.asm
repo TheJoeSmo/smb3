@@ -121,6 +121,7 @@ Slope_LUT_Addr: .word Slope_LUT
     ; A value of $FF is used to indicate that no tile in that quadrant
     ; is underwater (and for the first three quads is unreachable!)
 Level_MinTileUWByQuad:
+level_underwater_tsa_attributes:
     ; 4 values per Level_TilesetIdx, which is basically (Level_Tileset - 1)
     ; Listing by valid Level_Tileset values for consistency...
     .byte $FF, $FF, $FF, $DA    ;  1 Plains style
