@@ -3407,119 +3407,7 @@ PRG026_B2C4:
     JMP Video_Misc_Updates  ; Jump back to start to process next command or terminate!
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; Scroll_Commit_Column
-;
-; This subroutine takes the buffered set of tiles in Scroll_PatStrip
-; and commits them to actual VRAM, OR it takes the buffer attribute
-; bytes and commits those.
-; Used by both the world map and a standard horizontally scrolling level
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-Scroll_Commit_Column:
-    LDA PPU_STAT
-
-    LDA Scroll_ToVRAMHi ; A = Scroll_ToVRAMHi
-    BEQ PRG026_B354     ; If Scroll_ToVRAMHi = 0, jump to PRG030_B354
-    LDX #$00        ; X = 0
-    LDA Scroll_ToVRAMHi ; A = Scroll_ToVRAMHi
-    STA PPU_VRAM_ADDR   ; Write as high byte to VRAM address
-    LDA Scroll_LastCol8
-    STA PPU_VRAM_ADDR   ; Low byte is Scroll_LastCol8
-    LDA PPU_CTL1_Copy  ; Get the PPU_CTL1
-    ORA #$04        ; Use vertical update mode
-    STA PPU_CTL1        ; Set PPU_CTL1
-
-PRG026_B2F9:
-
-    ; Push 5 blocks in
-    LDA Scroll_PatStrip,X
-    STA PPU_VRAM_DATA
-    LDA Scroll_PatStrip+1,X
-    STA PPU_VRAM_DATA
-    LDA Scroll_PatStrip+2,X
-    STA PPU_VRAM_DATA
-    LDA Scroll_PatStrip+3,X
-    STA PPU_VRAM_DATA
-    LDA Scroll_PatStrip+4,X
-    STA PPU_VRAM_DATA
-
-    INX
-    INX
-    INX
-    INX
-    INX     ; X += 5
-
-    CPX #30
-    BNE PRG026_B2F9 ; While X < 30, loop!
-
-    ; Begin update on Nametable 2
-    LDA Scroll_ToVRAMHi
-    ORA #$08
-    STA PPU_VRAM_ADDR
-    LDA Scroll_LastCol8
-    STA PPU_VRAM_ADDR
-
-PRG026_B32E:
-    ; Push another 4
-    LDA Scroll_PatStrip,X
-    STA PPU_VRAM_DATA
-    LDA Scroll_PatStrip+1,X
-    STA PPU_VRAM_DATA
-    LDA Scroll_PatStrip+2,X
-    STA PPU_VRAM_DATA
-    LDA Scroll_PatStrip+3,X
-    STA PPU_VRAM_DATA
-
-    INX
-    INX
-    INX
-    INX      ; X += 4
-
-    CPX #30+24   ; 24 more rows...!
-    BNE PRG026_B32E  ; While X < 54, loop! (54 rows of 8 gets down to the status bar in the NTSC model)
-
-    LDA #$00
-    STA Scroll_ToVRAMHi  ; Scroll_ToVRAMHi = 0
-    RTS      ; Return
-
-PRG026_B354:
-    ; If Scroll_ToVRAMHi = 0 ... do we need to commit any attribute updates??
-    LDA Scroll_ToVRAMHA
-    BEQ PRG026_B38E  ; If Scroll_ToVRAMHA = 0, jump to PRG026_B38E (RTS)
-
-    ; Commiting attribute updates...
-    LDA PPU_CTL1_Copy
-    STA PPU_CTL1        ; Update PPU_CTL1
-
-    LDX #$00        ; X = 0
-    LDY Scroll_LastAttr ; Y = Scroll_LastAttr (low part)
-PRG026_B363:
-    LDA Scroll_ToVRAMHA ; A = Scroll_ToVRAMHA (high part)
-    STA PPU_VRAM_ADDR   ; Set high address
-    STY PPU_VRAM_ADDR   ; Set low address
-    LDA Scroll_AttrStrip,X  ; Get next attribute byte
-    STA PPU_VRAM_DATA   ; Commit it!
-    TYA
-    CLC
-    ADC #$08
-    TAY         ; Y += 8
-    BCC PRG026_B384     ; If we haven't overflowed, jump to PRG026_B384
-
-    ; Update high byte
-    LDA Scroll_ToVRAMHA
-    EOR #$08        ; Flips to attribute table 2
-    STA Scroll_ToVRAMHA
-    LDY Scroll_LastAttr ; Get low byte
-PRG026_B384:
-    INX         ; X++
-    CPX #14
-    BNE PRG026_B363     ; If X <> 14, loop!
-
-    LDA #$00
-    STA Scroll_ToVRAMHA  ; Scroll_ToVRAMHA = 0 (update complete!)
-
-PRG026_B38E:
-    RTS      ; Return
+    .include src/gfx_effects/scroll_commit_column.asm
 
 
 Scroll_ToVRAM_Apply:
@@ -3592,7 +3480,7 @@ PRG026_B3E5:
 
 TileChng_VRAMCommit:
     LDY TileChng_VRAM_H
-    BEQ PRG026_B38E  ; If TileChng_VRAM_H = 0 (no tile change to do), jump to PRG026_B38E (RTS)
+    BEQ PRG026_B3E5  ; If TileChng_VRAM_H = 0 (no tile change to do), jump to PRG026_B38E (RTS)
 
     LDA PPU_STAT
 
