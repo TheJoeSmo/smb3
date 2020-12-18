@@ -389,3 +389,9 @@ object_quick_calc_position		=Object_CalcSpriteXY_NoHi
 
 music_queue_2					= Sound_QMusic2
 
+active_inputs				= Pad_Holding 			; Buttons being held down
+new_inputs					= Pad_Input 			; Just pressed buttons
+controller_pressed_inputs	= Controller1Press 		; Player 1's controller "pressed this frame only" (see Controller1 for values)
+controller_pressed_inputs2  = Controller2Press		; Player 2's controller "pressed this frame only" (see Controller2 for values)
+controller_new_input  		= Controller1 			; Player 1's controller inputs -- R01 L02 D04 U08 S10 E20 B40 A80
+controller_new_input2		= Controller2 			; Player 2's controller inputs -- R01 L02 D04 U08 S10 E20 B40 A80
