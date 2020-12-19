@@ -116,77 +116,8 @@ Video_Upd_Table: ; $803E
     .include src/gfx_effects/video_updates/vertical_status_bar.asm
     .include src/gfx_effects/video_updates/horizontal_status_bar.asm
     .include src/gfx_effects/video_updates/roulette_status_bar.asm
+    .include src/gfx_effects/video_updates/star_firework.asm
 
-Video_3CMStarTop:
-    DBYT $208F
-    .byte VU_REPEAT | $02, $A9
-    DBYT $20AE
-    .byte VU_VERT | VU_REPEAT | $02, $A9
-    DBYT $20B1
-    .byte VU_VERT | VU_REPEAT | $02, $A9
-    DBYT $20ED
-    .byte $01, $A9
-    DBYT $20F2
-    .byte $01, $A9
-    DBYT $2108
-    .byte VU_REPEAT | $06, $A9
-    DBYT $2112
-    .byte VU_REPEAT | $06, $A9
-    .byte $00   ; Terminator
-
-Video_3CMStarTip:
-    DBYT $2128
-    .byte $01, $A9
-    DBYT $2137
-    .byte $01, $A9
-    DBYT $2149
-    .byte $01, $A9
-    DBYT $214E
-    .byte VU_VERT | VU_REPEAT | $03, $A9
-    DBYT $2151
-    .byte VU_VERT | VU_REPEAT | $03, $A9
-    DBYT $2156
-    .byte $01, $A9
-    .byte $00   ; Terminator
-
-Video_3CMStarSide:
-    DBYT $216A
-    .byte $01, $A9
-    DBYT $2175
-    .byte $01, $A9
-    DBYT $218B
-    .byte VU_VERT | VU_REPEAT | $02, $A9
-    DBYT $2194
-    .byte VU_VERT | VU_REPEAT | $02, $A9
-    DBYT $21CA
-    .byte VU_VERT | VU_REPEAT | $02, $A9
-    DBYT $21D5
-    .byte VU_VERT | VU_REPEAT | $02, $A9
-    .byte $00   ; Terminator
-
-Video_3CMStarBot1:
-    DBYT $2209
-    .byte VU_VERT | VU_REPEAT | $02, $A9
-    DBYT $220F
-    .byte VU_REPEAT | $42, $A9
-    DBYT $2216
-    .byte VU_VERT | VU_REPEAT | $02, $A9
-    DBYT $222D
-    .byte VU_REPEAT | $02, $A9
-    DBYT $2231
-    .byte VU_REPEAT | $02, $A9
-    .byte $00   ; Terminator
-
-Video_3CMStarBot2:
-    DBYT $2248
-    .byte $05, $A9, $FC, $FC, $A9, $A9
-    DBYT $2253
-    .byte $05, $A9, $A9, $FC, $FC, $A9
-    DBYT $2268
-    .byte VU_REPEAT | $03, $A9
-    DBYT $2275
-    .byte VU_REPEAT | $03, $A9
-    .byte $00   ; Terminator
 
 Video_3CMAppear1:
     DBYT $23CA
