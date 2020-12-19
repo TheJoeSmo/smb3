@@ -1440,9 +1440,9 @@ DMC05_End
     ; The following two LUTs are used together via Update_Request
     ; See index values UPDATERASTER_*
 IntNMI_UpdSel_Table:
-    .byte $a0   ; UPDATERASTER_32PIXPART (opt. flag UPDATERASTER_32PIXSHOWSPR)
-    .byte $40   ; UPDATERASTER_SPADEGAME
-    .byte $a0   ; UPDATERASTER_WATERLINE
+    .byte nmi_partition_update_routine   ; UPDATERASTER_32PIXPART (opt. flag UPDATERASTER_32PIXSHOWSPR)
+    .byte nmi_spade_game_update_routine   ; UPDATERASTER_SPADEGAME
+    .byte nmi_partition_update_routine   ; UPDATERASTER_WATERLINE
 
 IntNMI_Raster_Table:
     .byte $40   ; UPDATERASTER_32PIXPART (opt. flag UPDATERASTER_32PIXSHOWSPR)
@@ -1498,17 +1498,17 @@ PRG031_F4B3:
     ; Update_Select activity begin...
 
     LDA Update_Select    ; Get the Update_Select value
-    CMP #$80     ;
+    CMP #nmi_vertical_update_routine     ;
     BNE PRG031_F4BD  ; If Update_Select <> $80 (Purely vertical level), jump to PRG031_F4BD
     JMP UpdSel_Vertical  ; Otherwise, jump to UpdSel_Vertical
 
 PRG031_F4BD:
-    CMP #$40     ;
+    CMP #nmi_spade_game_update_routine     ;
     BNE PRG031_F4C4  ; If Update_Select <> $40 (Spade Game), jump to PRG031_F4C4
     JMP UpdSel_Roulette  ; Otherwise, jump to UpdSel_Roulette
 
 PRG031_F4C4:
-    CMP #$00     ;
+    CMP #nmi_misc_update_routine     ;
     BNE PRG031_F4D5  ; If Update_Select <> $00 FIXME, jump to PRG031_F4D5
 
     ; MMC3 event

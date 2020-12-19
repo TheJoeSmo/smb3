@@ -390,8 +390,10 @@ PRG030_845A:
     STA PAGE_C000
     JSR PRGROM_Change_Both2
 
-    LDA #$20
+    LDA #nmi_title_screen_update_routine
     STA Update_Select    ; Update_Select = $20 (Title Screen)
+
+    LDA #$20
     STA Raster_Effect    ; Raster_Effect = $20 (Title Screen style)
 
     LDA #%10101000
@@ -473,7 +475,7 @@ PRG030_84D7:
     STA Unused699
 
     ; Update_Select = $C0
-    LDA #$c0
+    LDA #nmi_normal_update_routine
     STA Update_Select
 
     ; Load world map graphics
@@ -749,7 +751,7 @@ PRG030_86A2:
     LDA #$ef
     STA Vert_Scroll    ; Vert_Scroll = $EF (map always stays at this height)
 
-    LDA #$c0
+    LDA #nmi_normal_update_routine
     STA Update_Select   ; Update_Select = $C0 (Normal)
 
     ; Switch bank A000 to page 11
@@ -1355,7 +1357,7 @@ PRG030_89D1:
     JSR Video_Do_Update
 
     ; Update_Select = $C0
-    LDA #$c0
+    LDA #nmi_normal_update_routine
     STA Update_Select
 
     ; Set scrolling to absolute top
@@ -1388,7 +1390,7 @@ PRG030_89D1:
     JSR GraphicsBuf_Prep_And_WaitVSync
 
     ; Update_Select = $C0
-    LDA #$c0
+    LDA #nmi_normal_update_routine
     STA Update_Select
 
     ; Vertical mirroring
@@ -1460,7 +1462,7 @@ PRG030_8A79:
     JSR Video_Do_Update
 
     ; Update_Select = $C0
-    LDA #$c0
+    LDA #nmi_normal_update_routine
     STA Update_Select
 
     ; Set scrolling to absolute top
@@ -1525,7 +1527,7 @@ PRG030_8AE7:
     STA MMC3_MIRROR
 
     LDA #$02     ; A = 2
-    LDX #$c0     ; X = $C0 (Normal style updating)
+    LDX #nmi_normal_update_routine     ; X = $C0 (Normal style updating)
 
     LDY Level_7Vertical
     BEQ PRG030_8B03     ; If level is NOT a vertical one, jump to PRG030_8B03
@@ -1537,7 +1539,7 @@ PRG030_8AE7:
     STA MMC3_MIRROR
 
     LDA #$01     ; A = 1
-    LDX #$80     ; X = $80 (Vertical style updating)
+    LDX #nmi_vertical_update_routine     ; X = $80 (Vertical style updating)
 
 PRG030_8B03:
     STX Update_Select   ; Set Update_Select
@@ -1753,7 +1755,7 @@ PRG030_8C00:
     LDY #$01
     STY Map_EntTran_LRCnt    ; Map_EntTran_LRCnt= 1
 
-    LDA #$00
+    LDA #nmi_misc_update_routine
     STA Update_Select   ; Insist (again!) that Update_Select = 0
 
 PRG030_8C3E:
@@ -1849,11 +1851,11 @@ PRG030_8CB8:
     LDA #$00
     STA Map_EnterLevelFX    ; Map_EnterLevelFX = 0
 
-    LDX #$c0        ; X = $C0 (Normal style updating)
+    LDX #nmi_normal_update_routine        ; X = $C0 (Normal style updating)
     LDA Level_7Vertical
     BEQ PRG030_8CD1     ; If not a vertical level, jump to PRG030_8CD1
 
-    LDX #$80     ; X = $80 (Vertical style updating)
+    LDX #nmi_vertical_update_routine     ; X = $80 (Vertical style updating)
 
 PRG030_8CD1:
     STX Update_Select    ; Set Update_Select as appropriate
@@ -2507,7 +2509,7 @@ PRG030_8FCA:
     LDA #%10101000
     STA PPU_CTL1_Copy  ; Keep PPU_CTL1_Copy in sync!
 
-    LDA #$20
+    LDA #nmi_title_screen_update_routine
     STA Update_Select    ; Update_Select = $20 (Title Screen... or ending in this case)
 
     JMP Rescue_Princess  ; Do the Princess Rescue sequence!!
@@ -2528,7 +2530,7 @@ PRG030_9006:
 PRG030_9009:
     ; Player is falling into king's room...
 
-    LDA #$c0
+    LDA #nmi_normal_update_routine
     STA Update_Select   ; Update_Select = $C0 (Normal)
 
     LDA #$00
@@ -2627,7 +2629,7 @@ PRG030_9097:
 
     ; Exiting to map somehow
 
-    LDA #$c0
+    LDA #nmi_normal_update_routine
     STA Update_Select   ; Update_Select = $C0 (Normal)
 
     LDA #$00
@@ -2945,7 +2947,7 @@ PRG030_9257:
     LDA #$ef
     STA Vert_Scroll    ; Vert_Scroll = $EF (map always stays at this height)
 
-    LDA #$c0
+    LDA #nmi_normal_update_routine
     STA Update_Select   ; Update_Select = $C0 (Normal)
 
     ; Switch bank A000 to page 27
@@ -3132,7 +3134,7 @@ Do_2PVsChallenge:
     JSR Scroll_Dirty_Update  ; Render the 2P Vs terrain
 
     ; Update_Select = $C0
-    LDA #$c0
+    LDA #nmi_normal_update_routine
     STA Update_Select
 
     ; Raster_Effect = $80

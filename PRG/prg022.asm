@@ -3204,7 +3204,7 @@ Roulette_ExitToMap:
     LDA #$01
     STA Level_ExitToMap
 
-    LDA #$80
+    LDA #nmi_vertical_update_routine
     STA Update_Select
 
     LDA #$00
