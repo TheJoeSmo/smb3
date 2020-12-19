@@ -18,6 +18,10 @@
 ; \s*;.*                            --> (nothing)   (Cleans off remaining address constants)
 
     .include src/enumerations.asm
+    .include src/macros/get_palette_from_block.asm
+    .include src/macros/get_screen_offset.asm
+    .include src/macros/switch_bank_A000.asm
+    .include src/macros/switch_bank_by_tileset.asm
 
 ; Handy pseudo instructions... only make sense in the context of CMPing a number...
 .macro BLT _1
