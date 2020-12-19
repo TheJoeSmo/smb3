@@ -385,6 +385,13 @@ graphics_buffer_idx 			= Graphics_BufCnt
 graphics_buffer 				= Graphics_Buffer
 status_bar_update_frame 		= StatusBar_UpdFl
 
+nmi_normal_update_routine 		= $05
+nmi_partition_update_routine 	= $04
+nmi_vertical_update_routine 	= $03
+nmi_spade_game_update_routine 	= $02
+nmi_title_screen_update_routine = $01
+nmi_misc_update_routine			= $00
+update_routine					= Update_Select
 
 level_objects 					= Level_Objects
 
