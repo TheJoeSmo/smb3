@@ -23,6 +23,7 @@
     .include src/macros/switch_bank_A000.asm
     .include src/macros/switch_bank_by_tileset.asm
     .include src/macros/status_bar.asm
+    .include src/macros/dynjump.asm
 
 ; Handy pseudo instructions... only make sense in the context of CMPing a number...
 .macro BLT _1
