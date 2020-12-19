@@ -110,67 +110,12 @@ Video_Upd_Table: ; $803E
     .word Video_CourseClear ; $2D - "COURSE CLEAR"
     .word Video_YouGotCard  ; $2E - "YOU GOT A CARD" (and the card space) [for the End Level otherwise]
 
-    ; The status bar comes in three identical versions with different VRAM start addresses
-    ; Might as well make a macro out of that, eh?
-
-    ; NOTE!! If you want to edit the status bar, you should also sync up
-    ; with the "flip" data in PRG026 as noted below...
-.macro StatusBar _1
-
-    ; Sync next three with PRG026 Flip_TopBarCards
-    DBYT _1 + $00
-    .byte $02, $FC, $A0     ; Upper left corner
-
-    DBYT _1 + $02
-    .byte VU_REPEAT | $12, $A1  ; Bar across the top
-
-    DBYT _1 + $14
-    .byte $0C, $A2, $A0, $A1, $A1, $A3, $A1, $A1, $A3, $A1, $A1, $A2, $FC   ; top of card slots
-
-    ; Sync this with PRG026 Flip_MidTStatCards
-    DBYT _1 + $20
-    .byte $20, $FC, $A6, $70, $71, $72, $73, $FE, $FE, $EF, $EF, $EF, $EF, $EF, $EF, $3C    ; |WORLD  >>>>>>[P] $  | |  | |  | |  | |
-    .byte $3D, $FE, $EC, $F0, $F0, $A7, $A6, $FE, $FE, $AA, $FE, $FE, $AA, $FE, $FE, $A7, $FC
-    ; Discrepency --------^  (Pattern is ... $FE, $F0 ... in PRG026 status bar graphics)
-
-    ; Sync this with PRG026 Flip_MidBStatCards
-    DBYT _1 + $40
-    ; Discrepency --------v  (Pattern is ... $FE, $FE ... in PRG030 status bar)  Unimportant; inserts <M> which is replaced anyway
-    .byte $20, $FC, $A6, $FE, $FE, $FB, $FE, $F3, $FE, $F0, $F0, $F0, $F0, $F0, $F0, $F0    ; [M/L]x  000000 c000| etc.
-    .byte $FE, $ED, $F4, $F0, $F0, $A7, $A6, $FE, $FE, $AA, $FE, $FE, $AA, $FE, $FE, $A7, $FC
-    ; Discrepency --------^  (Pattern is ... $F4, $F0 ... in PRG030 status bar graphics)
-
-    ; Sync next three with PRG026 Flip_BottomBarCards
-    DBYT _1 + $60
-    .byte $02, $FC, $A8 ; Lower corner
-
-    DBYT _1 + $62
-    .byte VU_REPEAT | $12, $A4  ; Bottom bar
-
-    DBYT _1 + $74
-    .byte $0C, $A5, $A8, $A4, $A4, $A9, $A4, $A4, $A9, $A4, $A4, $A5, $FC   ; lower corner and card bottoms
-
-    ; End PRG026 sync
-
-    DBYT _1 + $80
-    .byte VU_REPEAT | $20, $FC  ; black space
-
-    DBYT _1 + $A0
-    .byte VU_REPEAT | $20, $FC  ; black space
-
-    ; Terminator
-    .byte $00
-    .endm
-
-    ; Typical status bar (vertical level)
+    
+; Status bars for the vertical, horizontal, and roulette game respectively
 Video_DoStatusBarV:
     StatusBar $2700
-
-    ; Typical status bar (non-vertical level)
 Video_DoStatusBar:
     StatusBar $2B00
-
-    ; Status bar used when Horizontal Mirroring in effect (Roulette game)
 Video_DoStatusBarHM:
     StatusBar $2300
 
