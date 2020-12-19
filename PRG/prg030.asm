@@ -112,12 +112,10 @@ Video_Upd_Table: ; $803E
 
     
 ; Status bars for the vertical, horizontal, and roulette game respectively
-Video_DoStatusBarV:
-    StatusBar $2700
-Video_DoStatusBar:
-    StatusBar $2B00
-Video_DoStatusBarHM:
-    StatusBar $2300
+
+    .include src/gfx_effects/video_updates/vertical_status_bar.asm
+    .include src/gfx_effects/video_updates/horizontal_status_bar.asm
+    .include src/gfx_effects/video_updates/roulette_status_bar.asm
 
 Video_3CMStarTop:
     DBYT $208F
