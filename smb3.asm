@@ -22,6 +22,7 @@
     .include src/macros/get_screen_offset.asm
     .include src/macros/switch_bank_A000.asm
     .include src/macros/switch_bank_by_tileset.asm
+    .include src/macros/status_bar.asm
 
 ; Handy pseudo instructions... only make sense in the context of CMPing a number...
 .macro BLT _1
