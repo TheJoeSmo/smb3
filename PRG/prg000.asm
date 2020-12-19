@@ -722,7 +722,7 @@ Score_PopUp:
     PLA         ; Restore input value
     STA Scores_Value,Y  ; Store input value
 
-    ABS_LDA_X Objects_SpriteY ;LDA Objects_SpriteY,X
+    LDA Objects_SpriteY, X
     SEC
     SBC #16
     CMP #192
@@ -734,7 +734,7 @@ PRG000_C47D:
     STA Scores_Y,Y   ; Set score Y
 
     ; Set score X to spawning object
-    ABS_LDA_X Objects_SpriteX ; LDA Objects_SpriteX,X
+    LDA Objects_SpriteX,X
     STA Scores_X,Y
 
     ; Set score counter to $30
@@ -2098,18 +2098,29 @@ PRG000_CA81:
 
     LDA Objects_State,X  ; Get object state...
 
-    JSR DynJump
+    quick_dynjump object_state_actions_hi, object_state_actions_lo
 
-    ; THESE MUST FOLLOW DynJump FOR THE DYNAMIC JUMP TO WORK!!
-    .word ObjState_DeadEmpty    ; 0 - Dead/Empty
-    .word ObjState_Initializing ; 1 - Initializing
-    .word ObjState_Normal       ; 2 - Normal operation
-    .word ObjState_Shelled      ; 3 - Shelled
-    .word ObjState_Held     ; 4 - Held by Player
-    .word ObjState_Kicked       ; 5 - Kicked
-    .word ObjState_Killed       ; 6 - Killed
-    .word ObjState_Squashed     ; 7 - Object was squashed (NOTE: Really only intended for Goomba/Giant Goomba)
-    .word ObjState_PoofDying    ; 8 - "Poof" Dying
+object_state_actions_hi:
+    .byte >ObjState_DeadEmpty    ; 0 - Dead/Empty
+    .byte >ObjState_Initializing ; 1 - Initializing
+    .byte >ObjState_Normal       ; 2 - Normal operation
+    .byte >ObjState_Shelled      ; 3 - Shelled
+    .byte >ObjState_Held     ; 4 - Held by Player
+    .byte >ObjState_Kicked       ; 5 - Kicked
+    .byte >ObjState_Killed       ; 6 - Killed
+    .byte >ObjState_Squashed     ; 7 - Object was squashed (NOTE: Really only intended for Goomba/Giant Goomba)
+    .byte >ObjState_PoofDying    ; 8 - "Poof" Dying
+
+object_state_actions_lo:
+    .byte <ObjState_DeadEmpty    ; 0 - Dead/Empty
+    .byte <ObjState_Initializing ; 1 - Initializing
+    .byte <ObjState_Normal       ; 2 - Normal operation
+    .byte <ObjState_Shelled      ; 3 - Shelled
+    .byte <ObjState_Held     ; 4 - Held by Player
+    .byte <ObjState_Kicked       ; 5 - Kicked
+    .byte <ObjState_Killed       ; 6 - Killed
+    .byte <ObjState_Squashed     ; 7 - Object was squashed (NOTE: Really only intended for Goomba/Giant Goomba)
+    .byte <ObjState_PoofDying    ; 8 - "Poof" Dying
 
     ; Patterns selected by "poof" death frame
 PoofDeath_Pats:
@@ -2546,7 +2557,7 @@ PRG000_CC94:
     JMP PRG000_CCF7  ; Otherwise, jump to PRG000_CCF7
 
 PRG000_CC9D:
-    ABS_LDA_X Objects_SpriteX ; LDA Objects_SpriteX,X
+    LDA Objects_SpriteX,X
 
     LDY Objects_XVel,X
     BPL PRG000_CCAA  ; If object is not moving to the left, jump to PRG000_CCAA
@@ -3190,16 +3201,6 @@ PRG000_CFA5:
 PRG000_CFA8:
     RTS      ; Return
 
-
-    ; Unused space... deleted code?
-    NOP
-    NOP
-    NOP
-    NOP
-    NOP
-    NOP
-    NOP
-    NOP
 
 ObjState_Killed:
     JSR Object_FallAndDelete    ; Have object fall and delete if it gets too low (at which point we don't return)
