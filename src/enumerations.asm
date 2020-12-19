@@ -349,11 +349,22 @@ timer_high_value				= Level_TimerMSD
 
 								; PPU
 
-horizontal_scroll_lo			= Horz_Scroll
-horizontal_scroll_hi			= Horz_Scroll_Hi
+horizontal_scroll_lo			= Horz_Scroll		; Horizontal scroll of the nametable
+horizontal_scroll_hi			= Horz_Scroll_Hi	; The current screen mario is in
 
-left_scroll_column				= Scroll_ColumnL
+scroll_block_partition			= Scroll_OddEven	; The partition (left/right or up/down) of the current 8x8 partition of the block we are on
+
+horizontal_scroll_update		= Scroll_RightUpd
+scroll_update_direction			= Scroll_RightUpd	; The last movement direction of the scrol
+left_scroll_update				= Scroll_LeftUpd
+
+columns_to_update				= Scroll_Cols2Upd
+
+scroll_column 					= Scroll_ColumnR
 right_scroll_column				= Scroll_ColumnR
+left_scroll_column				= Scroll_ColumnL
+scroll_palette_buffer			= Scroll_ColorStrip
+
 scroll_last_direction			= Scroll_LastDir
 
 temp_world_scroll				= Scroll_Temp
@@ -396,6 +407,7 @@ controller_pressed_inputs2  = Controller2Press		; Player 2's controller "pressed
 controller_new_input  		= Controller1 			; Player 1's controller inputs -- R01 L02 D04 U08 S10 E20 B40 A80
 controller_new_input2		= Controller2 			; Player 2's controller inputs -- R01 L02 D04 U08 S10 E20 B40 A80
 
+scroll_update_flag			= Scroll_UpdAttrFlag	; Flag the need to commit attributes to file 
 vram_pointer_hi				= Scroll_ToVRAMHi 		; The high partition of the vram pointer
 vram_attr_pointer_hi		= Scroll_ToVRAMHA		; The high partition of the vram attribute pointer
 last_horz_column 			= Scroll_LastCol8 		; The last horizontal column updated
@@ -460,6 +472,6 @@ ppu_spr_palette = $3F10     ; 3F10-3F1F
 
 
 
-
+_block_data_pointer     = Temp_Var15
 
 
