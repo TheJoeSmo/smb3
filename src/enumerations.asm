@@ -384,6 +384,9 @@ junction_vert_scroll_lo			= Level_Jct_VS 		; Level junction vertical scroll valu
 graphics_buffer_idx 			= Graphics_BufCnt
 graphics_buffer 				= Graphics_Buffer
 status_bar_update_frame 		= StatusBar_UpdFl
+raster_state					= Raster_State
+raster_routine					= Raster_Effect
+raster_request					= Update_Request
 
 nmi_normal_update_routine 		= $05
 nmi_partition_update_routine 	= $04
