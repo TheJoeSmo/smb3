@@ -451,6 +451,7 @@ ppu_contorl_copy 	= PPU_CTL1_Copy
 ;   4: If clear, sprites hidden
 ;   5-7: BG color in mono mode, "color intensity" in color mode (??)
 ppu_mask    = $2001     ; Write only
+ppu_mask_copy	= PPU_CTL2_Copy
 ppu_show_all = #%00011000
 
 ;   ppu_status:
@@ -471,8 +472,9 @@ ppu_status    = $2002
 ;   * Bit 6 - Indicates whether to flip the sprite horizontally.
 ;   * Bit 7 - Indicates whether to flip the sprite vertically.
 ; * Byte 3 - X coordinate
-ppu_oam_address    = $2003     ; Set address sprite data
-ppu_oam_data    = $2004     ; Read or write this sprite byte
+ppu_oam_address    	= $2003     ; Set address sprite data
+ppu_oam_data    	= $2004     ; Read or write this sprite byte
+ppu_oam_dma			= $4014		; OAM direct memory access
 
 ppu_scroll  = $2005     ; Scroll register; read ppu_status, then write horiz/vert scroll
 ppu_address   = $2006     ; VRAM address (first write is high, next write is low)
@@ -482,8 +484,10 @@ ppu_data   = $2007     ; Data to read/write at this address
 ppu_bg_pallete  = $3F00     ; 3F00-3F0F
 ppu_spr_palette = $3F10     ; 3F10-3F1F
 
-
-
+irq_scanline 	= $C000
+irq_reload   	= $C001
+irq_disable 	= $E000
+irq_enable  	= $E001
 
 _block_data_pointer     = Temp_Var15
 
