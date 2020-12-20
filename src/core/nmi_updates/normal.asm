@@ -61,6 +61,7 @@ PRG031_F4E3:
     STA irq_enable
     CLI 
 
+nmi_common_update:
 PRG031_F55B:
     ; This is a common routine used by variants
 
