@@ -32,7 +32,7 @@ player_action_normal:
     LDA is_dying
     BEQ PRG029_D1D5  ; If Player is not dying, jump to PRG029_D1D5
 
-    JMP PRG029_D6BC  ; Jump to PRG029_D6BC (the Player's death routine)
+    JMP player_do_death  ; Jump to PRG029_D6BC (the Player's death routine)
 
 PRG029_D1D5:
     LDA Level_CoinHeav
