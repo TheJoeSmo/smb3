@@ -426,6 +426,8 @@ scroll_buffer				= Scroll_PatStrip		; Buffer of patterns
 scroll_attr_buffer			= Scroll_AttrStrip		; Buffer of attributes
 scroll_attr_idx				= Scroll_LastAttr		; Idx into the scroll_attr_buffer
 
+is_next_frame				= VBlank_TickEn			; Set when we are in a vblank and have completed everything for the frame
+in_vblank					= VBlank_Tick
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; PPU I/O regs (CPU side)
