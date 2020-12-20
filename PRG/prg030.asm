@@ -5362,21 +5362,6 @@ PRG030_9F0D:
     LDA Level_Tile ; A = Level_Tile (the tile retrieved)
     RTS      ; Return
 
-    ; Probably unused space
-    .byte $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff
-    .byte $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff
-    .byte $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff, $ff
-
-
-PRG030_SUB_9F40:
-    LDA #$00
-    STA Raster_State    ; Reset Raster_State
-
-    LDA Update_Request
-    JMP PRG031_F499
-
-    ; Filler space
-    .byte $ff, $ff, $ff, $ff, $ff
 
     ; Sub part of A0 mode of IRQ
 PRG030_SUB_9F50:
