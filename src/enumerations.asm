@@ -383,6 +383,7 @@ junction_vert_scroll_lo			= Level_Jct_VS 		; Level junction vertical scroll valu
 
 graphics_buffer_idx 			= Graphics_BufCnt
 graphics_buffer 				= Graphics_Buffer
+graphics_update_queue			= Graphics_Queue
 status_bar_update_frame 		= StatusBar_UpdFl
 raster_state					= Raster_State
 raster_routine					= Raster_Effect
