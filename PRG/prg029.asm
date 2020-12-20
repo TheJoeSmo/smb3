@@ -1378,25 +1378,7 @@ PRG029_D6AB:
 
     JMP PRG008_A38E  ; Jump to PRG008_A38E
 
-Player_Die_JumpTable:
-    .word Player_Die_NotDying   ; 0 - Player isn't dying!  Do nothing
-    .word Player_Die_Dying      ; 1 - Dying normal
-    .word Player_Die_FellOff    ; 2 - Dying by having fallen off screen
-    .word Player_Die_TimeUp     ; 3 - Dying due to time up
-
-PRG029_D6BC:
-    ; Player is dying!
-
-    LDA Player_IsDying
-    ASL A
-    TAY      ; Y = Player_IsDying << 1
-
-    LDA Player_Die_JumpTable,Y
-    STA Temp_Var1
-    LDA Player_Die_JumpTable+1,Y
-    STA Temp_Var2
-
-    JMP (Temp_Var1)  ; Jump to appropriate "Player is dying" routine...
+    .include src/powerups/death/main.asm
 
 Player_Die_Dying:
     LDA Player_AboveTop
