@@ -383,7 +383,11 @@ junction_vert_scroll_lo			= Level_Jct_VS 		; Level junction vertical scroll valu
 
 graphics_buffer_idx 			= Graphics_BufCnt
 graphics_buffer 				= Graphics_Buffer
+graphics_update_queue			= Graphics_Queue
 status_bar_update_frame 		= StatusBar_UpdFl
+raster_state					= Raster_State
+raster_routine					= Raster_Effect
+raster_request					= Update_Request
 
 nmi_normal_update_routine 		= $05
 nmi_partition_update_routine 	= $04
@@ -422,6 +426,10 @@ scroll_buffer				= Scroll_PatStrip		; Buffer of patterns
 scroll_attr_buffer			= Scroll_AttrStrip		; Buffer of attributes
 scroll_attr_idx				= Scroll_LastAttr		; Idx into the scroll_attr_buffer
 
+is_next_frame				= VBlank_TickEn			; Set when we are in a vblank and have completed everything for the frame
+in_vblank					= VBlank_Tick
+
+credits_state				= Ending2_IntCmd
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; PPU I/O regs (CPU side)
@@ -445,6 +453,7 @@ ppu_contorl_copy 	= PPU_CTL1_Copy
 ;   4: If clear, sprites hidden
 ;   5-7: BG color in mono mode, "color intensity" in color mode (??)
 ppu_mask    = $2001     ; Write only
+ppu_mask_copy	= PPU_CTL2_Copy
 ppu_show_all = #%00011000
 
 ;   ppu_status:
@@ -465,8 +474,9 @@ ppu_status    = $2002
 ;   * Bit 6 - Indicates whether to flip the sprite horizontally.
 ;   * Bit 7 - Indicates whether to flip the sprite vertically.
 ; * Byte 3 - X coordinate
-ppu_oam_address    = $2003     ; Set address sprite data
-ppu_oam_data    = $2004     ; Read or write this sprite byte
+ppu_oam_address    	= $2003     ; Set address sprite data
+ppu_oam_data    	= $2004     ; Read or write this sprite byte
+ppu_oam_dma			= $4014		; OAM direct memory access
 
 ppu_scroll  = $2005     ; Scroll register; read ppu_status, then write horiz/vert scroll
 ppu_address   = $2006     ; VRAM address (first write is high, next write is low)
@@ -476,8 +486,10 @@ ppu_data   = $2007     ; Data to read/write at this address
 ppu_bg_pallete  = $3F00     ; 3F00-3F0F
 ppu_spr_palette = $3F10     ; 3F10-3F1F
 
-
-
+irq_scanline 	= $C000
+irq_reload   	= $C001
+irq_disable 	= $E000
+irq_enable  	= $E001
 
 _block_data_pointer     = Temp_Var15
 
