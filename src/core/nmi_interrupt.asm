@@ -45,7 +45,7 @@ nmi_interrupt:
 
     LDA ppu_update_disable
     BEQ +
-        JMP PRG031_F567
+        JMP nmi_music_update
 
 +
     
@@ -66,11 +66,3 @@ update_routines_lo:
     .byte <UpdSel_Vertical      ; nmi_vertical_update_routine
     .byte <UpdSel_32PixPart     ; nmi_partition_update_routine
     .byte <PRG031_F4E3          ; nmi_normal_update_routine
-
-UpdSel_Misc:
-    ; MMC3 event
-    LDA #MMC3_8K_TO_PRG_A000    ; Changing PRG ROM at A000
-    STA MMC3_COMMAND        ; Set MMC3 command
-    LDA #26             ; Page 26
-    STA MMC3_PAGE           ; Set MMC3 page
-    JMP PRG031_F610 
