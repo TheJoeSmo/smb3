@@ -21,6 +21,7 @@
     .include src/macros/get_palette_from_block.asm
     .include src/macros/get_screen_offset.asm
     .include src/macros/switch_bank_A000.asm
+    .include src/macros/switch_bank_C000.asm
     .include src/macros/switch_bank_by_tileset.asm
     .include src/macros/status_bar.asm
     .include src/macros/dynjump.asm
