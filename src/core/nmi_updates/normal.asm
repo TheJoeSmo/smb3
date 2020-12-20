@@ -73,7 +73,7 @@ PRG031_F55B:
         JSR Read_Joypads
         DEC in_vblank       ; Don't read this until we complete the next frame
 
-PRG031_F567:
+nmi_music_update:
 +
 
 ; Do the sound engine
