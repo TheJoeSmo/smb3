@@ -1438,76 +1438,8 @@ DMC05_End
     .include src/core/nmi_updates/normal.asm
     .include src/core/nmi_updates/vertical.asm
     .include src/core/nmi_updates/misc.asm
+    .include src/core/nmi_updates/pixel_partition.asm
 
-
-UpdSel_32PixPart:
-    LDA #$00     ; A = 0
-    STA PPU_CTL2     ; Hide sprites and bg (most importantly)
-    STA PPU_SPR_ADDR ; Resets to sprite 0 in memory
-
-    LDA #$02     ; A = 2
-    STA SPR_DMA  ; DMA sprites from RAM @ $200 (probably trying to blank them out)
-    JSR PT2_Full_CHRROM_Switch   ; Set up PT2 (Sprites) CHRROM
-
-    LDA VBlank_Tick
-    BNE PRG031_F6BC         ; If VBlank_Tick <> 0, jump to PRG031_F6BC
-
-    LDA #MMC3_8K_TO_PRG_A000    ; Changing PRG ROM at A000
-    STA MMC3_COMMAND        ; Set MMC3 command
-    LDA #26             ; Page 26
-    STA MMC3_PAGE           ; Set MMC3 page
-
-    JSR Scroll_Commit_Column ; Update nametable as screen scrolls (differs from call made in UpdSel_Vertical, UpdSel_32PixPart)
-    JSR Video_Misc_Updates   ; Various updates other than scrolling (palettes, status bar, etc.)
-    JSR TileChng_VRAMCommit  ; Commit 16x16 tile change to VRAM
-
-    ; Set pages at A000 and C000
-    JSR PRGROM_Change_Both
-
-    LDA Graphics_Queue
-    BNE PRG031_F6B8  ; If we don't need to reset the buffer, jump to PRG031_F6B8
-
-    ; Reset graphics buffer
-    LDA #$00
-    STA Graphics_BufCnt
-    STA Graphics_Buffer
-
-PRG031_F6B8:
-    LDA #$00
-    STA Graphics_Queue ; Graphics Buffer reset
-
-PRG031_F6BC:
-    LDA PPU_STAT        ; read PPU status to reset the high/low latch
-
-    ; Unknown hardware thing?  Is this for synchronization?
-    LDA #$3f        ;
-    STA PPU_VRAM_ADDR   ; Access PPU address #3Fxx
-    LDA #$00        ;
-    STA PPU_VRAM_ADDR   ; Access PPU address #3F00 (palettes?)
-    STA PPU_VRAM_ADDR   ;
-    STA PPU_VRAM_ADDR   ; Now accessing $0000 (Pattern tables?)
-
-    LDA PPU_CTL2_Copy  ; Get current PPU_CTL2 settings in RAM
-    ORA #$18    ; A | 18 (BG + SPR)
-    STA PPU_CTL2    ; Sprites/BG are forced to be visible regardless of PPU_CTL2_Copy
-
-    LDA PPU_CTL1_Mod   ; A = PPU_CTL1_Mod
-    ORA #%10101000  ; In addition to anything else specified by PPU_CTL1_Mod, Generate VBlank Resets, use 8x16 sprites, sprites use PT2
-    STA PPU_CTL1    ; Set above settings
-    LDA PPU_STAT    ; read PPU status to reset the high/low latch
-
-    LDA Horz_Scroll
-    STA PPU_SCROLL  ; Horizontal Scroll set
-    LDA Vert_Scroll
-    STA PPU_SCROLL  ; Vertical scroll set
-
-    ; 32 pixel partition begins at line 160
-    LDA #160
-    STA MMC3_IRQCNT     ; Store 160 into the IRQ count
-    STA MMC3_IRQLATCH   ; Store it into the latch (will be used later)
-    STA MMC3_IRQENABLE  ; Start the IRQ counter
-    CLI     ; Enable maskable interrupts
-    JMP PRG031_F55B  ; Jump to PRG031_F55B
 
 UpdSel_Title:
     LDA #$00     ; A = 0
