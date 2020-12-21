@@ -5854,7 +5854,7 @@ PRG008_BAC7:
     TAY     ; Y = slope
 
     ; Tile "shape" index values $1x will add 1 to Level_GndLUT_Addr+1
-    ; Because of 16 entries per tile in Slope_LUT
+    ; Because of 16 entries per tile in slope_detection_lookup
     LSR A
     LSR A
     LSR A
@@ -5864,14 +5864,14 @@ PRG008_BAC7:
     STA Level_GndLUT_Addr+1
 
     ; Lower 4 bits of "shape" index value shifted up (so $0-$F * $10)
-    ; Because of 16 entries per tile in Slope_LUT
+    ; Because of 16 entries per tile in slope_detection_lookup
     TYA
     ASL A
     ASL A
     ASL A
     ASL A
     ORA Temp_Var1  ; Apply existing offset across tile
-    STA Temp_Var1  ; -> Temp_Var1 (now offset into Slope_LUT for specific height of slope)
+    STA Temp_Var1  ; -> Temp_Var1 (now offset into slope_detection_lookup for specific height of slope)
 
     LDA Slope_PlayerVel_Effect,Y
     STA Temp_Var16  ; Temp_Var16 = effect on velocity by this slope

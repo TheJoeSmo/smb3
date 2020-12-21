@@ -1292,8 +1292,8 @@ PRG007_A5DC:
     ADC Temp_Var5  ; Add specific offset across tile
     TAY     ; -> 'Y'
 
-    ; Lower 4 bits of Slope_LUT (the "sloped floor height" component) -> Temp_Var2
-    LDA Slope_LUT,Y
+    ; Lower 4 bits of slope_detection_lookup (the "sloped floor height" component) -> Temp_Var2
+    LDA slope_detection_lookup,Y
     AND #$0f
     STA Temp_Var2
 

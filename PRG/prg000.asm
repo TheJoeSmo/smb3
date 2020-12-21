@@ -60,7 +60,7 @@ Level_SlopeQuadC0:
     .byte $01, $07, $02, $0C, $0D, $0E, $0F, $05, $06, $11, $12, $13, $14, $07, $03, $03
     .byte $03, $03, $08, $07, $04, $07, $04, $04, $08, $08, $04
 
-Slope_LUT:
+slope_detection_lookup:
     ; Lower 4 bits are the ground slope height
     ; Upper 4 bits are the ceiling slope height
 
@@ -88,13 +88,13 @@ Slope_LUT:
     .byte $F0, $E0, $E0, $D0, $D0, $D0, $C0, $C0, $B0, $B0, $A0, $A0, $90, $90, $80, $80    ; $13
     .byte $70, $60, $60, $50, $50, $50, $40, $40, $30, $30, $20, $20, $10, $10, $00, $00    ; $14
 
-    ; Effect on Player's velocity per slope "shape" index (Slope_LUT above)
+    ; Effect on Player's velocity per slope "shape" index (slope_detection_lookup above)
 Slope_PlayerVel_Effect:
     .byte $00, -$03,  $03,  $00,  $00,  $00,  $00,  $00 ; $00-$07
     .byte $00,  $00,  $00,  $00, -$02, -$02,  $02,  $02 ; $08-$0F
     .byte $00,  $00,  $00,  $00,  $00           ; $10-$14
 
-    ; Effect on Object's velocity per slope "shape" index (Slope_LUT above)
+    ; Effect on Object's velocity per slope "shape" index (slope_detection_lookup above)
     ; NOTE: Incomplete -- probably avoids concering with certain ceiling slopes
 Slope_ObjectVel_Effect:
     ; $80 disables response to this slope
@@ -113,7 +113,7 @@ Slope_ObjectVel_Effect:
 NonSlope_LUT_Addr:  .word Level_LayPtrOrig_AddrH
 
     ; Default address for Level_GndLUT_L/H in a sloped level
-Slope_LUT_Addr: .word Slope_LUT
+Slope_LUT_Addr: .word slope_detection_lookup
 
     ; This defines 4 values per Level_Tileset, with each of those values
     ; belonging to a tile "quadrant" (i.e. tiles beginning at $00, $40,
