@@ -693,16 +693,16 @@ reward_player_points:
     ; Find a free slot to display the score in
 find_open_score_slot:
     LDY #$04     ; Y = 4
-PRG000_C490:
-    LDA score_reward_type,Y
-    BEQ PRG000_C49A  ; If score_reward_type[Y] = 0, jump to PRG000_C49A (RTS)
+-
+        LDA score_reward_type,Y
+        BEQ +  ; If score_reward_type[Y] = 0, jump to + (RTS)
 
-    DEY      ; Y--
-    BPL PRG000_C490  ; While Y >= 0, loop
+        DEY
+        BPL -
 
     LDY #$04     ; Y = 4
 
-PRG000_C49A:
++
     RTS      ; Return
 
 PRG000_C49B:
