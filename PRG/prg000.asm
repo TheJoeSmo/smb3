@@ -558,7 +558,7 @@ sprite_ram_offset_lookup:
 ; is no BGM playing!  Also resets 'X' to object slot index.
 ; "BEQ" branches after this function if the clock is at 000.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-TimeBonus_Score:
+score_by_time_lookup:
     .byte 50, 5 ; 500 and 50
 
 ; $C412
@@ -580,7 +580,7 @@ convert_time_to_bonus:
     TYA      ; A = Y
     TAX      ; X = A = 1 or 2
 
-    LDA TimeBonus_Score,X  ; Get appropriate score bonus
+    LDA score_by_time_lookup,X  ; Get appropriate score bonus
     STA Score_Earned        ; Push into score buffer
 
     -
