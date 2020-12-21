@@ -585,7 +585,7 @@ convert_time_to_bonus:
 
     -
         DEC Level_TimerMSD,X    ; Decrement off middle or least significant digit
-        BPL PRG000_C43C     ; If digit is >= 0, jump to PRG000_C43C
+        BPL +     ; If digit is >= 0, jump to +
 
         LDA #$09
         STA Level_TimerMSD,X    ; Otherwise, reload it with 9
@@ -593,7 +593,7 @@ convert_time_to_bonus:
         DEX
         BPL -
 
-PRG000_C43C:
++
     LDX SlotIndexBackup     ; Restore 'X' as object slot index
 
     ; Play tick sound
