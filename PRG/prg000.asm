@@ -679,7 +679,7 @@ PRG000_C47D:
 
     ; Set score X to spawning object
     LDA object_sprite_x, X
-    STA Scores_X,Y
+    STA score_object_x,Y
 
     ; Set score counter to $30
     LDA #$30

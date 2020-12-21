@@ -2331,10 +2331,10 @@ PRG007_AB04:
 PRG007_AB1D:
 
     ; Scroll score horizontally with screen
-    LDA Scores_X,X
+    LDA score_object_x,X
     SEC
     SBC Level_ScrollDiffH
-    STA Scores_X,X
+    STA score_object_x,X
 
     CMP #248
     BGE PRG007_AAC5  ; If score's X >= 248, jump to PRG007_AAC5 (get rid of it!)
@@ -2424,7 +2424,7 @@ PRG007_AB76:
     STA Sprite_RAM+$00,Y
 
     ; Score Sprite X
-    LDA Scores_X,X
+    LDA score_object_x,X
     STA Sprite_RAM+$03,Y
 
     JSR Score_SetAttribute
@@ -2439,7 +2439,7 @@ PRG007_AB99:
     STA Sprite_RAM+$00,Y
 
     ; Score Sprite X
-    LDA Scores_X,X
+    LDA score_object_x,X
     CLC
     ADC #$08
     STA Sprite_RAM+$03,Y
@@ -2964,7 +2964,7 @@ PRG007_AE3E:
     LDA CoinPUp_X,X
     SEC
     SBC #$04
-    STA Scores_X,Y
+    STA score_object_x,Y
 
 PRG007_AE4A:
 
@@ -4182,7 +4182,7 @@ PRG007_B469:
     LDA SpecialObj_XLo,X
     SEC
     SBC Horz_Scroll
-    STA Scores_X,Y
+    STA score_object_x,Y
 
     RTS      ; Return
 
