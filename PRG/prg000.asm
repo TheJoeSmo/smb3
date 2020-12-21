@@ -583,15 +583,15 @@ convert_time_to_bonus:
     LDA TimeBonus_Score - 1,X  ; Get appropriate score bonus
     STA Score_Earned        ; Push into score buffer
 
-PRG000_C42F:
-    DEC Level_TimerMSD,X    ; Decrement off middle or least significant digit
-    BPL PRG000_C43C     ; If digit is >= 0, jump to PRG000_C43C
+    -
+        DEC Level_TimerMSD,X    ; Decrement off middle or least significant digit
+        BPL PRG000_C43C     ; If digit is >= 0, jump to PRG000_C43C
 
-    LDA #$09
-    STA Level_TimerMSD,X    ; Otherwise, reload it with 9
+        LDA #$09
+        STA Level_TimerMSD,X    ; Otherwise, reload it with 9
 
-    DEX      ; X--
-    BPL PRG000_C42F  ; While X >= 0, loop!
+        DEX
+        BPL -
 
 PRG000_C43C:
     LDX SlotIndexBackup     ; Restore 'X' as object slot index
