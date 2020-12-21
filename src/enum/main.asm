@@ -7,3 +7,4 @@
     .include src/enum/music.asm
     .include src/enum/timer.asm
     .include src/enum/object.asm
+    .include src/enum/score.asm
