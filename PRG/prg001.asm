@@ -617,7 +617,7 @@ PRG001_A2DE:
     PHA      ; Save var 1
 
     LDA Player_SpriteX
-    CMP Objects_SpriteX,X
+    CMP object_sprite_x,X
 
     PLA      ; Restore var 1
 
@@ -1321,7 +1321,7 @@ PRG001_A63F:
     LDA Objects_X,X
     SEC
     ABS_SBC Horz_Scroll ; SBC Horz_Scroll
-    STA Objects_SpriteX,X
+    STA object_sprite_x,X
 
     ; Store two pieces of bounce block sprite X
     STA Sprite_RAM+3,Y
@@ -1400,7 +1400,7 @@ PRG001_A6A3:
 
     STA Sprite_RAM+12,Y ; Set Sprite Y
 
-    LDA Objects_SpriteX,X
+    LDA object_sprite_x,X
     CLC
     ADC #$08
     STA Temp_Var2      ; Temp_Var2 = Sprite X + 8
@@ -1522,7 +1522,7 @@ PRG001_A757:
 
 PRG001_A761:
     LDA Player_SpriteX
-    CMP Objects_SpriteX,X
+    CMP object_sprite_x,X
 
     LDA Player_XVel ; A = Player's X Velocity
 
@@ -1900,7 +1900,7 @@ PRG001_A8F7:
     STA Sprite_RAM+6,Y
 
     ; Set sprite X's side by side
-    ABS_LDA_X Objects_SpriteX ; LDA Objects_SpriteX,X
+    ABS_LDA_X object_sprite_x ; LDA object_sprite_x,X
     STA Sprite_RAM+3,Y
     CLC
     ADC #$08
@@ -2249,8 +2249,8 @@ PRG001_AAA8:
 
     ; SpriteX += 10 or -10
     CLC
-    ADC Objects_SpriteX,X
-    STA Objects_SpriteX,X
+    ADC object_sprite_x,X
+    STA object_sprite_x,X
 
     JMP Object_HitTestRespond    ; Do hit test and don't come back
 
@@ -2266,7 +2266,7 @@ PRG001_AAB1:
     ; Block bump pos = 5...
 
     ; LRBounce_X = Sprite X
-    LDA Objects_SpriteX,X
+    LDA object_sprite_x,X
     STA LRBounce_X
 
     ; LRBounce_Y = Sprite Y
@@ -4835,7 +4835,7 @@ PRG001_B737:
 
 PRG001_B761:
     CLC
-    ADC Objects_SpriteX,X   ; Add the Sprite X factor
+    ADC object_sprite_x,X   ; Add the Sprite X factor
     STA Sprite_RAM+$1B   ; Store into sprite X
     STA Temp_Var2       ; -> Temp_Var2
 
@@ -5937,7 +5937,7 @@ Bowser_Draw:
     STA Temp_Var1
 
     ; Temp_Var2 = Bowser's Sprite X
-    LDA Objects_SpriteX,X
+    LDA object_sprite_x,X
     STA Temp_Var2
 
     ; Temp_Var3 and Temp_Var4 = Bowser's FlipBits

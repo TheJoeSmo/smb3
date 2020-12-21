@@ -1385,7 +1385,7 @@ PlayerProj_HitObject:
 
     LDA Temp_Var14     ; Detect X of projectile
     SEC
-    SBC Objects_SpriteX,Y   ; Difference against this object's Sprite X
+    SBC object_sprite_x,Y   ; Difference against this object's Sprite X
     LDX Temp_Var2      ; X = bounding box index
     CMP Projectile_BBoxX,X
     LDX object_index    ; X = Player Projectile slot index

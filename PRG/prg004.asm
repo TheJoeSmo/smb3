@@ -796,7 +796,7 @@ BossAttack_HitOffWall:
     AND #$03
     BNE PRG004_A440  ; If boss attack has hit off a wall, jump to PRG004_A440
 
-    LDY Objects_SpriteX,X   ; Y = Sprite X
+    LDY object_sprite_x,X   ; Y = Sprite X
 
     LDA Objects_XVel,X
     BPL PRG004_A43C  ; If boss attack is not moving to the left, jump to PRG004_A43C
@@ -1411,7 +1411,7 @@ Thwomp_Draw:
     LDY Object_SprRAM,X  ; Y = Sprite_RAM offset
 
     ; The right sprites appear +16 away from Thwomp's left
-    LDA Objects_SpriteX,X
+    LDA object_sprite_x,X
     CLC
     ADC #16
     STA Sprite_RAM+$13,Y
@@ -2398,7 +2398,7 @@ PRG004_AB79:
     BNE PRG004_ABE3  ; If this sprite isn't visible, jump to PRG004_ABE3 (RTS)
 
     ; Temp_Var2 = Sprite X
-    LDA Objects_SpriteX,X
+    LDA object_sprite_x,X
     CLC
     ADC Giant_HXOff,Y
     STA Temp_Var2
@@ -4662,7 +4662,7 @@ PRG004_B629:
 PRG004_B638:
 
     ; Temp_Var2 = Sprite X
-    LDA Objects_SpriteX,X
+    LDA object_sprite_x,X
     SBC #$00
     CLC
     ADC Giant_HXOff,Y
@@ -5097,7 +5097,7 @@ PRG004_B849:
     BNE PRG004_B8B0  ; If sprite is off-screen, jump to PRG004_B8B0 (RTS)
 
     ; Temp_Var2 = Sprite X + offset
-    LDA Objects_SpriteX,X
+    LDA object_sprite_x,X
     CLC
     ADC Giant_HXOff,Y
     STA Temp_Var2
@@ -5346,7 +5346,7 @@ PRG004_B96D:
     ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
     ; Set left sprite X
-    LDA Objects_SpriteX,X
+    LDA object_sprite_x,X
     STA Sprite_RAM+$03,Y
 
     ; Set right sprite X
@@ -5486,7 +5486,7 @@ PRG004_BA02:
     STA Temp_Var1
 
     ; Temp_Var2 = Sprite X
-    LDA Objects_SpriteX,X
+    LDA object_sprite_x,X
     STA Temp_Var2
 
     TYA
@@ -6292,7 +6292,7 @@ ChainChomp_LinkVisibleTest:
 
     LDY #$40     ; Y = $40
 
-    LDA Objects_SpriteX,X
+    LDA object_sprite_x,X
     BMI PRG004_BE45  ; If on right half, jump to PRG004_BE45
 
     LDY #$c0     ; Y = $C0

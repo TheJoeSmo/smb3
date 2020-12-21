@@ -838,7 +838,7 @@ PRG002_A450:
 
     JSR Object_CalcSpriteXY_NoHi
 
-    LDA Objects_SpriteX,X
+    LDA object_sprite_x,X
     STA Temp_Var2       ; Temp_Var2 = Sprite X
 
     PHA      ; Save it
@@ -961,7 +961,7 @@ ObjNorm_BusterBeatle:
     AND #$04
     BEQ PRG002_A532  ; If Buster has not hit floor, jump to PRG002_A532
 
-    LDA Objects_SpriteX,X
+    LDA object_sprite_x,X
     CMP #$04
     BLT PRG002_A532  ; If Buster is near left edge of screen, jump to PRG002_A532
 
@@ -1751,7 +1751,7 @@ Bank2_HotFootHaltAction:
     STA Sprite_RAM+$02,Y
 
     ; Store X coordinate
-    LDA Objects_SpriteX,X
+    LDA object_sprite_x,X
     STA Sprite_RAM+$03,Y
 
 PRG002_A888:

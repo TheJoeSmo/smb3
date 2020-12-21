@@ -796,7 +796,7 @@ PRG005_A402:
     LDX object_index     ; X = object slot index
 
     ; Set Sprite X for edge sprites
-    LDA Objects_SpriteX,X
+    LDA object_sprite_x,X
     STA Sprite_RAM+$13,Y
     CLC
     ADC #24
@@ -1115,7 +1115,7 @@ PRG005_A581:
     STA Temp_Var1
 
     ; Temp_Var2 = Sprite X
-    LDA Objects_SpriteX,X
+    LDA object_sprite_x,X
     STA Temp_Var2
 
 PRG005_A59D:
@@ -1836,7 +1836,7 @@ ObjNorm_AirshipPropellar:
     LDY Object_SprRAM,X  ; Y = Sprite RAM offset
 
     ; Set Sprite Xs
-    LDA Objects_SpriteX,X
+    LDA object_sprite_x,X
     STA Sprite_RAM+$03,Y
     STA Sprite_RAM+$07,Y
 
@@ -1920,7 +1920,7 @@ FireJetLR_SpriteVisibleTest:
 
     LDY #$40     ; Y = $40
 
-    LDA Objects_SpriteX,X
+    LDA object_sprite_x,X
     BMI PRG005_A971  ; If on right half, jump to PRG005_A971
 
     LDY #$c0     ; Y = $C0
@@ -2029,7 +2029,7 @@ PRG005_A9E7:
 
     ; Offset Rocky's Wrench X
     CLC
-    ADC Objects_SpriteX,X
+    ADC object_sprite_x,X
     STA Sprite_RAM-$05,Y
 
     ; Rocky's Wrench pattern
@@ -3078,7 +3078,7 @@ PRG005_AEBC:
     LDX object_index     ; X = object slot index
 
     ; Sun Sprite X -> Temp_Var2 and sprite
-    LDA Objects_SpriteX,X
+    LDA object_sprite_x,X
     STA Temp_Var2
     STA Sprite_RAM+$13,Y
 
@@ -3376,7 +3376,7 @@ ArrowPlat_Draw:
 PRG005_B04C:
 
     ; Temp_Var2 = Sprite X
-    LDA Objects_SpriteX,X
+    LDA object_sprite_x,X
     STA Temp_Var2
 
     LDY Objects_Var4,X ; Y = Var4

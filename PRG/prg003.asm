@@ -909,7 +909,7 @@ PRG003_A4A1:
     ; timed toggled horizontal flip to do his "walking" animation...
     ;;;;;;;;;;;;;;;;;;
 
-    LDA Objects_SpriteX,X
+    LDA object_sprite_x,X
     CLC
     ADC #$04
     STA Sprite_RAM+$0B,Y
@@ -1632,7 +1632,7 @@ PRG003_A83D:
     STA Temp_Var1
 
     ; Temp_Var2 = Bob-omb's sprite X + 4
-    LDA Objects_SpriteX,X
+    LDA object_sprite_x,X
     CLC
     ADC #$04
     STA Temp_Var2
@@ -1750,7 +1750,7 @@ PRG003_A8D2:
     ; Calculates an upper left X/Y offset
 BobOmb_CalcULOffXY:
     ; Temp_Var3 = Bob-omb's Sprite X - 24
-    LDA Objects_SpriteX,X
+    LDA object_sprite_x,X
     SEC
     SBC #24
     STA Temp_Var3
@@ -1901,7 +1901,7 @@ PRG003_A98C:
     STA Temp_Var1
 
     ; Temp_Var2 = Sprite X
-    LDA Objects_SpriteX,X
+    LDA object_sprite_x,X
     STA Temp_Var2
 
 PRG003_A99E:
@@ -2368,7 +2368,7 @@ PRG003_ABC9:
 
     ; Boom Boom is moving leftward...
 
-    LDA Objects_SpriteX,X
+    LDA object_sprite_x,X
     CMP #$08
     BGE PRG003_ABDE  ; If Boom Boom's Sprite X >= 8, jump to PRG003_ABDE (RTS)
     BLT PRG003_ABDB  ; Otherwise, jump to PRG003_ABDB
@@ -2377,7 +2377,7 @@ PRG003_ABD5:
 
     ; Boom Boom is moving rightward...
 
-    LDA Objects_SpriteX,X
+    LDA object_sprite_x,X
     CMP #224
     BLT PRG003_ABDE  ; If Boom Boom's Sprite X < 224, jump to PRG003_ABDE (RTS)
 
@@ -2821,7 +2821,7 @@ PRG003_AE17:
     LDX object_index     ; X = object slot index
 
     ; Temp_Var2 = Sprite X
-    LDA Objects_SpriteX,X
+    LDA object_sprite_x,X
     STA Temp_Var2
 
     ; Set Sprite Xs
@@ -3169,7 +3169,7 @@ PRG003_AFC9:
     INY      ; Y = 1
 
 PRG003_AFDC:
-    LDA Objects_SpriteX,X   ; Get piranha's sprite X
+    LDA object_sprite_x,X   ; Get piranha's sprite X
     CLC
     ADC SidePiranha_EndSprXOff,Y
     STA Temp_Var2       ; Temp_Var2 = Sprite X for piranha's remaining bit
@@ -3288,7 +3288,7 @@ PRG003_B05F:
     LDY Object_SprRAM,X  ; Y = Sprite_RAM offset
 
     ; Right edge sprite, so +16
-    LDA Objects_SpriteX,X
+    LDA object_sprite_x,X
     CLC
     ADC #16
     STA Sprite_RAM+$13,Y
@@ -3771,7 +3771,7 @@ PRG003_B2E0:
     BNE PRG003_B341  ; If check sprite for Big Bertha is off-screen, jump to PRG003_B341 (RTS)
 
     ; Calculate Sprite X with appropriate offset
-    LDA Objects_SpriteX,X
+    LDA object_sprite_x,X
     CLC
     ADC BigBertha_SpriteXOff,Y
     STA Temp_Var2
@@ -4537,7 +4537,7 @@ PRG003_B6FD:
     LDA PRG003_B6B6,X ; A = PRG003_B6B6[X]
     CLC      ; Clear carry
     LDX object_index         ; X = object slot index
-    ABS_ADC_X Objects_SpriteX ; ADC Objects_SpriteX,X
+    ABS_ADC_X object_sprite_x ; ADC object_sprite_x,X
     CLC
     ADC Temp_Var10
     STA Temp_Var2
@@ -4895,7 +4895,7 @@ Sprite_NoCarryIfVisible:
 
     LDY #$40     ; Y = $40
 
-    LDA Objects_SpriteX,X
+    LDA object_sprite_x,X
     BMI PRG003_B8DA  ; If sprite X >= $80, jump to PRG003_B8DA
 
     LDY #$C0     ; Y = $C0
@@ -5061,7 +5061,7 @@ PRG003_B983:
     STA Temp_Var1
 
     ; Sprite X -> Temp_Var2
-    LDA Objects_SpriteX,X
+    LDA object_sprite_x,X
     STA Temp_Var2
 
     TYA

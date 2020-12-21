@@ -7,3 +7,4 @@
 object_index            = SlotIndexBackup
 
 object_sprite_y         = Objects_SpriteY
+object_sprite_x         = Objects_SpriteX

@@ -678,7 +678,7 @@ PRG000_C47D:
     STA Scores_Y,Y   ; Set score Y
 
     ; Set score X to spawning object
-    LDA Objects_SpriteX, X
+    LDA object_sprite_x, X
     STA Scores_X,Y
 
     ; Set score counter to $30
@@ -2075,7 +2075,7 @@ PRG000_CAAE:
     LDA object_sprite_y,X
     STA Sprite_RAM+$00,Y
     STA Sprite_RAM+$04,Y
-    LDA Objects_SpriteX,X
+    LDA object_sprite_x,X
     STA Sprite_RAM+$03,Y
     CLC
     ADC #$08
@@ -2431,8 +2431,8 @@ PRG000_CC37:
 
     LDY object_index     ; Y = object slot index
 
-    LDA Objects_SpriteX,X
-    CMP Objects_SpriteX,Y
+    LDA object_sprite_x,X
+    CMP object_sprite_x,Y
     LDY #$00     ; Y = 0
     BLT PRG000_CC62  ; If this object's sprite X < the OTHER object's sprite X, jump to PRG000_CC62
     LDY #$40     ; Otherwise, Y = $40
@@ -2490,7 +2490,7 @@ PRG000_CC94:
     JMP PRG000_CCF7  ; Otherwise, jump to PRG000_CCF7
 
 PRG000_CC9D:
-    ABS_LDA_X Objects_SpriteX ; LDA Objects_SpriteX,X
+    ABS_LDA_X object_sprite_x ; LDA object_sprite_x,X
 
     LDY Objects_XVel,X
     BPL PRG000_CCAA  ; If object is not moving to the left, jump to PRG000_CCAA
@@ -4354,7 +4354,7 @@ Level_PrepareNewObject:
     LDA #$00
     STA Objects_Var1,X
     STA Objects_Var2,X
-    STA Objects_SpriteX,X
+    STA object_sprite_x,X
     STA Objects_Timer,X
     STA Objects_Timer2,X
     STA Objects_XVel,X
@@ -4478,7 +4478,7 @@ Object_CalcSpriteXY_NoHi:
     LDA Objects_X,X
     SEC
     SBC Horz_Scroll
-    STA Objects_SpriteX,X
+    STA object_sprite_x,X
 
     RTS      ; Return
 
@@ -4565,7 +4565,7 @@ PRG000_D59F:
 PRG000_D5A0:
     LDA Objects_X,X    ; Get object's X
     SBC Horz_Scroll    ; Make relative
-    STA Objects_SpriteX,X  ; Store as sprite X
+    STA object_sprite_x,X  ; Store as sprite X
     STA Temp_Var2      ; Also -> Temp_Var2
 
     LDA Objects_FlipBits,X
@@ -5454,7 +5454,7 @@ Object_CalcBoundBox:
     TAY      ; -> Y (selected bounding box for this object)
 
     ; Calculate upper left of bounding box and lower right offsets
-    LDA Objects_SpriteX,X
+    LDA object_sprite_x,X
     CLC
     ADC object_tile_collision_box_lookups,Y
     STA Temp_Var1       ; Temp_Var1 object's sprite X with offset
@@ -5492,7 +5492,7 @@ Object_CalcBoundBox2:   ; Same as Object_CalcBoundBox in spirit, just different 
     TAY      ; -> Y (selected bounding box for this object)
 
     ; Calculate upper left of bounding box and lower right offsets
-    LDA Objects_SpriteX,X
+    LDA object_sprite_x,X
     CLC
     ADC object_tile_collision_box_lookups,Y
     STA Temp_Var3       ; Temp_Var3 object's sprite X with offset
