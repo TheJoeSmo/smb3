@@ -5897,7 +5897,7 @@ PRG009_BDDB:
     CMP Temp_Var1
     BEQ PRG009_BE28     ; If this is the Muncher/Jelectro, jump to PRG009_BE28
 
-    LDA SpikesEnable,Y
+    LDA spike_enable_by_tileset_lookup,Y
     CMP #$ff
     BEQ PRG009_BE2B     ; If there's no spikes here, jump to PRG009_BE2B
 

@@ -6455,7 +6455,7 @@ PRG008_BD73:
     LDX #$02     ; X = 2
 
 PRG008_BD75:
-    LDA SpikesEnable,Y
+    LDA spike_enable_by_tileset_lookup,Y
     CMP #$ff
     BEQ PRG008_BD96  ; If specified value is $FF, no spikes here, jump to PRG008_BD96
 

@@ -474,7 +474,7 @@ object_attributes_lookup:
 
     ; Index by Level_TilesetIdx
     ; Enables spike tiles where available (this tile and tile before it)
-SpikesEnable:
+spike_enable_by_tileset_lookup:
     .byte $FF   ;  0 Plains style
     .byte TILE2_SPIKEDOWN   ;  1 Mini Fortress style
     .byte $FF   ;  2 Hills style

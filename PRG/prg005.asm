@@ -3274,7 +3274,7 @@ PRG005_AFB8:
     STA Objects_State,X
 
     LDY Level_TilesetIdx
-    LDA SpikesEnable,Y
+    LDA spike_enable_by_tileset_lookup,Y
     CMP #$ff
     BEQ PRG005_AFE2 ; If there's no spikes in the active tileset, jump to PRG005_AFE2
 
