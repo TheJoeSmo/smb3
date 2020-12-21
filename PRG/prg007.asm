@@ -1277,7 +1277,7 @@ PRG007_A5DC:
     LDA (Temp_Var3),Y
     TAY      ; Y = slope offset for this tile
 
-    LDA Slope_ObjectVel_Effect,Y
+    LDA slope_velocity_object_effect_lookup,Y
     CMP #$80
     BEQ PRG007_A637  ; If this tile has no effect, jump to PRG007_A637 ("Poof" away, fireball..)
 
