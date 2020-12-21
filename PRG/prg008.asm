@@ -4470,10 +4470,10 @@ PRG008_B47E:
     ; sense, but Level_GndLUT_Addr/H isn't used in a non-slope level anyway, so this is
     ; probably some bit of "dead" code or something...
 
-    LDA NonSlope_LUT_Addr
+    LDA <Level_LayPtrOrig_AddrH
     STA Level_GndLUT_Addr
 
-    LDA NonSlope_LUT_Addr+1
+    LDA >Level_LayPtrOrig_AddrH
     STA Level_GndLUT_Addr+1
 
 PRG008_B4A2:

@@ -106,12 +106,6 @@ slope_velocity_object_effect_lookup:
     ; found after the label PRG000_C5EC, these would be inaccessible anyway!
 
 
-    ; Default address for Level_GndLUT_L/H in a non-slope level; note that this
-    ; doesn't make sense (the address for Level_LayPtrOrig_AddrH would just give
-    ; you the original layout pointer, not slope data) so this is probably dead
-    ; code.  Level_GndLUT_L/H isn't used in non-slope levels anyway...
-NonSlope_LUT_Addr:  .word Level_LayPtrOrig_AddrH
-
     ; Default address for Level_GndLUT_L/H in a sloped level
 Slope_LUT_Addr: .word slope_detection_lookup
 
