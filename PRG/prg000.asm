@@ -570,11 +570,10 @@ convert_time_to_bonus:
 
     LDA Level_TimerMSD
     ORA Level_TimerMid
-    BNE PRG000_C422  ; If most significant or middle digit of time is non-zero, jump to PRG000_C422
+    BNE +  ; If most significant or middle digit of time is non-zero, jump to +
+        INY      ; Y = 2 (most significant and middle digit of time are zero)
 
-    INY      ; Y = 2 (most significant and middle digit of time are zero)
-
-PRG000_C422:
++
     ORA Level_TimerLSD
     BEQ +rts  ; If all time digits are zero, jump to +rts (RTS)
 
