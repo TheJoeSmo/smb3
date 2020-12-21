@@ -666,7 +666,7 @@ reward_player_points:
     PLA         ; Restore input value
     STA Scores_Value,Y  ; Store input value
 
-    ABS_LDA_X Objects_SpriteY ;LDA Objects_SpriteY,X
+    LDA Objects_SpriteY, X
     SEC
     SBC #16
     CMP #192
@@ -678,7 +678,7 @@ PRG000_C47D:
     STA Scores_Y,Y   ; Set score Y
 
     ; Set score X to spawning object
-    ABS_LDA_X Objects_SpriteX ; LDA Objects_SpriteX,X
+    LDA Objects_SpriteX, X
     STA Scores_X,Y
 
     ; Set score counter to $30
