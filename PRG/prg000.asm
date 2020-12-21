@@ -605,22 +605,22 @@ convert_time_to_bonus:
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; find_open_special_object
-; SpecialObj_FindEmptyAbortY
+; find_open_special_object_dirty
 ;
 ; Finds an empty special object slot (returned in 'Y') or "aborts"
 ; if no slot is open OR if the object has any horizontal sprite visibility
 ; "abort" = will not return to caller...
 ;
-; SpecialObj_FindEmptyAbortY just allows a specified range
+; find_open_special_object_dirty just allows a specified range
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; $C447
 find_open_special_object:
     LDY #$05
-SpecialObj_FindEmptyAbortY:
+find_open_special_object_dirty:
     LDA SpecialObj_ID,Y
     BEQ PRG000_C454  ; If object slot is dead/empty, jump to PRG000_C454
     DEY      ; Y--
-    BPL SpecialObj_FindEmptyAbortY   ; While Y >= 0, loop!
+    BPL find_open_special_object_dirty   ; While Y >= 0, loop!
 
 PRG000_C451:
     ; Do not return to caller!!

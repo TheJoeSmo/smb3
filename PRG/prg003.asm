@@ -974,7 +974,7 @@ BustBlock_XVelByInput:  .byte $F8, $08, $F8, $08, $00
 BustBlock_Segment:
     LDY #$07     ; Y = 7 (wider expanse of special object slots)
 
-    JSR SpecialObj_FindEmptyAbortY   ; Find an empty special object slot or don't come back here...
+    JSR find_open_special_object_dirty   ; Find an empty special object slot or don't come back here...
 
     ; Temp_Var1 = Ice Block's Y
     LDA Objects_Y,X
@@ -3342,7 +3342,7 @@ LavaLotus_SpitFire:
     LDY #$07     ; Y = 7
 
     ; This loop really could be replaced by
-    ;JSR SpecialObj_FindEmptyAbortY
+    ;JSR find_open_special_object_dirty
 
 PRG003_B0C8:
     LDA SpecialObj_ID,Y
@@ -3510,7 +3510,7 @@ PRG003_B197:
 
 Current_GenerateBubble:
     LDY #$01
-    JSR SpecialObj_FindEmptyAbortY  ; Find a free special object in one of the first two slots or don't come back!
+    JSR find_open_special_object_dirty  ; Find a free special object in one of the first two slots or don't come back!
 
     ; SpecialObj_Timer = $28
     LDA #$28

@@ -1737,7 +1737,7 @@ PRG005_A885:
     STY Temp_Var1   ; Temp_Var1 = 0 or 16
 
     LDY #$03     ; Y = 3
-    JSR SpecialObj_FindEmptyAbortY   ; Find an empty slot from special object slot 0 to 3 or don't come back!
+    JSR find_open_special_object_dirty   ; Find an empty slot from special object slot 0 to 3 or don't come back!
 
     ; Set X offset
     LDA Objects_X,X

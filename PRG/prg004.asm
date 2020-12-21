@@ -3435,7 +3435,7 @@ PRG004_B06E:
 
 Paragoomba_SpawnMicroGoomba:
     LDY #$05     ; Searching special object slots 0 - 5
-    JSR SpecialObj_FindEmptyAbortY   ; Find an open special object slot or don't come back
+    JSR find_open_special_object_dirty   ; Find an open special object slot or don't come back
 
     ; A microgoomba
     LDA #SOBJ_MICROGOOMBA
