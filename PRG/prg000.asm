@@ -564,7 +564,7 @@ TimeBonus_Score:
 ; $C412
 convert_time_to_bonus:
     LDA SndCur_Music1
-    BNE PRG000_C446  ; If any music playing, jump to PRG000_C446 (RTS)
+    BNE +rts  ; If any music playing, jump to +rts (RTS)
 
     LDY #$01     ; Y = 1 (most significant or middle digit of time is non-zero)
 
@@ -576,7 +576,7 @@ convert_time_to_bonus:
 
 PRG000_C422:
     ORA Level_TimerLSD
-    BEQ PRG000_C446  ; If all time digits are zero, jump to PRG000_C446 (RTS)
+    BEQ +rts  ; If all time digits are zero, jump to +rts (RTS)
 
     TYA      ; A = Y
     TAX      ; X = A = 1 or 2
@@ -602,7 +602,7 @@ PRG000_C43C:
     ORA #SND_LEVELBLIP
     STA Sound_QLevel1
 
-PRG000_C446:
++rts
     RTS      ; Return
 
 
