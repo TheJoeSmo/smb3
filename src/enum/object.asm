@@ -5,3 +5,5 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 object_index            = SlotIndexBackup
+
+object_sprite_y         = Objects_SpriteY

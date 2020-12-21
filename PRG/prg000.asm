@@ -666,7 +666,7 @@ reward_player_points:
     PLA         ; Restore input value
     STA score_reward_type,Y  ; Store input value
 
-    LDA Objects_SpriteY, X
+    LDA object_sprite_y, X
     SEC
     SBC #16
     CMP #192
@@ -2072,7 +2072,7 @@ PRG000_CAAE:
     ; Set the "poof" pixel positions
     JSR Object_CalcSpriteXY_NoHi
     LDY Object_SprRAM,X
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     STA Sprite_RAM+$00,Y
     STA Sprite_RAM+$04,Y
     LDA Objects_SpriteX,X
@@ -3288,7 +3288,7 @@ Object_FallAndDelete:
 
     ; In vertical level...
 
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     CMP #200
     BLT PRG000_D054  ; If object Y < 200, jump to PRG000_D054 (RTS)
 
@@ -4473,7 +4473,7 @@ Object_CalcSpriteXY_NoHi:
     LDA Objects_Y,X
     SEC
     SBC Level_VertScroll
-    STA Objects_SpriteY,X
+    STA object_sprite_y,X
 
     LDA Objects_X,X
     SEC
@@ -4543,7 +4543,7 @@ Object_ShakeAndCalcSprite:
     LDA Objects_Y,X    ; Get object's Y
     SEC
     SBC Level_VertScroll    ; Make relative
-    STA Objects_SpriteY,X  ; Store as sprite Y
+    STA object_sprite_y,X  ; Store as sprite Y
     STA Temp_Var1      ; Also -> Temp_Var1
 
     ; This is the object "shakin' awake" routine!  (Enemies in shell etc.)
@@ -5459,7 +5459,7 @@ Object_CalcBoundBox:
     ADC object_tile_collision_box_lookups,Y
     STA Temp_Var1       ; Temp_Var1 object's sprite X with offset
 
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     CLC
     ADC object_tile_collision_box_lookups+2,Y
     STA Temp_Var5       ; Temp_Var5 object's sprite Y with offset
@@ -5497,7 +5497,7 @@ Object_CalcBoundBox2:   ; Same as Object_CalcBoundBox in spirit, just different 
     ADC object_tile_collision_box_lookups,Y
     STA Temp_Var3       ; Temp_Var3 object's sprite X with offset
 
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     CLC
     ADC object_tile_collision_box_lookups+2,Y
     STA Temp_Var7       ; Temp_Var7 object's sprite Y with offset

@@ -901,7 +901,7 @@ PRG003_A4A1:
 
     LDX object_index         ; X = object slot index
 
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     STA Sprite_RAM+$08,Y
 
     ; NOTE: This sprite is not visible... I suspect this may originally
@@ -1628,7 +1628,7 @@ PRG003_A836:
 
 PRG003_A83D:
     ; Temp_Var1 = Bob-omb's sprite Y
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     STA Temp_Var1
 
     ; Temp_Var2 = Bob-omb's sprite X + 4
@@ -1756,7 +1756,7 @@ BobOmb_CalcULOffXY:
     STA Temp_Var3
 
     ; Temp_Var7 = Bob-omb's Sprite Y - 24
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     SEC
     SBC #24
     STA Temp_Var7
@@ -1895,7 +1895,7 @@ PRG003_A98C:
     JSR Object_CalcSpriteXY_NoHi
 
     ; Temp_Var1 = Sprite Y - 1
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     SEC
     SBC #$01
     STA Temp_Var1
@@ -2776,7 +2776,7 @@ PRG003_ADC8:
     BNE PRG003_ADB5  ; If any sprite is vertically off-screen, jump to PRG003_ADB5 (RTS)
 
     ; Temp_Var1 = Sprite Y
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     STA Temp_Var1
 
     ; X = frame
@@ -3184,7 +3184,7 @@ PRG003_AFDC:
     LDA Objects_SprVVis,X
     STA Temp_Var1
 
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     LSR Temp_Var1
     BCS PRG003_AFFA  ; If piranha's last bit isn't vertically visible, jump to PRG003_AFFA
 
@@ -3298,7 +3298,7 @@ PRG003_B05F:
     LDA Objects_SprVVis,X
     STA Temp_Var1
 
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     LSR Temp_Var1
     BCS PRG003_B08A  ; If this sprite is vertically off-screen, jump to PRG003_B08A
 
@@ -3787,7 +3787,7 @@ PRG003_B2E0:
     LDA Objects_SprVVis,X
     STA Temp_Var1
 
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     LSR Temp_Var1
     BCS PRG003_B309  ; If this sprite is vertically off-screen, jump to PRG003_B309
 
@@ -4512,7 +4512,7 @@ PRG003_B6FD:
     LDA Counter_1
     AND #$0f        ; 0-15 counter value
     CLC
-    ABS_ADC_X Objects_SpriteY ; ADC Objects_SpriteY,X   ; Add 0-15 to SpriteY
+    ABS_ADC_X object_sprite_y ; ADC object_sprite_y,X   ; Add 0-15 to SpriteY
 
     ; Temp_Var1 (Sprite Y) = Temp_Var16 + Tornado_ScatterY[X] + Temp_Var9
     LDX Temp_Var16
@@ -4889,7 +4889,7 @@ Sprite_NoCarryIfVisible:
     LDA Objects_SprVVis,X
     BNE PRG003_B8E7  ; If any of the sprites are vertically off-screen, jump to PRG003_B8E7
 
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     CMP #208
     BGE PRG003_B8E7  ; If sprite Y >= 208, jump to PRG003_B8E7
 
@@ -5057,7 +5057,7 @@ PRG003_B983:
     JSR Object_CalcSpriteXY_NoHi
 
     ; Sprite Y -> Temp_Var1
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     STA Temp_Var1
 
     ; Sprite X -> Temp_Var2

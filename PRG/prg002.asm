@@ -843,9 +843,9 @@ PRG002_A450:
 
     PHA      ; Save it
 
-    DEC Objects_SpriteY,X   ; Sprite Y--
+    DEC object_sprite_y,X   ; Sprite Y--
 
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     STA Temp_Var3       ; Temp_Var3 = Sprite Y
 
     PHA      ; Save it
@@ -1222,7 +1222,7 @@ PRG002_A641:
 
     PHA         ; Save Var5
 
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
 
     LDY Objects_Var4,X  ; Y = Var4
 
@@ -1742,7 +1742,7 @@ Bank2_HotFootHaltAction:
     STA Sprite_RAM+$01,Y
 
     ; Store Y coordinate
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     STA Sprite_RAM+$00,Y
 
     ; Store attributes
@@ -2860,7 +2860,7 @@ PRG002_ADB4:
 
     LDY Objects_Var4,X  ; Y = Var4
 
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     BIT Temp_Var3
     BMI PRG002_ADC5  ; If Spike is vertically flipped, jump to PRG002_ADC5
 
@@ -3592,7 +3592,7 @@ PRG002_B14E:
 
     LDX object_index         ; X = object slot index
 
-    LDA Objects_SpriteY,X  ; Get sprite Y for object
+    LDA object_sprite_y,X  ; Get sprite Y for object
 
     BIT Temp_Var3
     BMI PRG002_B15F  ; If shoe is vertically flipped, jump to PRG002_B15F
@@ -4898,7 +4898,7 @@ PRG002_B8A0:
     LDA Objects_Frame,X
     BPL PRG002_B900  ; If frame = 0, jump to PRG002_B900
 
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     CMP #154
     BGE PRG002_B8B8  ; If Big Bertha's SpriteY >= 154, jump to PRG002_B8B8
 
@@ -4966,7 +4966,7 @@ PRG002_B900:
     INC Objects_YVel,X
     INC Objects_YVel,X
 
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
 
     ; NOTE: Big Bertha is clearly abusing the purpose of Objects_Frame
 
@@ -5036,7 +5036,7 @@ PRG002_B95C:
 
     ; Big Bertha is falling...
 
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     CMP #160
     BLT PRG002_B996  ; If SpriteY < 160, jump to PRG002_B996 (RTS)
 
@@ -5212,7 +5212,7 @@ PRG002_BA20:
     LDA Objects_Var4,X
     BNE PRG002_BA96  ; If Var4 <> 0 (Cheep Cheep is lunging), jump to PRG002_BA96
 
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     CMP #156
     BGE PRG002_BA40  ; If Cheep Cheep's SpriteY >= 156, jump to PRG002_BA40
 
@@ -5291,7 +5291,7 @@ PRG002_BA96:
     INC Objects_YVel,X
     INC Objects_YVel,X
 
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     CMP #168
     BLT PRG002_BAA6  ; If Cheep Cheep Y < 168, jump to PRG002_BAA6 (RTS)
 
@@ -5317,7 +5317,7 @@ PlayerPlatform_Collide:
     LDA Player_SpriteY
     CLC
     ADC #24
-    CMP Objects_SpriteY,X
+    CMP object_sprite_y,X
     BGE PRG002_BABE  ; If Player's bottom is beneath object's top, jump to PRG002_BABE
 
     LDA Player_YVel
@@ -5347,7 +5347,7 @@ PRG002_BAC9:
 PRG002_BACB:
     CLC
     ADC Player_SpriteY
-    CMP Objects_SpriteY,X
+    CMP object_sprite_y,X
     BLT PRG002_BADC  ; If Player's Sprite top is near object's top, jump to PRG002_BADC
 
     LDA Player_YVel

@@ -1378,7 +1378,7 @@ PlayerProj_HitObject:
 
     LDA Temp_Var13     ; Detect Y of projectile
     SEC
-    SBC Objects_SpriteY,Y   ; Difference against this object's Sprite Y
+    SBC object_sprite_y,Y   ; Difference against this object's Sprite Y
     CMP Projectile_BBoxY,X
     LDX object_index    ; X = Player Projectile slot index
     BGE PRG007_A66C     ; If projectile is out of range vertically, jump to PRG007_A66C (RTS)

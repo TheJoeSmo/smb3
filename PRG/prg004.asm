@@ -770,7 +770,7 @@ PRG004_A408:
     JSR Object_ApplyYVel_NoLimit    ; Apply Y velocity
     JSR Object_WorldDetectN1    ; Detect against world
 
-    LDY Objects_SpriteY,X   ; Y = Sprite Y
+    LDY object_sprite_y,X   ; Y = Sprite Y
 
     LDA Objects_YVel,X
     BPL PRG004_A41D  ; If ring is not moving downward, jump to PRG004_A41D
@@ -1421,7 +1421,7 @@ Thwomp_Draw:
     LDA Objects_SprVVis,X
     STA Temp_Var1
 
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
 
     LSR Temp_Var1
     BCS PRG004_A718  ; If sprite is vertically off-screen, jump to PRG004_A718
@@ -2414,7 +2414,7 @@ PRG004_AB79:
     LDA Objects_SprVVis,X
     STA Temp_Var1
 
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     LSR Temp_Var1
     BCS PRG004_ABA2  ; If this sprite is vertically off-screen, jump to PRG004_ABA2
 
@@ -4679,7 +4679,7 @@ PRG004_B638:
     LDA Objects_SprVVis,X
     STA Temp_Var1
 
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     CLC
     ADC #$08
     LSR Temp_Var1
@@ -5113,7 +5113,7 @@ PRG004_B849:
     LDA Objects_SprVVis,X
     STA Temp_Var1
 
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     LSR Temp_Var1
     BCS PRG004_B872  ; If sprite is vertically off-screen, jump to PRG004_B872
 
@@ -5306,7 +5306,7 @@ PRG004_B938:
     LDA Objects_SprHVis,X
     STA Temp_Var3
 
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     SEC
     SBC Temp_Var1
 
@@ -5482,7 +5482,7 @@ PRG004_BA02:
     JSR Object_CalcSpriteXY_NoHi
 
     ; Temp_Var1 = Sprite Y
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     STA Temp_Var1
 
     ; Temp_Var2 = Sprite X
@@ -6286,7 +6286,7 @@ ChainChomp_LinkVisibleTest:
     LDA Objects_SprVVis,X
     BNE PRG004_BE52  ; If any sprite is vertically off-screen, jump to PRG004_BE52
 
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     CMP #200
     BGE PRG004_BE52  ; If Sprite Y >= 200, jump to PRG004_BE52
 

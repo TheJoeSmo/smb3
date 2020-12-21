@@ -749,7 +749,7 @@ BigCannonBall_Draw:
     BNE PRG005_A429     ; If any sprite of the big cannon ball is vertically off-screen, jump to PRG005_A429 (RTS)
 
     ; Temp_Var1 = big cannon ball's Sprite Y
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     STA Temp_Var1
 
     LDY Object_SprRAM,X  ; Y = Sprite RAM offset
@@ -1109,7 +1109,7 @@ PRG005_A581:
     JSR Object_CalcSpriteXY_NoHi
 
     ; Temp_Var1 = Sprite Y - 1
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     SEC
     SBC #$01
     STA Temp_Var1
@@ -1830,7 +1830,7 @@ ObjNorm_AirshipPropellar:
     JSR Object_CalcSpriteXY_NoHi
 
     ; Temp_Var1 = Sprite Y
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     STA Temp_Var1
 
     LDY Object_SprRAM,X  ; Y = Sprite RAM offset
@@ -2010,7 +2010,7 @@ PRG005_A9B1:
     BNE PRG005_A9F7  ; If any of Rocky's sprites are off-screen, jump to PRG005_A9F7
 
     ; Set Rocky's held wrench Y
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     SEC
     SBC #$08
     STA Sprite_RAM-$08,Y
@@ -2483,7 +2483,7 @@ PRG005_AC04:
 
     LDA Player_SpriteY
     ADC #23
-    CMP Objects_SpriteY,X
+    CMP object_sprite_y,X
     BGE PRG005_AC36     ; If Player is lower than the top of bolt, jump to PRG005_AC36
 
     LDA Player_YVel
@@ -2526,7 +2526,7 @@ PRG005_AC36:
 PRG005_AC3E:
     CLC
     ADC Player_SpriteY ; Offset Player Y
-    CMP Objects_SpriteY,X
+    CMP object_sprite_y,X
     BLT PRG005_AC52     ; If Player is not hitting head off bolt, jump to PRG005_AC52
 
     LDA Player_YVel
@@ -3030,7 +3030,7 @@ PRG005_AE67:
     BNE PRG005_AE56  ; If Sun is vertically off-screen, jump to PRG005_AE56 (RTS)
 
     ; Sun's Sprite Y -> Temp_Var1
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     STA Temp_Var1
 
     LDA Objects_Frame,X
@@ -3152,7 +3152,7 @@ ArrowPlat_YVel:
 ObjNorm_ArrowPlatform:
     JSR ArrowPlat_Draw   ; Draw the arrow platform
 
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     CMP #200
     BLT PRG005_AF40  ; If the SpriteY < 200, jump to PRG005_AF40
 
@@ -3201,7 +3201,7 @@ PRG005_AF4F:
     LDA Player_SpriteY
     CLC
     ADC #24
-    CMP Objects_SpriteY,X
+    CMP object_sprite_y,X
     BGE PRG005_AFE3  ; If Player Y + 24 is lower than the arrow platform Y, jump to PRG005_AFE3
 
     LDA Player_YVel
@@ -3299,7 +3299,7 @@ PRG005_AFE3:
 PRG005_AFEB:
     CLC
     ADC Player_SpriteY
-    CMP Objects_SpriteY,X
+    CMP object_sprite_y,X
     BLT PRG005_AFFB  ; If Player's head is sufficiently beneath the platform, jump to PRG005_AFFB
 
     LDA Player_YVel
@@ -3397,7 +3397,7 @@ PRG005_B059:
 
 PRG005_B062:
     ; Set Sprite Y
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     STA Sprite_RAM+$00,Y
 
     ; Set Sprite X
@@ -4627,7 +4627,7 @@ PRG005_B65B:
     LDA Player_SpriteY
     CLC
     ADC #24
-    CMP Objects_SpriteY,X
+    CMP object_sprite_y,X
     BGE PRG005_B69A  ; If Player's sprite Y + 24 is beneath top of Big ? Block, jump to PRG005_B69A
 
     ; Not below the Big ? Block...
@@ -4681,7 +4681,7 @@ PRG005_B6A5:
 PRG005_B6A7:
     CLC
     ADC Player_SpriteY
-    CMP Objects_SpriteY,X
+    CMP object_sprite_y,X
     BLT PRG005_B6BA  ; If Player's head is above Big ? Block, jump to PRG005_B6BA
 
     LDA Player_YVel

@@ -1335,7 +1335,7 @@ PRG001_A63F:
     SBC Level_VertScroll
     SEC
     SBC #$01
-    STA Objects_SpriteY,X
+    STA object_sprite_y,X
 
     ; Store two pieces of bounce block sprite Y
     STA Sprite_RAM,Y
@@ -1392,7 +1392,7 @@ PRG001_A6A3:
     BEQ PRG001_A702     ; If anchor is "high", it's invisible for this sake, jump to PRG001_A702 (RTS)
 
     ; Anchor top
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     STA Temp_Var1      ; Temp_Var1 = Sprite Y
     SEC
     SBC #16
@@ -1475,7 +1475,7 @@ ObjHit_Obj0A:
     LDA Player_YVel
     BMI PRG001_A746  ; If Player Y Velocity is negative (moving upward), jump to PRG001_A746
 
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     SEC
     SBC Player_SpriteY
     CMP #$16
@@ -1502,7 +1502,7 @@ PRG001_A746:
     LDA Player_YVel
     BPL PRG001_A757  ; If Player is not moving upward, jump to PRG001_A757
 
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     SEC
     SBC Player_SpriteY
     CMP #-$6
@@ -2270,7 +2270,7 @@ PRG001_AAB1:
     STA LRBounce_X
 
     ; LRBounce_Y = Sprite Y
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     STA LRBounce_Y
 
     JMP PRG001_AAFE  ; Jump to PRG001_AAFE
@@ -4844,7 +4844,7 @@ PRG001_B761:
     STA Sprite_RAM+$1F   ; Store into second sprite X
 
     ; Set sprite Y with +$20 offset
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     CLC
     ADC #$20
     STA Sprite_RAM+$18
@@ -5933,7 +5933,7 @@ Bowser_Draw:
     JSR Object_CalcSpriteXY_NoHi    ; Calculate the Sprite X and Y Low parts
 
     ; Temp_Var1 = Bowser's Sprite Y
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     STA Temp_Var1
 
     ; Temp_Var2 = Bowser's Sprite X
@@ -6129,7 +6129,7 @@ Bowser_HandleIfDead:
 
     ; Bowser's not too high...
 
-    LDA Objects_SpriteY,X
+    LDA object_sprite_y,X
     CMP #$88
     BGE PRG001_BE7F  ; If Bowser's Y >= $88, jump to PRG001_BE7F
 
