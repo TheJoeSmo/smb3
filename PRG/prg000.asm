@@ -578,16 +578,15 @@ convert_time_to_bonus:
     BEQ +rts  ; If all time digits are zero, jump to +rts (RTS)
 
     TYX
-
-    LDA score_by_time_lookup,X  ; Get appropriate score bonus
+    LDA score_by_time_lookup, x  ; Get appropriate score bonus
     STA Score_Earned        ; Push into score buffer
 
     -
-        DEC level_time_hi,X    ; Decrement off middle or least significant digit
+        DEC level_time_hi, x    ; Decrement off middle or least significant digit
         BPL +     ; If digit is >= 0, jump to +
 
         LDA #$09
-        STA level_time_hi,X    ; Otherwise, reload it with 9
+        STA level_time_hi, x    ; Otherwise, reload it with 9
 
         DEX
         BPL -
