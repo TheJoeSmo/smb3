@@ -604,7 +604,7 @@ convert_time_to_bonus:
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; SpecialObj_FindEmptyAbort
+; find_open_special_object
 ; SpecialObj_FindEmptyAbortY
 ;
 ; Finds an empty special object slot (returned in 'Y') or "aborts"
@@ -614,7 +614,7 @@ convert_time_to_bonus:
 ; SpecialObj_FindEmptyAbortY just allows a specified range
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; $C447
-SpecialObj_FindEmptyAbort:
+find_open_special_object:
     LDY #$05
 SpecialObj_FindEmptyAbortY:
     LDA SpecialObj_ID,Y

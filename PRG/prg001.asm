@@ -3400,7 +3400,7 @@ PRG001_B02E:
     STA Temp_Var1   ; Temp_Var1 = -$0E or $1E
 
     ; Find an empty special object slot -> 'Y' OR if none available, do not return here!
-    JSR SpecialObj_FindEmptyAbort
+    JSR find_open_special_object
 
     ; Special object: Koopaling wand blast!
     LDA #SOBJ_WANDBLAST

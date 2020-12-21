@@ -2901,7 +2901,7 @@ PRG002_ADD1:
     RTS      ; Return
 
 Spike_TossSpikeBall:
-    JSR SpecialObj_FindEmptyAbort   ; Find an empty special object slot if on-screen (or don't come back!)
+    JSR find_open_special_object   ; Find an empty special object slot if on-screen (or don't come back!)
     STA Objects_Var5,X  ; Objects_Var5 = 0 (because we wouldn't be here otherwise)
 
     ; Spike's spike ball
@@ -2991,7 +2991,7 @@ PRG002_AE47:
 PRG002_AE51:
     INC Objects_HitCount,X   ; Increase hit count (??)
 
-    JSR SpecialObj_FindEmptyAbort    ; Find an empty special object slot if on-screen (or don't come back!)
+    JSR find_open_special_object    ; Find an empty special object slot if on-screen (or don't come back!)
 
     ; Patooie's Spike ball
     LDA #SOBJ_SPIKEBALL
@@ -4401,7 +4401,7 @@ PRG002_B61F:
     CMP #$40
     BGE PRG002_B65A     ; If Player is too high above Nipper, jump to PRG002_B65A (RTS)
 
-    JSR SpecialObj_FindEmptyAbort    ; Find an empty special object slot if on-screen (or don't come back!)
+    JSR find_open_special_object    ; Find an empty special object slot if on-screen (or don't come back!)
 
     ; Nipper fireball ID
     LDA #SOBJ_NIPPERFIREBALL

@@ -2261,7 +2261,7 @@ Rocky_ThrowWrench:
 
     ; Rocky's wrench throw
 
-    JSR SpecialObj_FindEmptyAbort    ; Find an empty special object slot or don't come back!
+    JSR find_open_special_object    ; Find an empty special object slot or don't come back!
 
     ; Set Wrench at Rocky's Y - 8
     LDA Objects_Y,X

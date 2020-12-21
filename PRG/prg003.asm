@@ -610,7 +610,7 @@ PRG003_A34E:
 
 
 TreasureBox_Poof:
-    JSR SpecialObj_FindEmptyAbort   ; Find an empty special object slot or don't come back here!
+    JSR find_open_special_object   ; Find an empty special object slot or don't come back here!
 
     ; The "poof" from when it appears
     LDA #SOBJ_POOF
@@ -4821,7 +4821,7 @@ Blooper_LaunchKids:
     STA Temp_Var1
 
 PRG003_B876:
-    JSR SpecialObj_FindEmptyAbort
+    JSR find_open_special_object
 
     ; Blooper child
     LDA #SOBJ_BLOOPERKID
@@ -5664,7 +5664,7 @@ PRG003_BC6D:
     RTS      ; Return
 
 FireChomp_SpitFire:
-    JSR SpecialObj_FindEmptyAbort    ; Find an empty special object slot or don't come back!
+    JSR find_open_special_object    ; Find an empty special object slot or don't come back!
 
     ; Fire Chomp's fireball
     LDA #SOBJ_FIRECHOMPFIRE

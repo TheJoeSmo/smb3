@@ -596,7 +596,7 @@ PRG004_A341:
 
 
 BossAttack_Poof:
-    JSR SpecialObj_FindEmptyAbort
+    JSR find_open_special_object
 
     LDA Objects_Y,X
     STA SpecialObj_YLo,Y
@@ -1220,7 +1220,7 @@ Boomerang_XVel: .byte $20, -$20
 Boomerang_ArrayValLoad: .byte $01, $00
 
 BoomerangBro_ThrowBoomerang:
-    JSR SpecialObj_FindEmptyAbort   ; Find an empty special object slot or don't come back!
+    JSR find_open_special_object   ; Find an empty special object slot or don't come back!
 
     ; Set Boomerang at Boomerang Bro's position
     LDA Objects_X,X
@@ -2034,7 +2034,7 @@ PRG004_A9C0:
 FireBro_FireballXVel:   .byte $20, -$20
 
 FireBro_SpitFire:
-    JSR SpecialObj_FindEmptyAbort   ; Find an empty special object slot or don't come back
+    JSR find_open_special_object   ; Find an empty special object slot or don't come back
 
     ; Fireball sound!
     LDA Sound_QPlayer
