@@ -4233,7 +4233,7 @@ PRG004_B43A:
 
     LDY Level_ObjectID,X     ; Y = this object's ID
 
-    LDA Object_AttrFlags,Y
+    LDA object_attributes_lookup,Y
     AND #OAT_BOUNCEOFFOTHERS
     BEQ PRG004_B49A  ; If this object does not bounce off other objects, jump to PRG004_B49A (skip to next object)
 

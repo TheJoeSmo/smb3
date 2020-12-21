@@ -4702,7 +4702,7 @@ PRG002_B79E:
 PRG002_B7A9:
     LDY Level_ObjectID,X     ; Y = object's ID
 
-    LDA Object_AttrFlags,Y
+    LDA object_attributes_lookup,Y
     AND #OAT_BOUNCEOFFOTHERS
     BEQ PRG002_B815  ; If OAT_BOUNCEOFFOTHERS is NOT set, jump to PRG002_B815
 

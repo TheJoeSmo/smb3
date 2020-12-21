@@ -267,7 +267,7 @@ object_tile_water_detection_offset_lookup:
 
 
     ; Defines the "bounding box"
-    ; Selected by Object_AttrFlags lower 4 bits
+    ; Selected by object_attributes_lookup lower 4 bits
 object_tile_collision_box_lookups:
     ;    Left Right Bot Top - offsets applied to sprite X/Y
     .byte  2,   4,   2,   8 ; 0
@@ -287,7 +287,9 @@ object_tile_collision_box_lookups:
     .byte  4,   8,   5,  40 ; E
     .byte  2,  43,   2,  12 ; F
 
-Object_AttrFlags:
+; FIXME: object tile attributes to better name
+
+object_attributes_lookup:
     ; Defines flags which set attributes of objects
     .byte OAT_BOUNDBOX00    ; Object $00
     .byte OAT_BOUNDBOX01 | OAT_FIREIMMUNITY | OAT_HITNOTKILL    ; Object $01
@@ -2463,7 +2465,7 @@ Object_BumpOffOthers:
 PRG000_CC37:
     LDY Level_ObjectID,X     ; Y = Object ID
 
-    LDA Object_AttrFlags,Y
+    LDA object_attributes_lookup,Y
     AND #OAT_BOUNCEOFFOTHERS
     BEQ PRG000_CC66  ; If OAT_BOUNCEOFFOTHERS is NOT set, jump to PRG000_CC66
 
@@ -4139,7 +4141,7 @@ PRG000_D373:
 PRG000_D382:
     LDY Level_ObjectID,X    ; Y = object's ID
 
-    LDA Object_AttrFlags,Y
+    LDA object_attributes_lookup,Y
     AND #OAT_BOUNCEOFFOTHERS
     BEQ PRG000_D39C  ; If OAT_BOUNCEOFFOTHERS is NOT set (turn around when hit), jump to PRG000_D39C
 
@@ -5433,7 +5435,7 @@ PRG000_D8EB:
     ; Player is invincible...
 
     LDY Level_ObjectID,X     ; Get object's ID -> Y
-    LDA Object_AttrFlags,Y   ; Get this object's attribute flags
+    LDA object_attributes_lookup,Y   ; Get this object's attribute flags
     AND #OAT_HITNOTKILL
     BNE PRG000_D922      ; If OAT_HITNOTKILL is set, jump to PRG000_D922
 
@@ -5496,7 +5498,7 @@ Object_CalcBoundBox:
     ; Y is group relative object index
 
     LDY Level_ObjectID,X     ; Get this object's ID -> Y
-    LDA Object_AttrFlags,Y   ; Get this object's attribute flags
+    LDA object_attributes_lookup,Y   ; Get this object's attribute flags
     AND #OAT_BOUNDBOXMASK   ; Mask off the bounding box
     ASL A
     ASL A        ; Shift left 2
@@ -5534,7 +5536,7 @@ Object_CalcBoundBox2:   ; Same as Object_CalcBoundBox in spirit, just different 
     ; Y is group relative object index
 
     LDY Level_ObjectID,X     ; Get this object's ID -> Y
-    LDA Object_AttrFlags,Y   ; Get this object's attribute flags
+    LDA object_attributes_lookup,Y   ; Get this object's attribute flags
     AND #OAT_BOUNDBOXMASK    ; Mask off the bounding box
     ASL A
     ASL A        ; Shift left 2
@@ -6234,7 +6236,7 @@ PRG000_DC0B:
 
     LDY Level_ObjectID,X     ; Y = OTHER object's ID
 
-    LDA Object_AttrFlags,Y
+    LDA object_attributes_lookup,Y
     AND #OAT_HITNOTKILL
     BEQ PRG000_DC57  ; If this object is NOT a "Hit-Not-Kill" type, jump to PRG000_DC57
 

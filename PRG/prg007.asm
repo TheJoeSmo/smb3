@@ -1346,7 +1346,7 @@ PRG007_A648:
     BNE PRG007_A667  ; If this state does not support object-to-object (object-to-Projectile), jump to PRG007_A667 (Forget it!)
 
     LDX Level_ObjectID,Y    ; X = object's ID
-    LDA Object_AttrFlags,X
+    LDA object_attributes_lookup,X
     STA Temp_Var1      ; Object attribute flags -> Temp_Var1
 
     AND #OAT_WEAPONIMMUNITY
