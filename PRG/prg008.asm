@@ -5873,7 +5873,7 @@ PRG008_BAC7:
     ORA Temp_Var1  ; Apply existing offset across tile
     STA Temp_Var1  ; -> Temp_Var1 (now offset into slope_detection_lookup for specific height of slope)
 
-    LDA Slope_PlayerVel_Effect,Y
+    LDA slope_velocity_effect_lookup,Y
     STA Temp_Var16  ; Temp_Var16 = effect on velocity by this slope
 
     LDY Temp_Var1   ; Y = Temp_Var1 (calculated height from slope)

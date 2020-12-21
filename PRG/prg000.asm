@@ -89,7 +89,7 @@ slope_detection_lookup:
     .byte $70, $60, $60, $50, $50, $50, $40, $40, $30, $30, $20, $20, $10, $10, $00, $00    ; $14
 
     ; Effect on Player's velocity per slope "shape" index (slope_detection_lookup above)
-Slope_PlayerVel_Effect:
+slope_velocity_effect_lookup:
     .byte $00, -$03,  $03,  $00,  $00,  $00,  $00,  $00 ; $00-$07
     .byte $00,  $00,  $00,  $00, -$02, -$02,  $02,  $02 ; $08-$0F
     .byte $00,  $00,  $00,  $00,  $00           ; $10-$14
