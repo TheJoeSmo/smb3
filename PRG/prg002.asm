@@ -5709,7 +5709,7 @@ PRG002_BC6C:
     JSR EndLevelCard_DrawFlashing    ; Draw the flashing card after it was retrieved
 
 PRG002_BC6F:
-    JSR DoTimeBonus         ; Turn time into score
+    JSR convert_time_to_bonus         ; Turn time into score
     ORA Objects_Timer,X
     BNE PRG002_BC51  ; If still converting time to score or timer not expired, jump to PRG002_BC51 (RTS)
 
@@ -5782,7 +5782,7 @@ PRG002_BCC4:
     STY Graphics_Queue  ; Set Graphics_Queue as appropriate
 
 PRG002_BCC6:
-    JSR DoTimeBonus     ; Turn time into score
+    JSR convert_time_to_bonus     ; Turn time into score
 
     ORA Objects_Timer,X
     BNE PRG002_BD02  ; If clock not run out or timer not expired, jump to PRG002_BD02

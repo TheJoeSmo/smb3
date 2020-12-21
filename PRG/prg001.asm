@@ -4258,7 +4258,7 @@ Koopaling_WandFall:
 
 
 Koopaling_TimeBonus:
-    JSR DoTimeBonus
+    JSR convert_time_to_bonus
     BNE Koopaling_WandFall   ; Not done running down time bonus, jump to Koopaling_WandFall (RTS)
 
     ; All time depleted...
@@ -4327,7 +4327,7 @@ PRG001_B505:
 
     ; I suspect that there was an idea to have your time bonus
     ; counted up as Mario fell instead of doing it beforehand...
-    JMP DoTimeBonus  ; Jump to DoTimeBonus ?? This basically amounts to an RTS ??
+    JMP convert_time_to_bonus  ; Jump to convert_time_to_bonus ?? This basically amounts to an RTS ??
 
  Koopaling_FallOff:
     JSR PRG001_B505  ; Keep doing stuff from Koopaling_DoPlayerFall
@@ -6274,7 +6274,7 @@ PRG001_BF09:
     RTS      ; Return
 
 Bowser_DoTimeBonus:
-    JSR DoTimeBonus  ; Convert time to bonus score
+    JSR convert_time_to_bonus  ; Convert time to bonus score
     BNE PRG001_BF16  ; If still counting down, jump to PRG001_BF16 (RTS)
 
     ; Set timer to $40

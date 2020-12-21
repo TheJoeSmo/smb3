@@ -1798,7 +1798,7 @@ PRG003_A8FF:
 
     STA Player_VibeDisable   ; Clear Player vibrationally disabled flag
 
-    JSR DoTimeBonus  ; Convert remaining time into score
+    JSR convert_time_to_bonus  ; Convert remaining time into score
     BNE PRG003_A910  ; If not done converting, jump to PRG003_A910 (RTS)
 
     ; Set timer to $40

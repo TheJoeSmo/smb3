@@ -552,7 +552,7 @@ sprite_ram_offset_lookup:
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; DoTimeBonus
+; convert_time_to_bonus
 ;
 ; Converts your time remaining to score bonus, but only if there
 ; is no BGM playing!  Also resets 'X' to object slot index.
@@ -562,7 +562,7 @@ TimeBonus_Score:
     .byte 50, 5 ; 500 and 50
 
 ; $C412
-DoTimeBonus:
+convert_time_to_bonus:
     LDA SndCur_Music1
     BNE PRG000_C446  ; If any music playing, jump to PRG000_C446 (RTS)
 
