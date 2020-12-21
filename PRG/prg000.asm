@@ -644,20 +644,20 @@ Score_Get100PlusPtsY:
 Score_Get100PlusPts:
     CLC
     ADC #$05    ; Base at 100 points
-    JSR Score_PopUp
+    JSR reward_player_points
     LDX object_index     ; X = object slot index
     RTS      ; Return
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; Score_PopUp
+; reward_player_points
 ;
 ; Pops up a score value (e.g. from a killed enemy)
 ;
 ; A = score value
 ; X = index of on-screen object
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-Score_PopUp:
+reward_player_points:
 ; $C467
     PHA         ; Save input value
     STY Temp_Var15     ; Backup 'Y' -> Temp_Var15
@@ -2893,7 +2893,7 @@ PRG000_CE94:
 
     ; Flat 100 points
     LDA #$05
-    JSR Score_PopUp
+    JSR reward_player_points
 
     ; Object state is Killed
     LDA #OBJSTATE_KILLED
@@ -3507,7 +3507,7 @@ PRG000_D120:
 
     ; Get 100 points
     LDA #$05
-    JSR Score_PopUp
+    JSR reward_player_points
 
     ; Set object state to Killed
     LDA #OBJSTATE_KILLED
@@ -5403,7 +5403,7 @@ PRG000_D8EB:
 
     ; 100 points pop up
     LDA #$05
-    JSR Score_PopUp
+    JSR reward_player_points
 
     JSR Level_ObjCalcXDiffs  ; 'Y' is set to 0 if Player is to the right of object, 1 if to the left
 

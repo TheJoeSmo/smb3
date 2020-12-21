@@ -1574,7 +1574,7 @@ ObjHit_PUp1UpMush:
 
     ; "1-UP"
     LDA #$0d
-    JSR Score_PopUp
+    JSR reward_player_points
 
     ; Set to dead/empty
     LDA #OBJSTATE_DEADEMPTY
@@ -1808,7 +1808,7 @@ PRG001_A8AB:
 PUp_GeneralCollect:
     ; Get 1000 pts
     LDA #$09
-    JSR Score_PopUp
+    JSR reward_player_points
 
     LDA #OBJSTATE_DEADEMPTY
     STA Objects_State,X  ; Set power-up to dead/empty

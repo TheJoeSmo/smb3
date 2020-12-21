@@ -1454,7 +1454,7 @@ PRG007_A6EC:
 
     ; 100 pts!
     LDA #$05
-    JSR Score_PopUp
+    JSR reward_player_points
 
     LDX object_index     ; X = Player Projectile slot index
 

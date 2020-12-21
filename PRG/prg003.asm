@@ -2857,7 +2857,7 @@ PRG003_AE50:
     LDA Objects_Var5,X
     CLC
     ADC #$07
-    JSR Score_PopUp
+    JSR reward_player_points
 
     ; Player Y Vel = -$30 (bounce off)
     LDA #-$30
