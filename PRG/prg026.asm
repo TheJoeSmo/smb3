@@ -2768,35 +2768,35 @@ StatusBar_Fill_Time:
     LDA #$28
     STA Level_TimerTick  ; Level_TimerTick = $28
 
-    DEC Level_TimerLSD  ; Level_TimerLSD--
+    DEC level_time_lo  ; level_time_lo--
     BPL PRG026_AFDC     ; If it hasn't rolled over, jump to PRG026_AFDC
 
     ; LSD rolled over!
     LDA #$09
-    STA Level_TimerLSD  ; Level_TimerLSD = 9
-    DEC Level_TimerMid  ; Level_TimerMid--
+    STA level_time_lo  ; level_time_lo = 9
+    DEC level_time_mi  ; level_time_mi--
     BPL PRG026_AFDC     ; If it hasn't rolled over, jump to PRG026_AFDC
 
     ; Mid rolled over!
-    STA Level_TimerMid  ; Level_TimerMid = 9
-    DEC Level_TimerMSD  ; Level_TimerMSD--
+    STA level_time_mi  ; level_time_mi = 9
+    DEC level_time_hi  ; level_time_hi--
     BPL PRG026_AFDC     ; If it hasn't rolled over, jump to PRG026_AFDC
 
     ; At expiration of MSD, we're out of time!  Zero everybody!
     LDA #$00
-    STA Level_TimerMSD
-    STA Level_TimerMid
-    STA Level_TimerLSD
+    STA level_time_hi
+    STA level_time_mi
+    STA level_time_lo
 
 PRG026_AFDC:
-    LDA Level_TimerMSD
+    LDA level_time_hi
     CMP #$01
-    BNE Timer_NoChange  ; If Level_TimerMSD > 1, jump to Timer_NoChange
+    BNE Timer_NoChange  ; If level_time_hi > 1, jump to Timer_NoChange
 
     ; MSD is 1...
-    LDA Level_TimerMid
-    ORA Level_TimerLSD
-    BNE Timer_NoChange  ; If !(Level_TimerMid == 0 && Level_TimerLSD == 0), jump to Timer_NoChange
+    LDA level_time_mi
+    ORA level_time_lo
+    BNE Timer_NoChange  ; If !(level_time_mi == 0 && level_time_lo == 0), jump to Timer_NoChange
 
     ; Time is running out!
     LDA #MUS1_TIMEWARNING
@@ -2805,7 +2805,7 @@ Timer_NoChange:
     ; For all 3 digits of time, write their tiles...
     LDX #$02        ; X = 2
 PRG026_AFF2:
-    LDA Level_TimerMSD,X    ; Get digit
+    LDA level_time_hi,X    ; Get digit
     ORA #$f0        ; Offset as tile
     STA StatusBar_Time,X    ; Store it into StatusBar_Time
     DEX         ; X--
@@ -2838,13 +2838,13 @@ PRG026_B00A:
     STA Graphics_Buffer+2,X
 
     ; 3 timer digits
-    LDA Level_TimerMSD
+    LDA level_time_hi
     ORA #$f0
     STA Graphics_Buffer+3,X
-    LDA Level_TimerMid
+    LDA level_time_mi
     ORA #$f0
     STA Graphics_Buffer+4,X
-    LDA Level_TimerLSD
+    LDA level_time_lo
     ORA #$f0
     STA Graphics_Buffer+5,X
 

@@ -568,13 +568,13 @@ convert_time_to_bonus:
 
     LDY #$01     ; Y = 1 (most significant or middle digit of time is non-zero)
 
-    LDA Level_TimerMSD
-    ORA Level_TimerMid
+    LDA level_time_hi
+    ORA level_time_mi
     BNE +  ; If most significant or middle digit of time is non-zero, jump to +
         INY      ; Y = 2 (most significant and middle digit of time are zero)
 
 +
-    ORA Level_TimerLSD
+    ORA level_time_lo
     BEQ +rts  ; If all time digits are zero, jump to +rts (RTS)
 
     TYA      ; A = Y
@@ -584,11 +584,11 @@ convert_time_to_bonus:
     STA Score_Earned        ; Push into score buffer
 
     -
-        DEC Level_TimerMSD,X    ; Decrement off middle or least significant digit
+        DEC level_time_hi,X    ; Decrement off middle or least significant digit
         BPL +     ; If digit is >= 0, jump to +
 
         LDA #$09
-        STA Level_TimerMSD,X    ; Otherwise, reload it with 9
+        STA level_time_hi,X    ; Otherwise, reload it with 9
 
         DEX
         BPL -

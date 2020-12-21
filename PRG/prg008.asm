@@ -878,9 +878,9 @@ PRG008_A427:
     AND #$7f
     BNE PRG008_A472  ; If the clock is disabled, jump to PRG008_A472
 
-    LDA Level_TimerMSD
-    ORA Level_TimerMid
-    ORA Level_TimerLSD
+    LDA level_time_hi
+    ORA level_time_mi
+    ORA level_time_lo
     BNE PRG008_A45A  ; If there's some sort of time left, jump to PRG008_A45A
 
     ; TIME UP!

@@ -1242,7 +1242,7 @@ PRG030_88AD:
     STA PPU_CTL2
 
     LDA #$04
-    STA Level_TimerMSD  ; Level_TimerMSD = 4
+    STA level_time_hi  ; level_time_hi = 4
 
 PRG030_88C8:
     ; Clearing scroll variables
@@ -4403,7 +4403,7 @@ PRG030_9893:
     ROL A
     TAX
     LDA GamePlay_TimeStart,X
-    STA Level_TimerMSD
+    STA level_time_hi
     BNE PRG030_98C8     ; If not using the 000 time, jump to PRG030_98C8
 
     INC Level_TimerEn   ; Otherwise Level_TimerEn = 1 (disable the clock, hence unlimited time)
