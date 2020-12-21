@@ -595,9 +595,9 @@ convert_time_to_bonus:
     LDX object_index     ; Restore 'X' as object slot index
 
     ; Play tick sound
-    LDA Sound_QLevel1
+    LDA sfx_queue1
     ORA #SND_LEVELBLIP
-    STA Sound_QLevel1
+    STA sfx_queue1
 
 +rts
     RTS      ; Return
@@ -730,9 +730,9 @@ PRG000_C49D:
 PRG000_C4A7:
 
     ; Play coin sound
-    LDA Sound_QLevel1
+    LDA sfx_queue1
     ORA #SND_LEVELCOIN
-    STA Sound_QLevel1
+    STA sfx_queue1
 
     LDA #$01
     STA CoinPUp_State,Y ; Set coin state to 1
@@ -5669,9 +5669,9 @@ PRG000_D9F7:
     ; Player was in a Kuribo's Shoe or one of the Super Suits
 
     ; Play "shoe lost" sound
-    LDA Sound_QLevel1
+    LDA sfx_queue1
     ORA #SND_LEVELSHOE
-    STA Sound_QLevel1
+    STA sfx_queue1
 
     LDY Player_Suit    ; Y = Player's power up
     LDA SMB3J_SuitLossFrame,Y    ; Get correct "loss" frame
@@ -5703,9 +5703,9 @@ PRG000_DA15:
     STA Player_SuitLost  ; Player_SuitLost = $17
 
     ; Play Power up lost sound
-    LDA Sound_QLevel1
+    LDA sfx_queue1
     ORA #SND_LEVELPOOF
-    STA Sound_QLevel1
+    STA sfx_queue1
 
     LDA #$02    ; Return to Big (SB: Would be small in Japanese version!!)
     JMP PRG000_DA44  ; Jump to PRG000_DA44
@@ -5713,9 +5713,9 @@ PRG000_DA15:
 PRG000_DA32:
 
     ; Play "shoe lost" sound
-    LDA Sound_QLevel1
+    LDA sfx_queue1
     ORA #SND_LEVELSHOE
-    STA Sound_QLevel1
+    STA sfx_queue1
 
     ; SB: This lost its meaning, but it marks you to lose the Kuribo's
     ; shoe specifically; see above for lost/dead SMB3-J code where

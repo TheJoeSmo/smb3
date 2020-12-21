@@ -76,9 +76,9 @@ PRG009_A03E:
 
     ; Technically this just plays the "1-up" sound, but it could have been
     ; used to play different sounds for card triples or something.
-    LDA Sound_QLevel1
+    LDA sfx_queue1
     ORA Vs_xUpSndTable,Y
-    STA Sound_QLevel1
+    STA sfx_queue1
 
     ; Load initial Vs_xUpCnt value
     LDA Vs_xUpInitCount,Y
@@ -4129,9 +4129,9 @@ PRG009_B3AB:
 
     ; Coin only...
 
-    LDA Sound_QLevel1
+    LDA sfx_queue1
     ORA #SND_LEVELCOIN
-    STA Sound_QLevel1
+    STA sfx_queue1
 
     ; Vs_EnemyGetUpTimer used as coins "twinkle" away...
     LDA #$0f
@@ -4708,9 +4708,9 @@ PRG009_B67A:
     BPL PRG009_B6AD  ; If Player is not moving upward (toward POW block), jump to PRG009_B6AD
 
     ; POW block hit sound!
-    LDA Sound_QLevel1
+    LDA sfx_queue1
     ORA #SND_LEVELBABOOM
-    STA Sound_QLevel1
+    STA sfx_queue1
 
     INC Vs_POWHits   ; Vs_POWHits++
 
@@ -5735,9 +5735,9 @@ PRG009_BD3F:
     BNE PRG009_BD57  ; If vertical scroll position <> $0F, jump to PRG009_BD57
 
     ; Play Ba-boom sound!
-    LDA Sound_QLevel1
+    LDA sfx_queue1
     ORA #SND_LEVELBABOOM
-    STA Sound_QLevel1
+    STA sfx_queue1
 
     LDA #$20     ; A = $20
 
@@ -5813,9 +5813,9 @@ PRG009_BD95:
     BEQ PRG009_BDBC  ; If spikes just went to the top, jump to PRG009_BDBC (no sound)
 
     ; Spike limit hit sound
-    LDA Sound_QLevel1
+    LDA sfx_queue1
     ORA #SND_LEVELBABOOM
-    STA Sound_QLevel1
+    STA sfx_queue1
 
 PRG009_BDBC:
     ; Reset timer

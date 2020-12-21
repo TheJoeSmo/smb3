@@ -2296,9 +2296,9 @@ PRG007_AACF:
     BNE PRG007_AB02  ; If this is not 1-up level score, jump to PRG007_AB02
 
     ; Play 1-up sound!
-    LDA Sound_QLevel1
+    LDA sfx_queue1
     ORA #SND_LEVEL1UP
-    STA Sound_QLevel1
+    STA sfx_queue1
 
     LDX Player_Current   ; X = current Player
 
@@ -6208,9 +6208,9 @@ PRG007_BEAA:
     ; from Cannon Fire's position by Temp_Var1 which indexes CannonPoof_X/YOffs
 CannonFire_NoiseAndSmoke:
     ; Cannon firing noise
-    LDA Sound_QLevel1
+    LDA sfx_queue1
     ORA #SND_LEVELBABOOM
-    STA Sound_QLevel1
+    STA sfx_queue1
 
     JSR BrickBust_MoveOver   ; Make room in first "brick bust" slot for poof
 

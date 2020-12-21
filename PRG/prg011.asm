@@ -602,7 +602,7 @@ HT_Flash:
     INC Map_HandState       ; Next state...
 
     LDA #SND_LEVELRISE
-    STA Sound_QLevel1       ; "Rising" sound
+    STA sfx_queue1       ; "Rising" sound
 
 PRG011_A494:
     JMP WorldMap_UpdateAndDraw   ; Update and draw world map and don't come back
@@ -1792,7 +1792,7 @@ PRG011_AA39:
 
     ; Play the "poof" sound
     LDA #SND_LEVELPOOF
-    STA Sound_QLevel1
+    STA sfx_queue1
 
     ; "Poof" effect starts Map_ClearLevelFXCnt at 1, which it will be shortly...
 
@@ -2064,7 +2064,7 @@ PRG011_AB9E:
 
     ; "Poof" sound
     LDA #SND_LEVELPOOF
-    STA Sound_QLevel1
+    STA sfx_queue1
 
 PRG011_ABA7:
     LDA Counter_1

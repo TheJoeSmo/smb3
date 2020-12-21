@@ -1397,7 +1397,7 @@ PRG022_C911:
 
     ; Every other character, play the "blip" sound
     LDA #SND_LEVELBLIP
-    STA Sound_QLevel1
+    STA sfx_queue1
 
 PRG022_C91D:
     LDY BonusText_CPos   ; Y = BonusText_CPos
@@ -3247,9 +3247,9 @@ PRG022_D28C:
     DEC Roulette_LivesToGive ; Roulette_LivesToGive--
 
     ; Play 1-up sound
-    LDA Sound_QLevel1
+    LDA sfx_queue1
     ORA #SND_LEVEL1UP
-    STA Sound_QLevel1
+    STA sfx_queue1
 
     ; Give life to appropriate Player
     LDX Player_Current   ; X = Player_Current
@@ -4720,7 +4720,7 @@ PRG022_DBAF:
 
     ; Play blip sound
     LDA #SND_LEVELBLIP
-    STA Sound_QLevel1
+    STA sfx_queue1
 
     LDA Pad_Holding
     AND #PAD_UP
@@ -5019,7 +5019,7 @@ Card_MatchPairReward:
 
     ; Play 1-up sound
     LDA #SND_LEVEL1UP
-    STA Sound_QLevel1
+    STA sfx_queue1
 
     BNE PRG022_DD77  ; Jump (technically always) to PRG022_DD77 (RTS)
 
@@ -5044,7 +5044,7 @@ PRG022_DD56:
 
     ; Play coin sound
     LDA #SND_LEVELCOIN
-    STA Sound_QLevel1
+    STA sfx_queue1
 
     BNE PRG022_DD77  ; Jump (technically always) to PRG022_DD77 (RTS)
 

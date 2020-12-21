@@ -104,7 +104,7 @@ PRG028_A08F:
     ; Clear all sound queues
     LDA #$00
     STA Sound_QPlayer
-    STA Sound_QLevel1
+    STA sfx_queue1
     STA Sound_QLevel2
     STA Sound_QMap
     STA Sound_QPause
@@ -725,7 +725,7 @@ Sound_PlayLevel1:
     AND #$40     ;
     BNE SndLev1_1upCont  ; If currently playing level 1 sound is $40 1-up, jump to SndLev1_1up (overrides any new sounds!)
 
-    LDY Sound_QLevel1
+    LDY sfx_queue1
     BEQ PRG028_A47A  ; If no Level 1 sound is queued, jump to PRG028_A47A
 
     BMI SndLev1_SuitLost     ; If sound $80 (SND_LEVELPOOF) sound, jump to SndLev1_SuitLost
@@ -734,19 +734,19 @@ Sound_PlayLevel1:
     ; decode it by continuously shifting to the right until we hit
     ; a bit; this also incidentally provides a simple priority system.
 
-    LSR Sound_QLevel1
+    LSR sfx_queue1
     BCS SndLev1_Coin     ; If sound $01 (SND_LEVELCOIN), jump to SndLev1_Coin
-    LSR Sound_QLevel1
+    LSR sfx_queue1
     BCS SndLev1_PUpRise  ; If sound $02 (SND_LEVELRISE), jump to SndLev1_PUpRise
-    LSR Sound_QLevel1
+    LSR sfx_queue1
     BCS SndLev1_VineRise     ; If sound $04 (SND_LEVELVINE), jump to SndLev1_VineRise
-    LSR Sound_QLevel1
+    LSR sfx_queue1
     BCS SndLev1_Boom     ; If sound $08 (SND_LEVELBABOOM), jump to SndLev1_Boom
-    LSR Sound_QLevel1
+    LSR sfx_queue1
     BCS SndLev1_Text     ; If sound $10 (SND_LEVELBLIP), jump to SndLev1_Text
-    LSR Sound_QLevel1
+    LSR sfx_queue1
     BCS SndLev1_PUp  ; If sound $20 (SND_LEVELPOWER), jump to SndLev1_PUp
-    LSR Sound_QLevel1
+    LSR sfx_queue1
     BCS SndLev1_1up  ; If sound $40 (SND_LEVEL1UP), jump to SndLev1_1up
 
 PRG028_A47A:
@@ -861,7 +861,7 @@ PRG028_A504:
     JMP PRG028_A47A  ; Jump to PRG028_A47A
 
 SndLev1_SuitLost2:
-    LDY Sound_QLevel1
+    LDY sfx_queue1
     CPY #SND_LEVELPOOF
     BNE PRG028_A512  ; If this is not the "poof" sound, jump to PRG028_A512
 

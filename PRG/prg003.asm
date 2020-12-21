@@ -492,9 +492,9 @@ ObjNorm_TreasureBox:
     BNE PRG003_A2DA ; If timer <> $18, jump to PRG003_A2DA (RTS)
 
     ; Treasure box appear sound
-    LDA Sound_QLevel1
+    LDA sfx_queue1
     ORA #SND_LEVELPOOF
-    STA Sound_QLevel1
+    STA sfx_queue1
 
     JSR TreasureBox_Poof     ; "Poof" and it appears!
 
@@ -512,7 +512,7 @@ PRG003_A2DB:
 
     ; Powerup rising sound
     LDA #SND_LEVELRISE
-    STA Sound_QLevel1
+    STA sfx_queue1
 
     ; Stop the clock
     STA Level_TimerEn
@@ -840,9 +840,9 @@ PRG003_A456:
     BLT PRG003_A46A  ; If Piledriver is not moving at least $20, jump to PRG003_A46A
 
     ; Wa-bam! Landing sound
-    LDA Sound_QLevel1
+    LDA sfx_queue1
     ORA #SND_LEVELBABOOM
-    STA Sound_QLevel1
+    STA sfx_queue1
 
 PRG003_A46A:
     JSR Object_HitGround     ; Align Piledriver to ground
@@ -1487,9 +1487,9 @@ BobOmb_Explode:
     STA Objects_Timer,X
 
     ; Ba-boom
-    LDA Sound_QLevel1
+    LDA sfx_queue1
     ORA #SND_LEVELBABOOM
-    STA Sound_QLevel1
+    STA sfx_queue1
 
     ; Since Bob-omb is exploding, he no longer needs to enforce his pattern bank
     INC Objects_DisPatChng,X
@@ -2951,9 +2951,9 @@ PRG003_AE95:
     STA Objects_YVel,X
 
     ; Play ba-boom sound
-    LDA Sound_QLevel1
+    LDA sfx_queue1
     ORA #SND_LEVELBABOOM
-    STA Sound_QLevel1
+    STA sfx_queue1
 
     JSR SetRotatingColor     ; Litle light show
 

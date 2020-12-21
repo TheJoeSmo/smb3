@@ -1433,7 +1433,7 @@ PRG010_C72B:
 
     ; Play the starry entrance sound (this is never heard!)
     LDA #SND_MAPENTERWORLD
-    STA Sound_QLevel1
+    STA sfx_queue1
 
     LDX #$09     ; X = 9 (Player selects END)
     LDA Map_GameOver_CursorY
@@ -1676,7 +1676,7 @@ PRG010_C8CD:
 
     ; Play Magic sound
     LDA #SND_LEVELPOOF
-    STA Sound_QLevel1
+    STA sfx_queue1
 
     LDY World_Num    ; Y = World_Num
 

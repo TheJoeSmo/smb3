@@ -4029,9 +4029,9 @@ PRG002_B451:
     BCC PRG002_B468
 
     ; Play text "blip" sound
-    LDA Sound_QLevel1
+    LDA sfx_queue1
     ORA #SND_LEVELBLIP
-    STA Sound_QLevel1
+    STA sfx_queue1
 
 PRG002_B468:
     TYA
@@ -5931,9 +5931,9 @@ EndLevelCard_Give1UpsAndCycle:
     BNE PRG002_BD91  ; If 1-up sound is currently playing, jump to PRG002_BD91
 
     ; Otherwise, queue 1-up sound
-    LDA Sound_QLevel1
+    LDA sfx_queue1
     ORA #SND_LEVEL1UP
-    STA Sound_QLevel1
+    STA sfx_queue1
 
     LDX Player_Current   ; X = current player
 
@@ -6272,9 +6272,9 @@ PRG002_BEFC:
     ; Object is on-screen -- turn into coin
 
     ; Play coin sound
-    LDA Sound_QLevel1
+    LDA sfx_queue1
     ORA #SND_LEVELCOIN
-    STA Sound_QLevel1
+    STA sfx_queue1
 
     ; Special object: Emitted coin
     LDA #SOBJ_POPPEDOUTCOIN

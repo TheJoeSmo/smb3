@@ -698,7 +698,7 @@ PRG026_A436:
     LSR A
     TAY         ; Y = Pad_Input >> 3 (will be 0 if down, 1 if up)
     LDA #SND_LEVELBLIP
-    STA Sound_QLevel1   ; Play item select sound
+    STA sfx_queue1   ; Play item select sound
 
     LDA InvStart_Item   ; A = InvStart_Item
     CLC
@@ -771,7 +771,7 @@ PRG026_A4A7:
     TAX         ; Move result to X
 
     LDA #SND_LEVELBLIP
-    STA Sound_QLevel1   ; Play item selection sound
+    STA sfx_queue1   ; Play item selection sound
 
 PRG026_A4B4:
     LDA InvHilite_Item
@@ -973,7 +973,7 @@ PRG026_A5D9:
 
     ; Play the correct sound for this power up item
     LDA InvItem_PerPowerUp_L1Sound,X
-    STA Sound_QLevel1
+    STA sfx_queue1
 
     LDA InvItem_PerPowerUp_Disp,X   ; Store proper power-up to display -> A
     LDX Player_Current      ; X = Player_Current
@@ -1062,9 +1062,9 @@ PRG026_A66B:
 
 Inv_UseItem_Starman:
     INC Map_Starman         ; Set Starman active (Nintendo's betting you never would have more than 255 on the map!)
-    LDA Sound_QLevel1
+    LDA sfx_queue1
     ORA #SND_LEVELPOWER
-    STA Sound_QLevel1       ; Player "Power-up" noise
+    STA sfx_queue1       ; Player "Power-up" noise
     JSR Inv_UseItem_ShiftOver   ; Shift over all items over top of the Starman
     JMP Inventory_ForceFlip     ; Force inventory to flip over
 
@@ -1081,9 +1081,9 @@ Inv_UseItem_Denial:
 
 PRG026_A690:
     INC Map_Anchored        ; Set map as anchored
-    LDA Sound_QLevel1
+    LDA sfx_queue1
     ORA #SND_LEVELPOOF
-    STA Sound_QLevel1       ; Player powerup sound
+    STA sfx_queue1       ; Player powerup sound
     JSR Inv_UseItem_ShiftOver   ; Shift over all items over top of the Anchor
     JMP Inventory_ForceFlip     ; Force inventory to flip over
 
@@ -2939,7 +2939,7 @@ PRG026_B07D:
     INC Player_Lives,X  ; Extra life!
 
     LDA #SND_LEVEL1UP
-    STA Sound_QLevel1   ; Play 1-up extra life sound
+    STA sfx_queue1   ; Play 1-up extra life sound
 
     ;LDA #MUS2A_WORLD8
     ;STA Sound_QMusic2  ; Now it's Sonic 2 Beta!

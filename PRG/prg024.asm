@@ -2384,7 +2384,7 @@ PRG024_AC6B:
     BEQ PRG024_ACBA     ; If Player is not pressing START, jump to PRG024_ACBA (RTS)
 
     LDA #SND_LEVELCOIN
-    STA Sound_QLevel1   ; Play coin sound (in this case, selected and begin!)
+    STA sfx_queue1   ; Play coin sound (in this case, selected and begin!)
 
     LDA Sprite_RAM+$F0  ; Get Y value of title screen cursor sprite
     STA Title_EventGrafX   ; Reuse as a temp...

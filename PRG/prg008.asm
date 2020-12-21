@@ -3427,9 +3427,9 @@ PRG008_B010:
 
 
 Sound_StatueSwitch:
-    LDA Sound_QLevel1
+    LDA sfx_queue1
     ORA #SND_LEVELPOOF
-    STA Sound_QLevel1
+    STA sfx_queue1
     RTS      ; Return
 
 
@@ -3488,9 +3488,9 @@ Player_AnimTailWag:
     BEQ PRG008_B05D  ; If jump sound is NOT queued, jump to PRG008_B05D
 
     ; Plays the tail wag sound
-    LDA Sound_QLevel1
+    LDA sfx_queue1
     ORA #SND_LEVELTAILWAG
-    STA Sound_QLevel1
+    STA sfx_queue1
 
 PRG008_B05D:
     LDA #10
@@ -3614,9 +3614,9 @@ Player_TailAttackAnim:
     STA Player_TailAttack    ; Player_TailAttack = $12
 
     ; Plays the tail wag sound
-    LDA Sound_QLevel1
+    LDA sfx_queue1
     ORA #SND_LEVELTAILWAG
-    STA Sound_QLevel1
+    STA sfx_queue1
 
 PRG008_B0E2:
     LDA Player_TailAttack
@@ -4790,9 +4790,9 @@ PRG008_B604:
     JSR Level_RecordBlockHit     ; Record having grabbed this coin so it does not come back
 
     ; Play coin collected sound!
-    LDA Sound_QLevel1
+    LDA sfx_queue1
     ORA #SND_LEVELCOIN
-    STA Sound_QLevel1
+    STA sfx_queue1
 
     LDA #$00
     STA Level_Tile_GndR ; Clear this tile detect (probably to prevent "double collecting" a coin the Player is straddling)
@@ -4823,9 +4823,9 @@ PRG008_B623:
     STA Level_Vibration ; Level_Vibration = $10 (little shake effect)
 
     ; Wham! sound effect
-    LDA Sound_QLevel1
+    LDA sfx_queue1
     ORA #SND_LEVELBABOOM
-    STA Sound_QLevel1
+    STA sfx_queue1
 
     LDA #$80
     STA Level_PSwitchCnt     ; Level_PSwitchCnt = $80 (duration of switch)
@@ -5346,9 +5346,9 @@ LATP_Vine:
     LDY #$00     ; Y = 0 (??)
 
     ; Vine raise sound!
-    LDA Sound_QLevel1
+    LDA sfx_queue1
     ORA #SND_LEVELVINE
-    STA Sound_QLevel1
+    STA sfx_queue1
 
     LDY #$06     ; Y = 6 (vine) (index into PRG001 Bouncer_PUp)
     RTS      ; Return

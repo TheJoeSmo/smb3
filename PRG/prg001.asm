@@ -1106,9 +1106,9 @@ PRG001_A527:
     STA Level_CoinHeav
 
     ; Bounce into coin heaven sound
-    LDA Sound_QLevel1
+    LDA sfx_queue1
     ORA #SND_LEVELVINE
-    STA Sound_QLevel1
+    STA sfx_queue1
 
 PRG001_A56E:
     RTS      ; Return
@@ -1689,9 +1689,9 @@ PRG001_A825:
     STA Player_SuitLost
 
     ; Play suit power-up sound
-    LDA Sound_QLevel1
+    LDA sfx_queue1
     ORA #SND_LEVELPOOF
-    STA Sound_QLevel1
+    STA sfx_queue1
 
     BNE PRG001_A837  ; Jump (technically always) to PRG001_A837
 
@@ -1817,9 +1817,9 @@ PUp_GeneralCollect:
 
 PowerUp_PlaySound:
     ; Play the standard "Power Up" sound
-    LDA Sound_QLevel1
+    LDA sfx_queue1
     ORA #SND_LEVELPOWER
-    STA Sound_QLevel1
+    STA sfx_queue1
     RTS      ; Return
 
 PowerUp_DoRaise:
@@ -1830,9 +1830,9 @@ PowerUp_DoRaise:
     BNE PRG001_A8D5  ; If object timer <> $2D, jump to PRG001_A8D5
 
     ; Play powerup rising sound
-    LDA Sound_QLevel1
+    LDA sfx_queue1
     ORA #SND_LEVELRISE
-    STA Sound_QLevel1
+    STA sfx_queue1
 
 PRG001_A8D5:
     BGE PRG001_A93D  ; If timer is >= $2D, jump to PRG001_A93D
@@ -2589,9 +2589,9 @@ PRG001_AC37:
 PRG001_AC40:
 
     ; "Poof" sound
-    LDA Sound_QLevel1
+    LDA sfx_queue1
     ORA #SND_LEVELPOOF
-    STA Sound_QLevel1
+    STA sfx_queue1
 
     ; "Poof" effect
     LDA #$17
@@ -3441,9 +3441,9 @@ PRG001_B02E:
     AND #$80
     BNE PRG001_B07B
 
-    LDA Sound_QLevel1
+    LDA sfx_queue1
     ORA #SND_LEVELPOOF
-    STA Sound_QLevel1
+    STA sfx_queue1
 
 PRG001_B07B:
     RTS      ; Return
@@ -4611,9 +4611,9 @@ PRG001_B62E:
     BLT PRG001_B651  ; If Y velocity < $20, jump to PRG001_B651 (cutoff for shaking floor)
 
     ; Slam floor sound!
-    LDA Sound_QLevel1
+    LDA sfx_queue1
     ORA #SND_LEVELBABOOM
-    STA Sound_QLevel1
+    STA sfx_queue1
 
     LDY Objects_Var4,X  ; Y = current Koopaling hit count
 
@@ -5399,7 +5399,7 @@ PRG001_BA4B:
 
     ; Ba-bam sound!
     LDA #SND_LEVELBABOOM
-    STA Sound_QLevel1
+    STA sfx_queue1
 
     ; Object timer = $35
     LDA #$35
@@ -6221,7 +6221,7 @@ PRG001_BEBD:
 
     ; Ba-bam!
     LDA #SND_LEVELBABOOM
-    STA Sound_QLevel1
+    STA sfx_queue1
 
     LDA Player_InAir
     BNE PRG001_BEDE     ; If Player is mid-air, jump to PRG001_BEDE
@@ -6298,7 +6298,7 @@ Bowser_DoorAppear:
 
     ; Door appearance sound
     LDA #SND_LEVELPOOF
-    STA Sound_QLevel1
+    STA sfx_queue1
 
     LDY #$01     ; Y = 1 (two tiles for the final door)
 PRG001_BF27:

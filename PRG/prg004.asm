@@ -1358,9 +1358,9 @@ PRG004_A6B4:
     STA Level_Vibration
 
     ; Ba-bam! sound
-    LDA Sound_QLevel1
+    LDA sfx_queue1
     ORA #SND_LEVELBABOOM
-    STA Sound_QLevel1
+    STA sfx_queue1
 
     ; Set timer to $40
     LDA #$40
@@ -2220,9 +2220,9 @@ PRG004_AA9B:
     STA Level_Vibration
 
     ; Ba-boom! sound
-    LDA Sound_QLevel1
+    LDA sfx_queue1
     ORA #SND_LEVELBABOOM
-    STA Sound_QLevel1
+    STA sfx_queue1
 
     JSR Object_HitGround     ; Align to floor
 
