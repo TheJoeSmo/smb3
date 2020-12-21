@@ -170,10 +170,11 @@ object_tile_detection_offset_lookups:
     ; In a sloped level using this group, alternate offsets (below
     ; Group 12) are used for left/right wall detection!
     ;           Y    X
-OTDO_G1R1:  .byte $10, $08  ; At feet
-        .byte $00, $08  ; At head
-        .byte $09, $00  ; Wall to left
-        .byte $09, $0F  ; Wall to right
+object_tile_detection_offset_lookup1:  
+    .byte $10, $08  ; At feet
+    .byte $00, $08  ; At head
+    .byte $09, $00  ; Wall to left
+    .byte $09, $0F  ; Wall to right
 
     ; Group 2
     ;       Y    X
@@ -1417,7 +1418,7 @@ PRG000_C76C:
 
     PLA      ; Restore object_tile_detection_offset_lookups index
 
-    CMP #OTDO_G1R1 - object_tile_detection_offset_lookups
+    CMP #object_tile_detection_offset_lookup1 - object_tile_detection_offset_lookups
     BNE PRG000_C78C  ; If not using Group 1 Row 1, jump to PRG000_C78C
 
     LDY Level_SlopeEn
