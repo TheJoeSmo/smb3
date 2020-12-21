@@ -6336,7 +6336,7 @@ PRG005_BE41:
 
     ; Clear the scores
     STA score_reward_type,Y
-    STA Scores_Counter,Y
+    STA score_counters,Y
 
 PRG005_BE4B:
     CPY #$03

@@ -683,7 +683,7 @@ PRG000_C47D:
 
     ; Set score counter to $30
     LDA #$30
-    STA Scores_Counter,Y
+    STA score_counters,Y
 
     LDY Temp_Var15 ; Restore 'Y'
 

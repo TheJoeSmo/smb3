@@ -2260,7 +2260,7 @@ Score_GiveAndDraw:
     BNE PRG007_AB1D     ; If gameplay is halted, jump to PRG007_AB1D
 
 PRG007_AAC0:
-    LDA Scores_Counter,X
+    LDA score_counters,X
     BNE PRG007_AACF  ; If this score counter hasn't expired, jump to PRG007_AACF
 
 PRG007_AAC5:
@@ -2274,7 +2274,7 @@ PRG007_AAC5:
 Score_RiseCounterMask:  .byte $03, $01, $00, $00
 
 PRG007_AACF:
-    DEC Scores_Counter,X     ; Decrement the score counter
+    DEC score_counters,X     ; Decrement the score counter
 
     CMP #$2a
     BNE PRG007_AB04  ; If score counter <> $2A, jump to PRG007_AB04
@@ -2311,7 +2311,7 @@ PRG007_AB02:
     LDX object_index    ; X = score slot index
 
 PRG007_AB04:
-    LDA Scores_Counter,X
+    LDA score_counters,X
     LSR A
     LSR A
     LSR A
@@ -2949,7 +2949,7 @@ PRG007_AE28:
     STA score_reward_type,Y
 
     LDA #$30
-    STA Scores_Counter,Y
+    STA score_counters,Y
 
     LDA CoinPUp_Y,X
     CMP #192
@@ -4164,7 +4164,7 @@ PRG007_B44B:
 
     ; Set the score counter
     LDA #$30
-    STA Scores_Counter,Y
+    STA score_counters,Y
 
     LDA SpecialObj_YLo,X
     SEC
