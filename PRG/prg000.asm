@@ -662,7 +662,7 @@ reward_player_points:
     PHA         ; Save input value
     STY Temp_Var15     ; Backup 'Y' -> Temp_Var15
 
-    JSR Score_FindFreeSlot  ; Get free Scores_Value slot
+    JSR find_open_score_slot  ; Get free Scores_Value slot
     PLA         ; Restore input value
     STA Scores_Value,Y  ; Store input value
 
@@ -691,7 +691,7 @@ PRG000_C47D:
 
 
     ; Find a free slot to display the score in
-Score_FindFreeSlot:
+find_open_score_slot:
     LDY #$04     ; Y = 4
 PRG000_C490:
     LDA Scores_Value,Y

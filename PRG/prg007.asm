@@ -2942,7 +2942,7 @@ PRG007_AE02:
     RTS      ; Return
 
 PRG007_AE28:
-    JSR Score_FindFreeSlot
+    JSR find_open_score_slot
 
     ; Get 100 pts
     LDA #$85
@@ -3623,7 +3623,7 @@ PRG007_B169:
     JSR SpecialObj_Remove    ; Remove it
     INC Coins_Earned     ; You get a coin
 
-    JSR Score_FindFreeSlot
+    JSR find_open_score_slot
     LDA #$89    ; Get 1000 pts; $80 just mixes up what sprite it uses
     JMP PRG007_B44B  ; Jump to PRG007_B44B
 
@@ -4150,7 +4150,7 @@ PRG007_B445:
 
 
 PRG007_B446:
-    JSR Score_FindFreeSlot
+    JSR find_open_score_slot
 
     ; Set base score and add Kill_Tally
     LDA #$85        ; Base 100 points; $80 just mixes up what sprite it uses
