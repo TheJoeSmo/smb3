@@ -1,0 +1,11 @@
+# Build and Release Folders
+smb3.bin
+smb3.nes
+
+# Other files and folders
+.settings/
+.vscode/
+.notes/
+
+# Executables
+make_rom.bat
