@@ -4465,7 +4465,8 @@ PRG008_B47E:
     ; Level_LayPtrOrig_AddrH (original layout pointer high byte), which doesn't make
     ; sense, but Level_GndLUT_Addr/H isn't used in a non-slope level anyway, so this is
     ; probably some bit of "dead" code or something...
-    load_pointer Level_LayPtrOrig_AddrH, Level_GndLUT_Addrs
+    load_pointer Level_LayPtrOrig_AddrH, Level_GndLUT_Addr
+
 
 PRG008_B4A2:
     JMP PRG000_B9D8  ; Jump to PRG000_B9D8
