@@ -618,22 +618,18 @@ find_open_special_object:
     LDY #$05
 find_open_special_object_dirty:
     LDA SpecialObj_ID,Y
-    BEQ PRG000_C454  ; If object slot is dead/empty, jump to PRG000_C454
-    DEY      ; Y--
-    BPL find_open_special_object_dirty   ; While Y >= 0, loop!
+    BEQ +
+    ; Search for an open object slot until it is found or run out of slots
+        DEY
+        BPL find_open_special_object_dirty
 
-PRG000_C451:
-    ; Do not return to caller!!
-    PLA
-    PLA
-    RTS
-
-PRG000_C454:
++
     JSR Object_AnySprOffscreen
-
-    BNE PRG000_C451  ; If any sprites are off-screen, jump to PRG000_C451
-
-    RTS      ; Return
+    BEQ +  
+        PLA
+        PLA
++
+    RTS
 
 
     ; Goes into Score_Get100PlusPts, but object index is stored in 'Y'
