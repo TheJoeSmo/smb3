@@ -670,11 +670,11 @@ reward_player_points:
     SEC
     SBC #16
     CMP #192
-    BLT PRG000_C47D  ; If (sprite's Y - 16) < 192, jump to PRG000_C47D
+    BLT +  
+    ; If (sprite's Y - 16) < 192, jump to +
+        LDA #$05         ; A = 5
 
-    LDA #$05         ; A = 5
-
-PRG000_C47D:
++
     STA score_object_y,Y   ; Set score Y
 
     ; Set score X to spawning object
