@@ -27,35 +27,35 @@
     ;      Tile $5F -- second table, index 0.  Etc...
 
 level_slope_lookups:
-    .word Level_SlopeQuad00 ; Tile quad $00
-    .word Level_SlopeQuad40 ; Tile quad $40
-    .word Level_SlopeQuad80 ; Tile quad $80
-    .word Level_SlopeQuadC0 ; Tile quad $C0
+    .word slope_lookup0 ; Tile quad $00
+    .word slope_lookup1 ; Tile quad $40
+    .word slope_lookup2 ; Tile quad $80
+    .word slope_lookup3 ; Tile quad $C0
 
     ; These tables are rooted by the base value for each tile quad by the only two
     ; tilesets to support slopes, 3 (Hills) and 14 (Underground)
     ; For reference, that attribute set is: $25, $5F, $99, $E2
     ;
     ; The value in the next four LUTs reference a "slope shape" as defined in the
-    ; Slope_LUT table that follows...
+    ; slope_detection_lookup table that follows...
 
-Level_SlopeQuad00:
+slope_lookup0:
     ; Tile $25+
     .byte $01, $07, $02, $0C, $0D, $0E, $0F, $07, $03, $03, $03, $03, $03, $03, $07, $04
     .byte $07, $04, $04, $03, $03, $03, $03, $03, $07, $04, $07, $04, $04, $04, $04, $04
 
-Level_SlopeQuad40:
+slope_lookup1:
     ; Tile $5F+
     .byte $03, $03, $03, $03, $03, $03, $03, $03, $03, $03, $03, $03, $03, $03, $03, $03
     .byte $03, $03, $03, $03, $03, $03, $03, $03, $03, $03, $03, $03, $03
 
-Level_SlopeQuad80:
+slope_lookup2:
     ; Tile $99+
     .byte $01, $07, $02, $0C, $0D, $0E, $0F, $05, $06, $11, $12, $13, $14, $08, $07, $04
     .byte $07, $04, $04, $08, $03, $03, $03, $03, $03, $03, $03, $03, $03, $03, $03, $03
     .byte $03, $03, $03, $03, $03, $03, $08
 
-Level_SlopeQuadC0:
+slope_lookup3:
     ; Tile $E2+
     .byte $01, $07, $02, $0C, $0D, $0E, $0F, $05, $06, $11, $12, $13, $14, $07, $03, $03
     .byte $03, $03, $08, $07, $04, $07, $04, $04, $08, $08, $04
@@ -1071,7 +1071,7 @@ PRG000_C5D3:
 PRG000_C5EC:
     ; Slope response
 
-    ; Calculate the offset into Slope_LUT
+    ; Calculate the offset into slope_detection_lookup
     ; NOTE: This fails to accomodate slope shape index values of $10+...
     ; The most significant bit will be lost due to the 8-bit register!
     ; But those are ceiling slopes which enemies generally don't care about
@@ -1085,7 +1085,7 @@ PRG000_C5EC:
     ADC Temp_Var16  ; Add the tile-relative horizontal position (offset to pixel specific height on this slope)
     TAY      ; -> 'Y'
 
-    LDA Slope_LUT,Y
+    LDA slope_detection_lookup,Y
     AND #$0f
     STA Temp_Var2   ; Lower 4 bits of slope (the "floor" slope height) -> Temp_Var2
 
