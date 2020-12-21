@@ -1380,21 +1380,9 @@ PRG029_D6AB:
 
     .include src/powerups/death/main.asm
     .include src/powerups/death/normal.asm
+    .include src/powerups/death/pit.asm
 
 
-Player_Die_FellOff:
-    LDA Event_Countdown
-    BNE PRG029_D702  ; If Event_Countdown <> 0, jump to PRG029_D702 (RTS)
-
-player_die_offscreen:
-PRG029_D6FB:
-    INC Level_ExitToMap    ; Level_ExitToMap = 1
-
-    LDA #$01
-    STA Map_ReturnStatus     ; Map_ReturnStatus = 1 (Player died, level is not clear)
-
-PRG029_D702:
-    RTS      ; Return
 
     ; Patterns for TIME-UP
 TIMEUP_Sprites:
