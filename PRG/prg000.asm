@@ -472,23 +472,6 @@ object_attributes_lookup:
     .byte OAT_BOUNDBOX14 | OAT_WEAPONIMMUNITY | OAT_HITNOTKILL  ; Object $B2 - OBJ_FIREJET_UPSIDEDOWN
     .byte OAT_BOUNDBOX01    ; Object $B3
 
-; Brick by tileset; anyone use this?
-; $C3A8
-    .byte TILEA_BRICK   ;  0 Plains style
-    .byte TILEA_BRICK   ;  1 Mini Fortress style
-    .byte TILEA_BRICK   ;  2 Hills style
-    .byte TILEA_BRICK   ;  3 High-Up style
-    .byte TILEA_BRICK   ;  4 pipe world plant infestation
-    .byte TILEA_BRICK   ;  5 water world
-    .byte TILEA_BRICK   ;  6 Toad House
-    .byte TILEA_BRICK   ;  7 Vertical pipe maze
-    .byte TILEA_BRICK   ;  8 desert levels
-    .byte TILEA_BRICK   ;  9 Airship
-    .byte TILEA_BRICK   ; 10 Giant World
-    .byte TILEA_BRICK   ; 11 Ice level
-    .byte TILEA_BRICK   ; 12 Sky level
-    .byte TILEA_BRICK   ; 13 Underground
-
     ; Index by Level_TilesetIdx
     ; Enables spike tiles where available (this tile and tile before it)
 SpikesEnable:
