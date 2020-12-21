@@ -534,7 +534,7 @@ spike_type_by_tileset_lookup:
     ; power-ups; specifically:
     ; Bit 0 (1) = Able to fly and flutter (Raccoon tail wagging)
     ; Bit 1 (2) = NOT able to slide on slopes
-PowerUp_Ability:
+powerup_ability_lookup:
     ;     Small, Big, Fire, Leaf, Frog, Tanooki, Hammer
     .byte $00,   $00, $00,  $01,  $02,  $01,     $02
 

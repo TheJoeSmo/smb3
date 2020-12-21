@@ -586,7 +586,7 @@ Level_InitAction_Do:
 
 LevelInit_StartSliding:
     LDY Player_Suit
-    LDA PowerUp_Ability,Y
+    LDA powerup_ability_lookup,Y
     AND #$02
     BNE LevelInit_DoNothing ; If this powerup is not able to slide on slopes, jump to LevelInit_DoNothing
 
@@ -2648,7 +2648,7 @@ PRG008_AC9E:
     BNE PRG008_ACB3     ; If Player is mid air, jump to PRG008_ACB3
 
     LDY Player_Suit
-    LDA PowerUp_Ability,Y   ; Get "ability" flags for this power up
+    LDA powerup_ability_lookup,Y   ; Get "ability" flags for this power up
     AND #$01
     BNE PRG008_AD1A     ; If power up has flight ability, jump to PRG008_AD1A
 
@@ -2696,7 +2696,7 @@ PRG008_ACD9:
 
     LDX Player_Suit
 
-    LDA PowerUp_Ability,X   ; Get "ability" flags for this power up
+    LDA powerup_ability_lookup,X   ; Get "ability" flags for this power up
     AND #$01
     BEQ PRG008_ACEF     ; If this power up does not have flight, jump to PRG008_ACEF
 
@@ -3091,7 +3091,7 @@ PRG008_AE90:
     BEQ PRG008_AEA2  ; If Player is not ducking
 
     LDY Player_Suit
-    LDA PowerUp_Ability,Y   ; Get "ability" bits for suit
+    LDA powerup_ability_lookup,Y   ; Get "ability" bits for suit
     AND #$01        ; Bit 0 specifies that the power up can do raccoon style flying and fluttering
     TAY
     LDA Player_DuckFrame,Y  ; Get appropriate duck frame
@@ -3293,7 +3293,7 @@ PRG008_AF69:
 
     TAX      ; Power up -> 'X'
 
-    LDA PowerUp_Ability,X
+    LDA powerup_ability_lookup,X
     AND #$01
     BEQ PRG008_AF87  ; If able to slide on slopes, jump to PRG008_AF87
 
@@ -6074,7 +6074,7 @@ PRG008_BBBF:
     BEQ PRG008_BC0D  ; If no effect (flat ground), jump to PRG008_BC0D
 
     LDY Player_Suit
-    LDA PowerUp_Ability,Y
+    LDA powerup_ability_lookup,Y
     AND #$02
     BNE PRG008_BC0D  ; If the Player's suit CANNOT slide on slopes, jump to PRG008_BC0D
 
