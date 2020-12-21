@@ -197,7 +197,7 @@ ObjectGroup00_Attributes:
     ;   Bits 1: Subtly modifies Player detection response; see comments in PRG000_D205
     ;   Bits 2: If set, object doesn't respond if stomped (indifferent, not same as attr 3, bit 5 which leads to hurting player)
     ;   Bits 3: Object uses 16-bit X value (otherwise, Object_XHi will be zeroed)
-    ;   Bits 4-7: Pick root tile detection group offset (from Object_TileDetectOffsets)
+    ;   Bits 4-7: Pick root tile detection group offset (from object_tile_detection_offset_lookups)
 
     .base ObjectGroup_Attributes2    ; <-- help enforce this table *here*
 ObjectGroup00_Attributes2:

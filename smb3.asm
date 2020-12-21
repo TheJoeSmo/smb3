@@ -3195,7 +3195,7 @@ OA2_USE16BITX       = %00001000 ; When applying X velocity, calculate "X Hi" pos
 
 
 ; This selects what X/Y offsets are used by an object to detect a tile
-; For tile detection groups, see Object_TileDetectOffsets in PRG000
+; For tile detection groups, see object_tile_detection_offset_lookups in PRG000
 OA2_TDOGRP0     = %00000000 ; Use "Group 0" tile detection offsets
 OA2_TDOGRP1     = %00010000 ; Use "Group 1" tile detection offsets
 OA2_TDOGRP2     = %00100000 ; Use "Group 2" tile detection offsets

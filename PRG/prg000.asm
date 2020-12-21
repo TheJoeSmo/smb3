@@ -148,7 +148,7 @@ toad_item_palette_lookup:
 
     ; Objects detect using a specific offset from this list
     ; Which "group" they use is specified by the respective value in ObjectGroup_Attributes2
-Object_TileDetectOffsets:
+object_tile_detection_offset_lookups:
 
     ; Y/X offset pairs
 
@@ -1242,7 +1242,7 @@ PRG000_C69C:
 ; current state of movement.  Handles entering/leaving water.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 Object_GetAttrAndMoveTiles:
-    LDY #OTDO_Water - Object_TileDetectOffsets    ; Special offsets used for checking for water tiles
+    LDY #OTDO_Water - object_tile_detection_offset_lookups    ; Special offsets used for checking for water tiles
     JSR Object_DetectTile   ; Get tile here
 
     ASL A
@@ -1335,13 +1335,13 @@ PRG000_C6FD:
     AND #OA2_TDOGRPMASK
     LSR A       ; Upper 4 bits of attributes set 2 shifted right 1 (value * 8)
     PHA     ; Save it
-    TAY     ; -> 'Y' (use respective Object_TileDetectOffsets group Row 1)
+    TAY     ; -> 'Y' (use respective object_tile_detection_offset_lookups group Row 1)
 
     LDA Objects_YVel,X
     BPL PRG000_C713  ; If object Y velocity is >= 0 (stopped or moving downward), jump to PRG000_C713
 
     INY
-    INY      ; If object moving upward, Y += 2 (use respective Object_TileDetectOffsets group Row 2)
+    INY      ; If object moving upward, Y += 2 (use respective object_tile_detection_offset_lookups group Row 2)
 
 PRG000_C713:
     JSR Object_DetectTile    ; Get tile
@@ -1415,9 +1415,9 @@ PRG000_C76C:
     LDA #$00
     STA Object_TileWall2     ; Object_TileWall2 = 0
 
-    PLA      ; Restore Object_TileDetectOffsets index
+    PLA      ; Restore object_tile_detection_offset_lookups index
 
-    CMP #OTDO_G1R1 - Object_TileDetectOffsets
+    CMP #OTDO_G1R1 - object_tile_detection_offset_lookups
     BNE PRG000_C78C  ; If not using Group 1 Row 1, jump to PRG000_C78C
 
     LDY Level_SlopeEn
@@ -1425,36 +1425,36 @@ PRG000_C76C:
 
     ;;;;;;;;;;;;;;;;;; ONLY HAPPENS WITH GROUP 1 ROW 1 AND SLOPES ENABLED
 
-    PHA      ; Save Object_TileDetectOffsets index
+    PHA      ; Save object_tile_detection_offset_lookups index
 
     LDA Temp_VarNP0  ; Retrieve object's in-air status
     AND #$04     ; Bit 2 is set to indicate object is "on solid ground"
     TAY      ; -> 'Y' (0 or 4)
 
-    PLA      ; Restore Object_TileDetectOffsets index
+    PLA      ; Restore object_tile_detection_offset_lookups index
 
     CPY #$00
     BEQ PRG000_C78C  ; If Y = 0 (object not on solid ground), jump to PRG000_C78C
 
-    LDY #OTDO_G1Alt - Object_TileDetectOffsets     ; Otherwise, use alternate wall detection offsets
+    LDY #OTDO_G1Alt - object_tile_detection_offset_lookups     ; Otherwise, use alternate wall detection offsets
     JMP PRG000_C791  ; Jump to PRG000_C791
 
     ;;;;;;;;;;;;;;;;;; END
 
 PRG000_C78C:
-    TAY      ; Object_TileDetectOffsets index -> 'Y'
+    TAY      ; object_tile_detection_offset_lookups index -> 'Y'
 
     INY
     INY
     INY
-    INY      ; Y += 4 (move down two Rows in Object_TileDetectOffsets)
+    INY      ; Y += 4 (move down two Rows in object_tile_detection_offset_lookups)
 
 PRG000_C791:
     LDA Objects_XVel,X
     BMI PRG000_C797  ; If object's X velocity < 0 (moving leftward), jump to PRG000_C797
 
     INY
-    INY      ; Y += 2 (move down one Rows in Object_TileDetectOffsets)
+    INY      ; Y += 2 (move down one Rows in object_tile_detection_offset_lookups)
 
 PRG000_C797:
     JSR Object_DetectTile    ; Get tile here
@@ -1478,7 +1478,7 @@ PRG000_C797:
 ; Object_DetectTile
 ;
 ; Gets tile based on offset of object; the offset is set by the
-; 'Y' register which indexes Object_TileDetectOffsets for the
+; 'Y' register which indexes object_tile_detection_offset_lookups for the
 ; Y/X offset pair.  Seems kind of a limited way to go, but hey..
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; $C7A9
@@ -1497,7 +1497,7 @@ PRG000_C7B1:
 
     LDA Objects_Y,X
     CLC
-    ADC Object_TileDetectOffsets,Y  ; Adding tile detection offset to Object's Y
+    ADC object_tile_detection_offset_lookups,Y  ; Adding tile detection offset to Object's Y
     SEC
     SBC Level_VertScroll    ; Make relative to scroll
     CMP #160
@@ -1522,7 +1522,7 @@ PRG000_C7B1:
 PRG000_C7D9:
     LDA Objects_Y,X
     CLC
-    ADC Object_TileDetectOffsets,Y  ; Adding tile detection Y offset to Object's Y
+    ADC object_tile_detection_offset_lookups,Y  ; Adding tile detection Y offset to Object's Y
     AND #$f0        ; Align to grid
     STA ObjTile_DetYLo  ; -> ObjTile_DetYLo (low)
 
@@ -1551,7 +1551,7 @@ PRG000_C7FA:
     STA Temp_Var3   ; Temp_Var3 = 0 or 1, depending if Y lo is on odd line or not
 
     LDA Objects_X,X
-    ADC Object_TileDetectOffsets+1,Y    ; Adding tile detection X offset to Object's X
+    ADC object_tile_detection_offset_lookups+1,Y    ; Adding tile detection X offset to Object's X
     STA ObjTile_DetXLo  ; -> ObjTile_DetXLo (low)
 
     LDA Objects_XHi,X
@@ -1638,7 +1638,7 @@ PRG000_C85C:
 
     LDA Objects_Y,X
     CLC
-    ADC Object_TileDetectOffsets,Y  ; Adding tile detection Y offset to Object's Y
+    ADC object_tile_detection_offset_lookups,Y  ; Adding tile detection Y offset to Object's Y
     AND #$f0        ; Align to grid
     STA ObjTile_DetYLo  ; -> ObjTile_DetYLo (low)
     STA Temp_Var3       ; -> Temp_Var3
@@ -1659,7 +1659,7 @@ PRG000_C85C:
 
     LDA Objects_X,X
     CLC
-    ADC Object_TileDetectOffsets+1,Y    ; Adding tile detection X offset to Object's X
+    ADC object_tile_detection_offset_lookups+1,Y    ; Adding tile detection X offset to Object's X
     STA ObjTile_DetXLo  ; -> ObjTile_DetXLo (low)
 
     ; Calculate tile offset within screen
