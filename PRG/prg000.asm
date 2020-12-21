@@ -566,7 +566,7 @@ convert_time_to_bonus:
     LDA current_playing_music1
     BNE +rts  ; If any music playing, jump to +rts (RTS)
 
-    LDY #$01     ; Y = 1 (most significant or middle digit of time is non-zero)
+    LDY #$00     ; Y = 1 (most significant or middle digit of time is non-zero)
 
     LDA level_time_hi
     ORA level_time_mi
@@ -580,7 +580,7 @@ convert_time_to_bonus:
     TYA      ; A = Y
     TAX      ; X = A = 1 or 2
 
-    LDA TimeBonus_Score - 1,X  ; Get appropriate score bonus
+    LDA TimeBonus_Score,X  ; Get appropriate score bonus
     STA Score_Earned        ; Push into score buffer
 
     -
