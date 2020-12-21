@@ -19,6 +19,7 @@
 
 
     .include src/macros/load_pointer.asm
+    .include src/macros/tyx.asm
     .include src/enum/main.asm
 
 ; Handy pseudo instructions... only make sense in the context of CMPing a number...

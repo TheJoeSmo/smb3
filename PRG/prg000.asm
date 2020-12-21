@@ -577,8 +577,7 @@ convert_time_to_bonus:
     ORA level_time_lo
     BEQ +rts  ; If all time digits are zero, jump to +rts (RTS)
 
-    TYA      ; A = Y
-    TAX      ; X = A = 1 or 2
+    TYX
 
     LDA score_by_time_lookup,X  ; Get appropriate score bonus
     STA Score_Earned        ; Push into score buffer
