@@ -256,8 +256,9 @@ object_tile_detection_offset_lookup1:
     ; Alternate offsets used when object utilizes "Group 1" in sloped levels
     ; See "ONLY HAPPENS WITH GROUP 1 ROW 1 AND SLOPES ENABLED"
     ;           Y    X
-OTDO_G1Alt: .byte $02, $01  ; Wall to left
-        .byte $02, $0E  ; Wall to right
+object_tile_detection_offset_lookup1_alternatives: 
+    .byte $02, $01  ; Wall to left
+    .byte $02, $0E  ; Wall to right
 
     ; Offsets used for detection of water tiles
     ;           Y    X
@@ -1437,7 +1438,7 @@ PRG000_C76C:
     CPY #$00
     BEQ PRG000_C78C  ; If Y = 0 (object not on solid ground), jump to PRG000_C78C
 
-    LDY #OTDO_G1Alt - object_tile_detection_offset_lookups     ; Otherwise, use alternate wall detection offsets
+    LDY #object_tile_detection_offset_lookup1_alternatives - object_tile_detection_offset_lookups     ; Otherwise, use alternate wall detection offsets
     JMP PRG000_C791  ; Jump to PRG000_C791
 
     ;;;;;;;;;;;;;;;;;; END
