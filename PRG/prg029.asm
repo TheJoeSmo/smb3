@@ -1379,45 +1379,14 @@ PRG029_D6AB:
     JMP PRG008_A38E  ; Jump to PRG008_A38E
 
     .include src/powerups/death/main.asm
-
-Player_Die_Dying:
-    LDA Player_AboveTop
-    BNE PRG029_D6DA  ; If Player is above top of screen, jump to PRG029_D6DA
-
-    LDA Player_SpriteY
-    AND #$f0
-    CMP #$b0
-    BEQ PRG029_D6E5  ; If Player_SpriteY >= $B0 && Player_SpriteY <= $BF (Player is halfway below status bar), jump to PRG029_D6E5
-
-PRG029_D6DA:
-    LDA Event_Countdown
-    BNE PRG029_D6E2  ; If Event_Countdown <> 0 (time until drop to map), jump to PRG029_D6E2
-    JMP PRG029_D768  ; Otherwise, jump to PRG029_D6E2
-
-PRG029_D6E2:
-    JMP PRG029_D771  ; Jump to PRG029_D771 if Event_Countdown <> 0
-
-PRG029_D6E5:
-    LDA Event_Countdown
-    BNE PRG029_D6EF ; If Event_Countdown > 0 (time until drop to map), jump to PRG029_D6EF
-
-    ; Reload Event_Countdown
-    LDA #64
-    STA Event_Countdown ; Event_Countdown = 64
-
-PRG029_D6EF:
-    CMP #$01
-    BNE PRG029_D6F5  ; If Event_Countdown <> 1, jump to PRG029_D6F5 (RTS)
-    BEQ PRG029_D6FB  ; If Event_Countdown = 1, jump to PRG029_D6FB
-
-PRG029_D6F5:
-    RTS      ; Return
+    .include src/powerups/death/normal.asm
 
 
 Player_Die_FellOff:
     LDA Event_Countdown
     BNE PRG029_D702  ; If Event_Countdown <> 0, jump to PRG029_D702 (RTS)
 
+player_die_offscreen:
 PRG029_D6FB:
     INC Level_ExitToMap    ; Level_ExitToMap = 1
 
@@ -1505,6 +1474,7 @@ PRG029_D74A:
     RTS      ; Return
 
 PRG029_D768:
+player_apply_death_gravity:
     ; Player gravity while dying
     INC Player_YVel
     INC Player_YVel ; Player_YVel += 2
@@ -1514,6 +1484,7 @@ PRG029_D768:
     JSR Player_ApplyYVelocity    ; Applies Player's Y velocity
 
 PRG029_D771:
+player_draw_death:
     LDA #PF_DIE
     STA Player_Frame ; Player_Frame = PF_DIE
 
