@@ -1399,7 +1399,7 @@ GameOver_Loop:
     ; NOTE: GameOver_State = 9 is handled specially outside of this routine
 
 GameOver_WaitOnBGM:
-    LDA SndCur_Music1
+    LDA current_playing_music1
     BNE PRG010_C712  ; If Game Over music is still playing, jump to PRG010_C712
 
     INC GameOver_State   ; GameOver_State++

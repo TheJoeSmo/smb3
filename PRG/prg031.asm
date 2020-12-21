@@ -206,7 +206,7 @@ Sound_PlayMusic:
     BNE SndMus_QueueCommonJ ; If music from set 1 has been queued, jump to SndMus_QueueCommonJ
 
     ; Music has not been queued from set 1...
-    LDA SndCur_Music1
+    LDA current_playing_music1
     BEQ PRG031_E364     ; If no music is currently playing in set 1, jump to PRG031_E364
 
     LDA Sound_QMusic2
@@ -253,7 +253,7 @@ SndMus_QueueSet2B:
 
     STA SndCur_Music2   ; Store which Set 2 song we're playing
     LDY #$00
-    STY SndCur_Music1   ; Stop any Set 1 song
+    STY current_playing_music1   ; Stop any Set 1 song
 
     ; Shift it down 4 bits to make it a 1-15 index
     LSR A
@@ -345,7 +345,7 @@ SndMus_QueueCommon:
     LDA Sound_QMusic2
     BNE PRG031_E401     ; To queue Music Set 2A, jump to PRG031_E401
 
-    LDA SndCur_Music1
+    LDA current_playing_music1
     ORA SndCur_Music2
     BNE PRG031_E3EB     ; If something is playing in Music Set 1 or Music Set 2A/B, jump to PRG031_E3EB
 
@@ -364,7 +364,7 @@ PRG031_E401:
 
 PRG031_E411:
     LDY #$00
-    STY SndCur_Music1 ; Stop any Set 1 song playing
+    STY current_playing_music1 ; Stop any Set 1 song playing
 
     TAY             ; Y = A
     LDA Music_Set2A_Starts-1,Y  ; Because Y starts at '1', we must subtract 1 from the LUT address
@@ -398,7 +398,7 @@ SndMus2A_Next:
     JMP Music_StopAll
 
 SndMus_Queue1:
-    STA SndCur_Music1   ; SndCur_Music1 = queued music
+    STA current_playing_music1   ; current_playing_music1 = queued music
     LDY SndCur_Music2   ; Y = SndCur_Music2
     STY Music2_Hold     ; If a "set 2" song is playing, back up which one it is; we'll restart it after this song finishes (only really used for the "time low" song)
     LDY #$00        ;
@@ -475,7 +475,7 @@ PRG031_E48C:
     STA Music_Sq1Bend   ; Clear bend effect on Square 1
     STA Music_Sq2Bend   ; Clear bend effect on Square 2
 
-    LDA SndCur_Music1
+    LDA current_playing_music1
     CMP #$01
     BNE PRG031_E4BB  ; If we're not playing Set 1 $01 Player Death, jump to PRG031_E4BB
 
@@ -515,7 +515,7 @@ PRG031_E4CD:
     BNE PRG031_E51E     ; $80 - $ff, jump to PRG031_E51E
 
 Music_EndSegment:
-    LDA SndCur_Music1   ; Are we playing something from Set 1?
+    LDA current_playing_music1   ; Are we playing something from Set 1?
     BEQ PRG031_E4F7     ; If not, jump to PRG031_E4F7
 
     ; Set 1 music...
@@ -547,7 +547,7 @@ PRG031_E4F7:
 
 Music_StopAll:
     LDA #$00
-    STA SndCur_Music1   ; Stop any Set 1 song
+    STA current_playing_music1   ; Stop any Set 1 song
     STA SndCur_Music2   ; Stop any Set 2 song
     STA Music2_Hold     ; Clear any hold on a Set 2 song
     STA Music_RestH_Off ; Clear any rest lookup offset

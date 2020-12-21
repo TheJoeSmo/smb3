@@ -563,7 +563,7 @@ TimeBonus_Score:
 
 ; $C412
 convert_time_to_bonus:
-    LDA SndCur_Music1
+    LDA current_playing_music1
     BNE +rts  ; If any music playing, jump to +rts (RTS)
 
     LDY #$01     ; Y = 1 (most significant or middle digit of time is non-zero)
