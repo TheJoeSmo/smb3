@@ -262,7 +262,8 @@ object_tile_detection_offset_lookup1_alternatives:
 
     ; Offsets used for detection of water tiles
     ;           Y    X
-OTDO_Water: .byte $04, $08
+object_tile_water_detection_offset_lookup: 
+    .byte $04, $08
 
 
     ; Defines the "bounding box"
@@ -1244,7 +1245,7 @@ PRG000_C69C:
 ; current state of movement.  Handles entering/leaving water.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 Object_GetAttrAndMoveTiles:
-    LDY #OTDO_Water - object_tile_detection_offset_lookups    ; Special offsets used for checking for water tiles
+    LDY #object_tile_water_detection_offset_lookup - object_tile_detection_offset_lookups    ; Special offsets used for checking for water tiles
     JSR Object_DetectTile   ; Get tile here
 
     ASL A
