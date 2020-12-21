@@ -103,6 +103,7 @@ is_climbing					= Player_IsClimbing
 
 wand_state 					= Level_GetWandState
 active_powerup				= Player_Suit
+event_counter				= Event_Countdown
 
 debug_enable 				= Debug_Flag
 
