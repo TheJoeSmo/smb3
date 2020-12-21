@@ -3249,7 +3249,7 @@ OA3_TAILATKIMMUNE   = %10000000 ; Object cannot be Raccoon tail attacked
 
 ; Object Attribute Common Flags
 
-; Selects a bounding box from Object_BoundBox
+; Selects a bounding box from object_tile_collision_box_lookups
 OAT_BOUNDBOX00      = %00000000
 OAT_BOUNDBOX01      = %00000001
 OAT_BOUNDBOX02      = %00000010

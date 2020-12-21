@@ -268,7 +268,7 @@ object_tile_water_detection_offset_lookup:
 
     ; Defines the "bounding box"
     ; Selected by Object_AttrFlags lower 4 bits
-Object_BoundBox:
+object_tile_collision_box_lookups:
     ;    Left Right Bot Top - offsets applied to sprite X/Y
     .byte  2,   4,   2,   8 ; 0
     .byte  1,  13,   2,   8 ; 1
@@ -5505,18 +5505,18 @@ Object_CalcBoundBox:
     ; Calculate upper left of bounding box and lower right offsets
     LDA Objects_SpriteX,X
     CLC
-    ADC Object_BoundBox,Y
+    ADC object_tile_collision_box_lookups,Y
     STA Temp_Var1       ; Temp_Var1 object's sprite X with offset
 
     LDA Objects_SpriteY,X
     CLC
-    ADC Object_BoundBox+2,Y
+    ADC object_tile_collision_box_lookups+2,Y
     STA Temp_Var5       ; Temp_Var5 object's sprite Y with offset
 
-    LDA Object_BoundBox+1,Y
+    LDA object_tile_collision_box_lookups+1,Y
     STA Temp_Var2       ; Temp_Var2 has the right offset
 
-    LDA Object_BoundBox+3,Y
+    LDA object_tile_collision_box_lookups+3,Y
     STA Temp_Var6       ; Temp_Var6 has the bottom offset
 
     RTS      ; Return
@@ -5543,18 +5543,18 @@ Object_CalcBoundBox2:   ; Same as Object_CalcBoundBox in spirit, just different 
     ; Calculate upper left of bounding box and lower right offsets
     LDA Objects_SpriteX,X
     CLC
-    ADC Object_BoundBox,Y
+    ADC object_tile_collision_box_lookups,Y
     STA Temp_Var3       ; Temp_Var3 object's sprite X with offset
 
     LDA Objects_SpriteY,X
     CLC
-    ADC Object_BoundBox+2,Y
+    ADC object_tile_collision_box_lookups+2,Y
     STA Temp_Var7       ; Temp_Var7 object's sprite Y with offset
 
-    LDA Object_BoundBox+1,Y
+    LDA object_tile_collision_box_lookups+1,Y
     STA Temp_Var4       ; Temp_Var4 has the right offset
 
-    LDA Object_BoundBox+3,Y
+    LDA object_tile_collision_box_lookups+3,Y
     STA Temp_Var8       ; Temp_Var8 has the bottom offset
 
     RTS      ; Return
