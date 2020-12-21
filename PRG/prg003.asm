@@ -464,7 +464,7 @@ ObjInit_TreasureBox:
     STA Objects_Var5,X ; Var5 = what item we're gonna get
     TAY      ; -> 'Y'
 
-    LDA ToadItem_PalPerItem,Y
+    LDA toad_item_palette_lookup,Y
     STA Palette_Buffer+$1A
     LDA #$30
     STA Palette_Buffer+$19

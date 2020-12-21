@@ -4156,7 +4156,7 @@ ObjNorm_ToadHouseItem:
 
     LDY Objects_Frame,X  ; Y = object frame (item you're getting)
 
-    LDA ToadItem_PalPerItem,Y
+    LDA toad_item_palette_lookup,Y
 
     LDY Graphics_BufCnt
     STA Graphics_Buffer+3,Y  ; Store color change into buffer

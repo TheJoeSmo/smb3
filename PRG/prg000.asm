@@ -130,7 +130,7 @@ level_underwater_lookups:
     .byte $FF, $FF, $FF, $C1    ; 14 Underground
 
 
-ToadItem_PalPerItem:
+toad_item_palette_lookup:
     .byte $30   ; 0: INVALID
     .byte $16   ; 1: Mushroom
     .byte $2A   ; 2: Fire flower
