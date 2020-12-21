@@ -5879,9 +5879,9 @@ PRG030_9EDB:
     TAX      ; X = Y (tile quadrant) << 1 (two byte index)
 
     ; Temp_Var3/4 are loaded with address inside PRG000_C000
-    LDA Level_SlopeSetByQuad,X
+    LDA level_slope_lookups,X
     STA Temp_Var3
-    LDA Level_SlopeSetByQuad+1,X
+    LDA level_slope_lookups+1,X
     STA Temp_Var4
 
     LDX Temp_Var1      ; X = Temp_Var1 (always 0)

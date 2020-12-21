@@ -1259,12 +1259,12 @@ PRG007_A5DC:
     LDY Temp_Var2   ; Y = tile quadrant
     TYA
     ASL A
-    TAX      ; X = tile quadrant * 2 (2 byte index into Level_SlopeSetByQuad)
+    TAX      ; X = tile quadrant * 2 (2 byte index into level_slope_lookups)
 
-    ; Temp_Var3/4 pointer into appropriate Level_SlopeSetByQuad
-    LDA Level_SlopeSetByQuad,X
+    ; Temp_Var3/4 pointer into appropriate level_slope_lookups
+    LDA level_slope_lookups,X
     STA Temp_Var3
-    LDA Level_SlopeSetByQuad+1,X
+    LDA level_slope_lookups+1,X
     STA Temp_Var4
 
     LDX SlotIndexBackup     ; X = Player Projectile index

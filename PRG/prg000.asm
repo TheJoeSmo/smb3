@@ -25,7 +25,8 @@
     ;   5) If tile is in range, it is subtracted, so using the Hills example:
     ;      Tile $25 -- first table, index 0.  Tile $26 -- first table, index 1.
     ;      Tile $5F -- second table, index 0.  Etc...
-Level_SlopeSetByQuad:
+
+level_slope_lookups:
     .word Level_SlopeQuad00 ; Tile quad $00
     .word Level_SlopeQuad40 ; Tile quad $40
     .word Level_SlopeQuad80 ; Tile quad $80
@@ -1405,9 +1406,9 @@ PRG000_C736:
     TAX      ; -> 'X'
 
     ; Temp_Var3/4 point to array of slope values for this quadrant
-    LDA Level_SlopeSetByQuad,X
+    LDA level_slope_lookups,X
     STA Temp_Var3
-    LDA Level_SlopeSetByQuad+1,X
+    LDA level_slope_lookups+1,X
     STA Temp_Var4
 
     PLA      ; Restore tile
