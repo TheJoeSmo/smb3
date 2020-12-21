@@ -2227,17 +2227,17 @@ PRG007_AA8D:
 PRG007_AA8F:
     STX object_index     ; Update object_index
 
-    LDA Scores_Value,X
+    LDA score_reward_type,X
     AND #$7f     ; Keep only lower 7 bits
     BEQ PRG007_AAAD  ; If this score's value is $00 or $80, jump to PRG007_AAAD
 
     CMP #$0D
     BLT PRG007_AAA8  ; If score value < $0D (1-up), jump to PRG007_AAA8
 
-    LDA Scores_Value,X
+    LDA score_reward_type,X
     AND #$80    ; Keep bit 7
     ORA #$0d    ; Cap at 1-up ($0D) regardless of value
-    STA Scores_Value,X   ; Update value
+    STA score_reward_type,X   ; Update value
 
     AND #$7f     ; Keep only lower 7 bits
 
@@ -2266,7 +2266,7 @@ PRG007_AAC0:
 PRG007_AAC5:
     ; Otherwise, this score is finished; clear it out!
     LDA #$00
-    STA Scores_Value,X
+    STA score_reward_type,X
 
     RTS      ; Return
 
@@ -2348,7 +2348,7 @@ PRG007_AB1D:
     CMP #248
     BGE PRG007_AAC5  ; If score's Y >= 248, jump to PRG007_AAC5 (get rid of it!)
 
-    LDA Scores_Value,X
+    LDA score_reward_type,X
     BMI PRG007_AB53     ; If score value has bit 7 set, jump to PRG007_AB53
 
     ; Otherwise...
@@ -2946,7 +2946,7 @@ PRG007_AE28:
 
     ; Get 100 pts
     LDA #$85
-    STA Scores_Value,Y
+    STA score_reward_type,Y
 
     LDA #$30
     STA Scores_Counter,Y
@@ -4158,7 +4158,7 @@ PRG007_B446:
 PRG007_B44B:
     CLC
     ADC Kill_Tally
-    STA Scores_Value,Y
+    STA score_reward_type,Y
 
     INC Kill_Tally   ; Kill_Tally++
 

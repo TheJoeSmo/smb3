@@ -662,9 +662,9 @@ reward_player_points:
     PHA         ; Save input value
     STY Temp_Var15     ; Backup 'Y' -> Temp_Var15
 
-    JSR find_open_score_slot  ; Get free Scores_Value slot
+    JSR find_open_score_slot  ; Get free score_reward_type slot
     PLA         ; Restore input value
-    STA Scores_Value,Y  ; Store input value
+    STA score_reward_type,Y  ; Store input value
 
     LDA Objects_SpriteY, X
     SEC
@@ -694,8 +694,8 @@ PRG000_C47D:
 find_open_score_slot:
     LDY #$04     ; Y = 4
 PRG000_C490:
-    LDA Scores_Value,Y
-    BEQ PRG000_C49A  ; If Scores_Value[Y] = 0, jump to PRG000_C49A (RTS)
+    LDA score_reward_type,Y
+    BEQ PRG000_C49A  ; If score_reward_type[Y] = 0, jump to PRG000_C49A (RTS)
 
     DEY      ; Y--
     BPL PRG000_C490  ; While Y >= 0, loop

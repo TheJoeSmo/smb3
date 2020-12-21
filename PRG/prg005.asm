@@ -6335,7 +6335,7 @@ PRG005_BE41:
     BGE PRG005_BE4B  ; If Y >= 5, jump to PRG005_BE4B
 
     ; Clear the scores
-    STA Scores_Value,Y
+    STA score_reward_type,Y
     STA Scores_Counter,Y
 
 PRG005_BE4B:
