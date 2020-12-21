@@ -4449,11 +4449,7 @@ Player_DetectSolids:
 
 
 PRG008_B47E:
-    LDA Slope_LUT_Addr
-    STA Level_GndLUT_Addr
-
-    LDA Slope_LUT_Addr+1
-    STA Level_GndLUT_Addr+1
+    load_pointer slope_detection_lookup, Level_GndLUT_Addr
 
     LDA Level_SlopeEn
     BEQ PRG008_B4A5  ; If not a sloped level, jump to PRG008_B4A5
