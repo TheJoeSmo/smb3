@@ -431,6 +431,7 @@ is_next_frame				= VBlank_TickEn			; Set when we are in a vblank and have comple
 in_vblank					= VBlank_Tick
 
 credits_state				= Ending2_IntCmd
+level_exit_state			= Level_ExitToMap
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; PPU I/O regs (CPU side)
