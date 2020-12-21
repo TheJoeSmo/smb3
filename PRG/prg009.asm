@@ -5893,7 +5893,7 @@ PRG009_BDDB:
     STA Temp_Var1      ; -> Temp_Var1
 
     LDY Level_TilesetIdx        ; Y = level tileset index
-    LDA MuncherJelectroSet,Y    ; Get Muncher/Jelectro tile
+    LDA spike_type_by_tileset_lookup,Y    ; Get Muncher/Jelectro tile
     CMP Temp_Var1
     BEQ PRG009_BE28     ; If this is the Muncher/Jelectro, jump to PRG009_BE28
 

@@ -6486,11 +6486,11 @@ PRG008_BD96:
 
 PRG008_BD98:
     LDA Level_Tile_GndL,X
-    CMP MuncherJelectroSet,Y
+    CMP spike_type_by_tileset_lookup,Y
     BEQ PRG008_BDA4     ; If Player is touching muncher/jelectro (whichever is appropriate), jump to PRG008_BDA4
 
     ; SB: This check seems superfluous and also incorrect
-    CMP #TILEA_MUNCHER  ; Assuming muncher tile!  Should be MuncherJelectroSet,Y?
+    CMP #TILEA_MUNCHER  ; Assuming muncher tile!  Should be spike_type_by_tileset_lookup,Y?
     BNE PRG008_BDB1  ; If Player is NOT touching a muncher, jump to PRG008_BDB1
 
     ; Kuribo-on-muncher handling

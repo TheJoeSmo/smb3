@@ -513,7 +513,7 @@ conveyor_enable_by_tileset_lookup:
     ; Although TILEA_MUNCHER is always considered anyway for Kuribo's shoe...
     ; (see after PRG008_BD96) which is probably a bug/mistake!  (Although to their
     ; credit, you can never normally have Kuribo's shoe in a Jelectro level)
-MuncherJelectroSet:
+spike_type_by_tileset_lookup:
     .byte TILEA_MUNCHER ;  0 Plains style
     .byte TILEA_MUNCHER ;  1 Mini Fortress style
     .byte TILEA_MUNCHER ;  2 Hills style
