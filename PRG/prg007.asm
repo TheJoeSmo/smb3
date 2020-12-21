@@ -2322,11 +2322,11 @@ PRG007_AB04:
     AND Score_RiseCounterMask,Y
     BNE PRG007_AB1D  ; Periodically jump to PRG007_AB1D
 
-    LDA Scores_Y,X
+    LDA score_object_y,X
     CMP #$04
     BLT PRG007_AB1D  ; If this score's Y < 4, jump to PRG007_AB1D
 
-    DEC Scores_Y,X   ; Otherwise, rise up!
+    DEC score_object_y,X   ; Otherwise, rise up!
 
 PRG007_AB1D:
 
@@ -2340,10 +2340,10 @@ PRG007_AB1D:
     BGE PRG007_AAC5  ; If score's X >= 248, jump to PRG007_AAC5 (get rid of it!)
 
     ; Scroll score vertically with screen
-    LDA Scores_Y,X
+    LDA score_object_y,X
     SEC
     SBC Level_ScrollDiffV
-    STA Scores_Y,X
+    STA score_object_y,X
 
     CMP #248
     BGE PRG007_AAC5  ; If score's Y >= 248, jump to PRG007_AAC5 (get rid of it!)
@@ -2420,7 +2420,7 @@ PRG007_AB76:
     STA Sprite_RAM+$01,Y
 
     ; Score Sprite Y
-    LDA Scores_Y,X
+    LDA score_object_y,X
     STA Sprite_RAM+$00,Y
 
     ; Score Sprite X
@@ -2435,7 +2435,7 @@ PRG007_AB99:
     BEQ PRG007_ABC4  ; If this sprite is marked as "don't display", jump to PRG007_ABC4
 
     ; Score Sprite Y
-    LDA Scores_Y,X
+    LDA score_object_y,X
     STA Sprite_RAM+$00,Y
 
     ; Score Sprite X
@@ -2958,7 +2958,7 @@ PRG007_AE28:
     LDA #$05     ; Otherwise use top of screen
 
 PRG007_AE3E:
-    STA Scores_Y,Y   ; -> Scores_Y
+    STA score_object_y,Y   ; -> score_object_y
 
     ; Center score above coin
     LDA CoinPUp_X,X
@@ -4176,7 +4176,7 @@ PRG007_B44B:
     LDA #$05     ; Otherwise, use Y = 5
 
 PRG007_B469:
-    STA Scores_Y,Y   ; Set score Y
+    STA score_object_y,Y   ; Set score Y
 
     ; Set score X
     LDA SpecialObj_XLo,X

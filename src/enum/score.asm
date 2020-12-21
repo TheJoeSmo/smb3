@@ -5,3 +5,5 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 score_reward_type   = Scores_Value
+
+score_object_y      = Scores_Y

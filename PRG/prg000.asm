@@ -675,7 +675,7 @@ reward_player_points:
     LDA #$05         ; A = 5
 
 PRG000_C47D:
-    STA Scores_Y,Y   ; Set score Y
+    STA score_object_y,Y   ; Set score Y
 
     ; Set score X to spawning object
     LDA object_sprite_x, X
