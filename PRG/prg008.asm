@@ -1230,7 +1230,7 @@ FloatLevel_StatCheck:
 ;
 ; This checks if the given tile in Temp_Var1/2 (depending on 'X')
 ; is "underwater", based on Temp_Var3 (Level_TilesetIdx << 2) and
-; the tile's "quadrant", which index "Level_MinTileUWByQuad"
+; the tile's "quadrant", which index "level_underwater_lookups"
 ;
 ; The result can be overridden if the proper bit in
 ; FloatLevel_PlayerWaterStat is set, which will force the
@@ -1280,7 +1280,7 @@ PRG008_A68D:
     ; Get the minimum tile value for this quadrant which is considered
     ; underwater (NOTE: If there are no underwater tiles in this quadrant,
     ; the mostly unreachable value of $FF is what we get here)
-    LDA Level_MinTileUWByQuad,Y
+    LDA level_underwater_lookups,Y
 
     LDY #$00     ; Y = 0 (Not under water)
 
@@ -1520,7 +1520,7 @@ PRG008_A77E:
 PRG008_A7AD:
 
     ; This will be used in Level_CheckIfTileUnderwater
-    ; as bits 2-3 of an index into Level_MinTileUWByQuad
+    ; as bits 2-3 of an index into level_underwater_lookups
     LDA Level_TilesetIdx
     ASL A
     ASL A

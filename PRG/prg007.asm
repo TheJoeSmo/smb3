@@ -1277,7 +1277,7 @@ PRG007_A5DC:
     LDA (Temp_Var3),Y
     TAY      ; Y = slope offset for this tile
 
-    LDA slope_velocity_object_effect_lookup,Y
+    LDA Slope_ObjectVel_Effect,Y
     CMP #$80
     BEQ PRG007_A637  ; If this tile has no effect, jump to PRG007_A637 ("Poof" away, fireball..)
 
@@ -1913,7 +1913,7 @@ PRG007_A8F0:
     ASL A       ; Tileset index * 4
     CLC
     ADC Temp_Var1  ; + quadrant
-    TAY ; -> 'Y' (offset into Level_MinTileUWByQuad)
+    TAY ; -> 'Y' (offset into level_underwater_lookups)
 
     LDA Temp_Var2
     CMP #TILE1_WFALLTOP
@@ -1924,7 +1924,7 @@ PRG007_A8F0:
 PRG007_A915:
     BEQ PRG007_A91E  ; If this is the top or middle of a waterfall, jump to PRG007_A91E
 
-    LDA Level_MinTileUWByQuad,Y
+    LDA level_underwater_lookups,Y
     CMP Temp_Var2
     BLT Bubble_Draw  ; If this tile is still considered underwater, jump to Bubble_Draw
 
@@ -3119,9 +3119,9 @@ PRG007_AEE0:
     ASL A   ; TilesetIdx * 4
     CLC
     ADC Temp_Var2  ; Add the quadrant
-    TAY ; Y = offset into Level_MinTileUWByQuad
+    TAY ; Y = offset into level_underwater_lookups
 
-    LDA Level_MinTileUWByQuad,Y
+    LDA level_underwater_lookups,Y
     CMP Temp_Var1
     BLT PRG007_AEFB  ; If this tile is not considered underwater, jump to PRG007_AEFB (RTS)
 

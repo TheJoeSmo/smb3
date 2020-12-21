@@ -111,7 +111,7 @@ slope_velocity_object_effect_lookup:
     ; classified as "underwater" (Minimum Tile Under Water By Quad)
     ; A value of $FF is used to indicate that no tile in that quadrant
     ; is underwater (and for the first three quads is unreachable!)
-Level_MinTileUWByQuad:
+level_underwater_lookups:
     ; 4 values per Level_TilesetIdx, which is basically (Level_Tileset - 1)
     ; Listing by valid Level_Tileset values for consistency...
     .byte $FF, $FF, $FF, $DA    ;  1 Plains style
@@ -1273,7 +1273,7 @@ Object_GetAttrAndMoveTiles:
     CLC
     ADC Temp_Var1   ; Add quadrant offset
     TAY      ; -> 'Y'
-    LDA Level_MinTileUWByQuad,Y ; Get the starting underwater tile
+    LDA level_underwater_lookups,Y ; Get the starting underwater tile
     CMP Level_Tile
     BGE PRG000_C6D0  ; If starting underwater tile is >= the detected tile, jump to PRG000_C6D0
 
