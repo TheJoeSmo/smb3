@@ -105,10 +105,6 @@ slope_velocity_object_effect_lookup:
     ; no proper involvement with in native SMB3.  Also due to a "lazy" calculation
     ; found after the label PRG000_C5EC, these would be inaccessible anyway!
 
-
-    ; Default address for Level_GndLUT_L/H in a sloped level
-Slope_LUT_Addr: .word slope_detection_lookup
-
     ; This defines 4 values per Level_Tileset, with each of those values
     ; belonging to a tile "quadrant" (i.e. tiles beginning at $00, $40,
     ; $80, and $C0), and defines the beginning tile which should be
