@@ -538,33 +538,6 @@ powerup_ability_lookup:
     ;     Small, Big, Fire, Leaf, Frog, Tanooki, Hammer
     .byte $00,   $00, $00,  $01,  $02,  $01,     $02
 
-    ; Velocities set to X/Y directly to Player for what might be a now-unused debug routine of sorts
-PRG000_C3E7:
-    .byte $00, $30, -$30
-
-; FIXME: Anybody want to claim this?
-; Looks like maybe a leftover debug routine for some kind of "float around" mode maybe!!
-; $C3EA
-    LDA Pad_Holding
-    AND #PAD_LEFT | PAD_RIGHT
-    TAY      ; Y = 1 or 2
-
-    ; Set Player X velocity directly??
-    LDA PRG000_C3E7,Y
-    STA Player_XVel
-
-    LDA Pad_Holding
-    LSR A
-    LSR A
-    AND #(PAD_UP | PAD_DOWN) >> 2
-    TAY      ; Y = 1 or 2
-
-    ; Set Player Y velocity directly??
-    LDA PRG000_C3E7,Y
-    STA Player_YVel
-
-    RTS      ; Return
-
     ; Offsets into Sprite_RAM used by objects
 SprRamOffsets:
     ; The specified Sprite_RAM offset is calculated by object's index
