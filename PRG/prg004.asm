@@ -2898,7 +2898,7 @@ PRG004_ADE1:
     TAX      ; X = 0 to 3 by Var3
 
     LDA Lakitu_YOff,X
-    LDX SlotIndexBackup     ; X = object slot index
+    LDX object_index     ; X = object slot index
     STA Temp_Var1       ; Temp_Var1 = Lakitu's in-cloud Y offset
 
 PRG004_ADF1:
@@ -2964,7 +2964,7 @@ PRG004_AE35:
 
     JSR Level_PrepareNewObject   ; Prepare new object
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
     ; Set object immediately to "Normal" state
     LDA #OBJSTATE_NORMAL
@@ -3211,7 +3211,7 @@ PRG004_AF65:
     STA Sprite_RAM+$09,Y     ; Store left wing pattern
     STA Sprite_RAM+$0D,Y     ; Store right wing pattern
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
     RTS      ; Return
 
@@ -4254,7 +4254,7 @@ PRG004_B43A:
     JSR ObjectObject_Intersect   ; Test for collision between the original enemy and this object
     BCC PRG004_B49A  ; If no collision, jump to PRG004_B49A (skip to next object)
 
-    LDY SlotIndexBackup     ; Y = original enemy's object slot index
+    LDY object_index     ; Y = original enemy's object slot index
 
     LDA Objects_X,X
     SBC Objects_X,Y
@@ -4284,7 +4284,7 @@ PRG000_B484:
     TYA
     STA Temp_Var1   ; Store target flip -> Temp_Var1
 
-    LDY SlotIndexBackup     ; Y = original enemy slot index
+    LDY object_index     ; Y = original enemy slot index
     STA Objects_FlipBits,Y   ; -> FlipBits
 
     ; This check is redundant
@@ -4301,7 +4301,7 @@ PRG004_B49A:
     DEX      ; X-- (previous object)
     BPL PRG004_B42F  ; While X >= 0, loop
 
-    LDX SlotIndexBackup     ; X = object slot index
+    LDX object_index     ; X = object slot index
 
 PRG004_B49F:
     RTS      ; Return
@@ -4546,7 +4546,7 @@ PRG004_B5A3:
     LDA Troopa_FootByEvenOddFrame+1,X
     STA Sprite_RAM+$0D,Y
 
-    LDX SlotIndexBackup     ; X = object slot index
+    LDX object_index     ; X = object slot index
     RTS      ; Return
 
 GiantEnemy_Draw:
@@ -5409,7 +5409,7 @@ PRG004_B9AF:
     STA Sprite_RAM+$01,Y
 
 PRG004_B9B8:
-    LDX SlotIndexBackup     ; X = object slot index
+    LDX object_index     ; X = object slot index
 
 PRG004_B9BA:
     RTS      ; Return
@@ -5510,7 +5510,7 @@ PRG004_BA27:
     DEY      ; Y-- (one less count)
     BPL PRG004_BA27  ; While Y >= 0, loop!
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
     ; Reset Timer
     LDA #$00
@@ -5753,7 +5753,7 @@ PRG004_BB6C:
     DEY      ; Y--
     BPL PRG004_BB67  ; While Y >= 0, loop
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
     RTS      ; Return
 
@@ -5851,7 +5851,7 @@ PRG004_BBD8:
     DEY      ; Y--
     BPL PRG004_BBCC  ; While Y >= 0, loop!
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
 PRG004_BBE2:
     LDA Objects_Y,X
@@ -5968,7 +5968,7 @@ PRG004_BC66:
     ASL A
     ASL A
     ADC Temp_Var16
-    ADC SlotIndexBackup
+    ADC object_index
     TAY
 
     ; Temp_Var1 = Chain Chomp chain link Y made relative
@@ -6025,7 +6025,7 @@ PRG004_BCB4:
     DEC Temp_Var16     ; Temp_Var16--
     BPL PRG004_BC66     ; While Temp_Var16 >= 0, loop!
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
     RTS      ; Return
 
 ChainChomp_MoveChain:

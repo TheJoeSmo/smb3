@@ -671,11 +671,11 @@ PRG007_A328:
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 PlayerProjs_UpdateAndDraw:
     LDX #$01    ; X = 1
-    STX SlotIndexBackup         ; SlotIndexBackup = 1
+    STX object_index         ; object_index = 1
 
     JSR PlayerProj_UpdateAndDraw     ; Update and draw this Player Projectile
 
-    DEC SlotIndexBackup         ; SlotIndexBackup = 0
+    DEC object_index         ; object_index = 0
     DEX      ; X = 0
 
 PlayerProj_UpdateAndDraw:
@@ -948,7 +948,7 @@ PRG007_A485:
 PRG007_A48C:
     STA Sprite_RAM+$02,Y     ; Set Player Projectile attributes
 
-    LDX SlotIndexBackup     ; X = Player Projectile slot index
+    LDX object_index     ; X = Player Projectile slot index
 
     LDA Player_HaltGame
     BNE PRG007_A4A2  ; If gameplay is halted, jump to PRG007_A4A2
@@ -1267,7 +1267,7 @@ PRG007_A5DC:
     LDA level_slope_lookups+1,X
     STA Temp_Var4
 
-    LDX SlotIndexBackup     ; X = Player Projectile index
+    LDX object_index     ; X = Player Projectile index
 
     LDA Temp_Var1
     SEC
@@ -1358,7 +1358,7 @@ PRG007_A667:
     DEY      ; Y--
     BPL PRG007_A648 ; While Y >= 0, loop
 
-    LDX SlotIndexBackup     ; X = Player Projectile slot index
+    LDX object_index     ; X = Player Projectile slot index
 
 PRG007_A66C:
     RTS      ; Return
@@ -1380,7 +1380,7 @@ PlayerProj_HitObject:
     SEC
     SBC Objects_SpriteY,Y   ; Difference against this object's Sprite Y
     CMP Projectile_BBoxY,X
-    LDX SlotIndexBackup    ; X = Player Projectile slot index
+    LDX object_index    ; X = Player Projectile slot index
     BGE PRG007_A66C     ; If projectile is out of range vertically, jump to PRG007_A66C (RTS)
 
     LDA Temp_Var14     ; Detect X of projectile
@@ -1388,7 +1388,7 @@ PlayerProj_HitObject:
     SBC Objects_SpriteX,Y   ; Difference against this object's Sprite X
     LDX Temp_Var2      ; X = bounding box index
     CMP Projectile_BBoxX,X
-    LDX SlotIndexBackup    ; X = Player Projectile slot index
+    LDX object_index    ; X = Player Projectile slot index
     BGE PRG007_A6FD     ; If projectile is out of range horizontally, jump to PRG007_A6FD (RTS)
 
     LDA PlayerProj_ID,X
@@ -1456,7 +1456,7 @@ PRG007_A6EC:
     LDA #$05
     JSR Score_PopUp
 
-    LDX SlotIndexBackup     ; X = Player Projectile slot index
+    LDX object_index     ; X = Player Projectile slot index
 
     ; But the enemy is killed...
     LDA #OBJSTATE_KILLED
@@ -1547,7 +1547,7 @@ PRG007_A75F:
     ORA #SPR_HFLIP | SPR_VFLIP
     STA Sprite_RAM+$06,Y     ; Set right sprite attributes
 
-    LDX SlotIndexBackup     ; X = Player Projectile slot index
+    LDX object_index     ; X = Player Projectile slot index
 
     RTS      ; Return
 
@@ -1639,7 +1639,7 @@ PRG007_A7C6:
 PRG007_A7C9:
     STA Temp_Var1   ; -> Temp_Var1
 
-    LDX SlotIndexBackup     ; Restore 'X' as slot index
+    LDX object_index     ; Restore 'X' as slot index
 
     ; Sprite "splashing" effect Y
     LDA Player_SpriteY
@@ -1685,10 +1685,10 @@ PRG007_A7FB:
     AND Counter_1
     BNE PRG007_A80C  ; Periodically jump to PRG007_A80C (RTS)
 
-    ; SlotIndexBackup = 2
+    ; object_index = 2
     LDX #$02
 PRG007_A802:
-    STX SlotIndexBackup
+    STX object_index
 
     LDA Bubble_Cnt,X
     BEQ PRG007_A80D  ; If this bubble slot is empty, jump to PRG007_A80D
@@ -1754,7 +1754,7 @@ PRG007_A83D:
     LDA #$08     ; Otherwise, A = 8
 
 PRG007_A845:
-    LDX SlotIndexBackup     ; X = slot backup
+    LDX object_index     ; X = slot backup
 
     ; Set Bubble Y
     CLC
@@ -1785,7 +1785,7 @@ PRG007_A845:
 Bubbles_UpdateAndDraw:
     LDX #$03     ; X = 3
 PRG007_A86A:
-    STX SlotIndexBackup     ; -> Slot index backup
+    STX object_index     ; -> Slot index backup
 
     LDA Bubble_Cnt,X
     BEQ PRG007_A874  ; If this bubble slot is not in use, jump to PRG007_A874
@@ -1952,7 +1952,7 @@ Bubble_Draw:
 
     LDA Counter_1
     AND #%00000011
-    ADC SlotIndexBackup
+    ADC object_index
     TAY      ; Y = (0 to 3) + bubble's index
 
     LDA Bubble_SprRAMOff,Y
@@ -2004,7 +2004,7 @@ PRG007_A978:
 Splash_UpdateAndDraw:
     LDX #$02     ; X = 2
 PRG007_A97B:
-    STX SlotIndexBackup     ; -> Slot Index backup
+    STX object_index     ; -> Slot Index backup
 
     LDA Splash_Counter,X
     BEQ PRG007_A9A0  ; If no splash is active here, jump to PRG007_A9A0
@@ -2108,7 +2108,7 @@ PRG007_A9D5:
     STA Sprite_RAM+$01,Y
     STA Sprite_RAM+$05,Y
 
-    LDX SlotIndexBackup     ; X = splash index
+    LDX object_index     ; X = splash index
 
     LDA Temp_Var1
     CMP #$03
@@ -2225,7 +2225,7 @@ Scores_GiveAndDraw:
 PRG007_AA8D:
     LDX #$04    ; X = 4 (all five on-screen "scores")
 PRG007_AA8F:
-    STX SlotIndexBackup     ; Update SlotIndexBackup
+    STX object_index     ; Update object_index
 
     LDA Scores_Value,X
     AND #$7f     ; Keep only lower 7 bits
@@ -2308,7 +2308,7 @@ PRG007_AACF:
     INC Player_Lives,X  ; Otherwise, give them the extra life!
 
 PRG007_AB02:
-    LDX SlotIndexBackup    ; X = score slot index
+    LDX object_index    ; X = score slot index
 
 PRG007_AB04:
     LDA Scores_Counter,X
@@ -2411,7 +2411,7 @@ PRG007_AB76:
 
     LDA Score_PatternLeft-1,X    ; -1 because a score value of zero is "empty"
 
-    LDX SlotIndexBackup     ; X = score slot index
+    LDX object_index     ; X = score slot index
 
     CMP #$ff
     BEQ PRG007_AB99  ; If this is the "don't display" marker, jump to PRG007_AB99
@@ -2462,7 +2462,7 @@ PRG007_ABBF:
     ; Set attribute
     STA Sprite_RAM+$02,Y
 
-    LDX SlotIndexBackup     ; X = score slot index
+    LDX object_index     ; X = score slot index
 
 PRG007_ABC4:
     RTS      ; Return
@@ -2476,7 +2476,7 @@ PRG007_ABC4:
 BrickBusts_DrawAndUpdate:
     LDX #$01     ; X = 1
 PRG007_ABC7:
-    STX SlotIndexBackup    ; -> SlotIndexBackup
+    STX object_index    ; -> object_index
 
     JSR BrickBust_DrawAndUpdate  ; Draw and update this brick bust
 
@@ -2837,7 +2837,7 @@ PRG007_AD54:
     STA Sprite_RAM+$01,Y     ; Left
     STA Sprite_RAM+$05,Y     ; Right
 
-    LDX SlotIndexBackup     ; X = restore slot index
+    LDX object_index     ; X = restore slot index
 
 PRG007_ADA7:
     RTS      ; Return
@@ -2854,7 +2854,7 @@ CoinPUp_Attributes: .byte SPR_PAL3, SPR_PAL3 | SPR_HFLIP, SPR_PAL3, SPR_PAL3
 CoinPUps_DrawAndUpdate:
     LDX #$03     ; X = 3 (all "power up" coin slots)
 PRG007_ADB2:
-    STX SlotIndexBackup     ; -> slot index backup
+    STX object_index     ; -> slot index backup
 
     LDA CoinPUp_State,X
     BEQ PRG007_ADBC  ; If there's no active "powerup coin" here, jump to PRG007_ADBC
@@ -2937,7 +2937,7 @@ PRG007_AE02:
     LDA CoinPUp_Attributes,X
     STA Sprite_RAM+$02,Y
 
-    LDX SlotIndexBackup    ; X = power up coin slot index
+    LDX object_index    ; X = power up coin slot index
 
     RTS      ; Return
 
@@ -3171,7 +3171,7 @@ SpecialObjs_UpdateAndDraw:
 
     LDX #$07     ; X = 7
 PRG007_AF1B:
-    STX SlotIndexBackup ; Store current checked index -> SlotIndexBackup
+    STX object_index ; Store current checked index -> object_index
 
     JSR SpecialObj_UpdateAndDraw     ; Does the update and draw routines of Special OBjects
 
@@ -3492,7 +3492,7 @@ PRG007_B0C9:
 
     TXA
 
-    LDX SlotIndexBackup    ; X = special object slot index
+    LDX object_index    ; X = special object slot index
 
     CMP #$08
     LDA #$b5     ; A = $B5
@@ -3650,7 +3650,7 @@ PRG007_B17E:
     LDA PUpCoin_Attributes,X
     STA Sprite_RAM+$02,Y
 
-    LDX SlotIndexBackup     ; X = special object slot index
+    LDX object_index     ; X = special object slot index
 
     RTS      ; Return
 
@@ -3695,7 +3695,7 @@ PRG007_B1C3:
     LSR A
     NOP
     CLC
-    ADC SlotIndexBackup
+    ADC object_index
     AND #$03     ; A = 0 to 3 (palette select)
     STA Sprite_RAM+$02,Y
 
@@ -3815,7 +3815,7 @@ PRG007_B274:
     ORA #SPR_HFLIP
     STA Sprite_RAM+$06,Y
 
-    LDX SlotIndexBackup     ; X = special object slot index
+    LDX object_index     ; X = special object slot index
     JMP SObj_PlayerCollide   ; Do Player-to-wand collision and don't come back!
 
 PRG007_B291:
@@ -4243,7 +4243,7 @@ PRG007_B4AF:
     LDA Level_NoStopCnt
     LSR A
     CLC
-    ADC SlotIndexBackup
+    ADC object_index
     AND #$03
     TAX      ; X = 0 to 3
 
@@ -4256,7 +4256,7 @@ PRG007_B4AF:
     EOR Temp_Var1
     STA Sprite_RAM+$02,Y
 
-    LDX SlotIndexBackup    ; X = special object slot index
+    LDX object_index    ; X = special object slot index
 
 SObj_SetSpriteXYRelative:
     LDA SpecialObj_YLo,X
@@ -4317,7 +4317,7 @@ PRG007_B517:
     ; Set the wand blast pattern
     STA Sprite_RAM+$01,Y
 
-    LDX SlotIndexBackup         ; X = special object slot index
+    LDX object_index         ; X = special object slot index
 
     JSR SObj_SetSpriteXYRelative     ; Special Object X/Y put to sprite, scroll-relative
 
@@ -4376,7 +4376,7 @@ PRG007_B54F:
     LDA LostShoe_Pattern+1,X
     STA Sprite_RAM+$05,Y
 
-    LDX SlotIndexBackup    ; X = special object slot index
+    LDX object_index    ; X = special object slot index
 
 SObj_Draw16x16:
     JSR SObj_SetSpriteXYRelative
@@ -4645,7 +4645,7 @@ PRG007_B6BC:
     TXA
     STA Sprite_RAM+$02,Y
 
-    LDX SlotIndexBackup     ; X = special object slot
+    LDX object_index     ; X = special object slot
 
     LDA SpecialObj_Data,X
     BEQ PRG007_B6CF  ; If SpecialObj_Data = 0, jump to PRG007_B6CF (Player to Microgoomba collision)
@@ -4860,7 +4860,7 @@ PRG007_B7B5:
     STA Sprite_RAM+$05,Y
 
 PRG007_B7C5:
-    LDX SlotIndexBackup     ; X = special object slot index
+    LDX object_index     ; X = special object slot index
 
     JSR SObj_Draw16x16   ; Draw Boomerang
 
@@ -5367,7 +5367,7 @@ PRG007_BA6E:
     ; Set fireball attributes
     STA Sprite_RAM+$02,Y
 
-    LDX SlotIndexBackup     ; X = special object slot index
+    LDX object_index     ; X = special object slot index
 
     LDA Player_Suit
     CMP #$06
@@ -5443,7 +5443,7 @@ PRG007_BAA6:
     STA Sprite_RAM+$01,Y
     STA Sprite_RAM+$05,Y
 
-    LDX SlotIndexBackup    ; X = special object slot index
+    LDX object_index    ; X = special object slot index
 
 PRG007_BAD6:
     RTS      ; Return
@@ -5602,7 +5602,7 @@ CannonFire_UpdateAndDraw:
 
     LDX #$07     ; X = 7
 PRG007_BB78:
-    STX SlotIndexBackup     ; Update index backup
+    STX object_index     ; Update index backup
 
     JSR CannonFire_DrawAndUpdate    ; Draw and Update Cannon Fire
 
@@ -5782,7 +5782,7 @@ PRG007_BC5C:
     ; Big Cannon Ball is BIG
     INC Objects_IsGiant,X
 
-    LDY SlotIndexBackup    ; Y = Cannon Fire slot index
+    LDY object_index    ; Y = Cannon Fire slot index
 
     ; Set BIG Cannon Ball Y
     LDA CannonFire_Y,Y
@@ -5808,7 +5808,7 @@ PRG007_BC81:
 
     EOR #$80     ; Invert the sign bit
 
-    LDY SlotIndexBackup     ; Y = Cannon Fire slot index
+    LDY object_index     ; Y = Cannon Fire slot index
 
     ASL A        ; Inverted sign bit -> carry
 
@@ -5857,7 +5857,7 @@ PRG007_BCB4:
     INC Objects_Var7,X   ; Bob-omb's Var7++
     INC Objects_Var1,X   ; Bob-omb's Var1++
 
-    LDY SlotIndexBackup     ; Y = Cannon Fire slot index
+    LDY object_index     ; Y = Cannon Fire slot index
 
     ; Set Bob-omb's Y
     LDA CannonFire_Y,Y
@@ -5892,7 +5892,7 @@ PRG007_BCE9:
     LDA #$00
     STA Temp_Var2
 
-    LDY SlotIndexBackup     ; Y = Cannon Fire slot index
+    LDY object_index     ; Y = Cannon Fire slot index
 
     ; Set Bob-omb's X
     LDA #$08     ; A = $08
@@ -5913,7 +5913,7 @@ PRG007_BD09:
     LDA #SPR_PAL3
     STA Objects_SprAttr,X
 
-    LDX SlotIndexBackup     ; X = Cannon Fire slot index
+    LDX object_index     ; X = Cannon Fire slot index
     JMP CannonFire_NoiseAndSmoke     ; Play cannon fire noise and make smoke
 
 
@@ -5947,7 +5947,7 @@ CFire_GoombaPipe:
     JSR Level_ObjCalcXDiffs
     STY Temp_Var2       ; Store directional flag -> Temp_Var2
 
-    LDY SlotIndexBackup     ; Y = Cannon Fire index
+    LDY object_index     ; Y = Cannon Fire index
 
     LDA CannonFire_ID,Y
 
@@ -5966,7 +5966,7 @@ PRG007_BD49:
     LDA Goomba_InitFlipBits,Y
     STA Objects_FlipBits,X
 
-    LDY SlotIndexBackup     ; Y = Cannon Fire slot index
+    LDY object_index     ; Y = Cannon Fire slot index
 
     ; Set Goomba's Y
     LDA CannonFire_Y,Y
@@ -5993,7 +5993,7 @@ PRG007_BD49:
     STA Objects_SprHVis,X
 
 PRG007_BD78:
-    LDX SlotIndexBackup     ; X = Cannon Fire slot index
+    LDX object_index     ; X = Cannon Fire slot index
 
 PRG007_BD7A:
     RTS      ; Return
@@ -6188,7 +6188,7 @@ PRG007_BE69:
 
 PRG007_BE91:
     CLC
-    LDX SlotIndexBackup     ; X = Cannon Fire slot index
+    LDX object_index     ; X = Cannon Fire slot index
     ADC CannonFire_Y,X
     STA SpecialObj_YLo,Y
     LDA CannonFire_YHi,X
@@ -6229,7 +6229,7 @@ CannonFire_NoiseAndSmoke:
 
     LDA CannonPoof_YOffs,X   ; A = CannonPoof_YOffs[Temp_Var1]
 
-    LDX SlotIndexBackup     ; X = Cannon Fire slot index
+    LDX object_index     ; X = Cannon Fire slot index
 
     CLC
     ADC CannonFire_Y,X   ; + Cannon Fire Y
@@ -6256,7 +6256,7 @@ CFire_RockyWrench:
 
     JSR PrepareNewObjectOrAbort ; Get me a slot for Rocky Wrench or don't come back!
 
-    LDY SlotIndexBackup    ; Y = Cannon Fire slot index
+    LDY object_index    ; Y = Cannon Fire slot index
 
     ; This is a Rocky Wrench
     LDA #OBJ_ROCKYWRENCH
@@ -6294,7 +6294,7 @@ CFire_RockyWrench:
     LDA Rocky_InitAttr,Y
     STA Objects_FlipBits,X
 
-    LDX SlotIndexBackup    ; X = Cannon Fire slot index
+    LDX object_index    ; X = Cannon Fire slot index
 
 PRG007_BF28:
     RTS      ; Return
@@ -6342,7 +6342,7 @@ CFire_BulletBill:
 
     JSR PrepareNewObjectOrAbort
 
-    LDY SlotIndexBackup     ; Y = Cannon Fire object slot
+    LDY object_index     ; Y = Cannon Fire object slot
 
     LDA CannonFire_ID,Y
     LSR A       ; Selects which Bill type
@@ -6398,7 +6398,7 @@ PRG007_BF80:
     LDA Bill_Var4TowardsPlayer,Y
     STA Objects_Var4,X
 
-    LDX SlotIndexBackup    ; X = Cannon Fire slot index
+    LDX object_index    ; X = Cannon Fire slot index
 
     TYA     ; 0 or 1
     CLC
@@ -6424,7 +6424,7 @@ PRG007_BFCF:
     PLA
     PLA
 
-    LDX SlotIndexBackup     ; Restore 'X' to its slot index value
+    LDX object_index     ; Restore 'X' to its slot index value
 
     RTS      ; Return
 

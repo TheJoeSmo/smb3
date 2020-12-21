@@ -809,7 +809,7 @@ PRG002_A417:
     DEX      ; X--
     BPL PRG002_A3DA  ; While X >= 0, loop!
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
     JMP PRG002_A420  ; Jump to PRG002_A420
 
 PRG002_A420:
@@ -869,7 +869,7 @@ PRG002_A450:
     JSR Object_GetRandNearUnusedSpr  ; Get random nearby unused sprite
     JSR GiantBlockCtl_Draw
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
 PRG002_A487:
     RTS      ; Return
@@ -1126,7 +1126,7 @@ PRG002_A5A4:
 PRG002_A5AE:
     JSR Level_PrepareNewObject  ; Generate new object for tossed ice block
 
-    LDY SlotIndexBackup     ; Y = Buster's slot index
+    LDY object_index     ; Y = Buster's slot index
 
     ; Var5 and Frame = 0
     LDA #$00
@@ -1180,7 +1180,7 @@ PRG002_A5F2:
     STA Objects_YVel,X
 
 PRG002_A5F8:
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
     RTS      ; Return
 
 Buster_BlockLiftXOff:
@@ -1197,7 +1197,7 @@ Buster_DrawHoldingIceBrick:
     LDA Temp_Var3
     BPL PRG002_A641  ; If object is not vertically flipped, jump to PRG002_A641
 
-    LDX SlotIndexBackup     ; X = object slot index
+    LDX object_index     ; X = object slot index
 
     LDA Objects_Var4,X
     TAX         ; X = Var4 (lift offset index)
@@ -1213,7 +1213,7 @@ Buster_DrawHoldingIceBrick:
 PRG002_A641:
     JSR Object_Draw16x16Sprite   ; Draw Buster
 
-    LDX SlotIndexBackup     ; X = object slot index
+    LDX object_index     ; X = object slot index
 
     LDA Objects_Var5,X
     BEQ PRG002_A68B     ; If Var5 = 0 (not holding brick), jump to PRG002_A68B (RTS)
@@ -1271,7 +1271,7 @@ PRG002_A663:
     ORA #SPR_HFLIP
     STA Sprite_RAM+$06,Y
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
 PRG002_A68B:
     RTS      ; Return
@@ -1470,7 +1470,7 @@ PRG002_A712:
     ROL A   ; 0 0000 0wyz
     STA Map_Prev_XHi,X   ; Store as Map X Hi
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
     RTS      ; Return
 
 
@@ -2140,7 +2140,7 @@ PRG002_AA21:
     ASL Temp_Var8
     JSR Object_Draw16x16Sprite   ; Draw the second half of lift
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
     RTS      ; Return
 
 ObjInit_CloudPlatFast:
@@ -2663,7 +2663,7 @@ PRG002_AC92:
     DEC Temp_Var13  ; Temp_Var13--
     BPL PRG002_AC6A  ; While Temp_Var13 >= 0, loop!
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
     INC Objects_Var4,X  ; Objects_Var4 = 1 (platform stop)
 
@@ -2673,7 +2673,7 @@ PRG002_AC9C:
 
     ; Hit a path tile...
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
     TYA
     STA Objects_Var5,X  ; Store the directional offset (0 or 8)
@@ -2840,7 +2840,7 @@ Bank2_SpikeHaltAction:
     LDA Temp_Var3
     BPL PRG002_ADB4  ; If Spike is not flipped, jump to PRG002_ADB4
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
     LDA Objects_Var4,X
     TAX      ; X = Var4
@@ -2856,7 +2856,7 @@ Bank2_SpikeHaltAction:
 PRG002_ADB4:
     JSR Object_Draw16x16Sprite   ; Draw Spike
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
     LDY Objects_Var4,X  ; Y = Var4
 
@@ -2897,7 +2897,7 @@ PRG002_ADD1:
     ORA #$c0
     STA Sprite_RAM+$06,Y
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
     RTS      ; Return
 
 Spike_TossSpikeBall:
@@ -3032,7 +3032,7 @@ PRG002_AE51:
     ASL A
     STA SpecialObj_YVel,Y
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
     JMP PRG002_AF30  ; Jump to PRG002_AF30
 
 Patooie_BallYDelta:
@@ -3153,7 +3153,7 @@ PRG002_AF30:
 Bank2_PiranhaSpikeHaltAction:
     JSR Object_ShakeAndCalcSprite    ; Calculate sprite data
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
     LDA Level_ObjectID,X
     CMP #OBJ_PIRANHASPIKEBALL
@@ -3212,7 +3212,7 @@ PRG002_AF72:
     ORA #SPR_HFLIP
     STA Sprite_RAM+$06,Y     ; Set other half of piranha
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
     LDA Level_ObjectID,X
     CMP #OBJ_PIRANHASPIKEBALL
@@ -3281,7 +3281,7 @@ PRG002_AF96:
     EOR #$c0    ; Invert vertical flip and apply horizontal flip
     STA Sprite_RAM+$06,Y
 
-    LDX SlotIndexBackup     ; X = object slot index
+    LDX object_index     ; X = object slot index
 
     LDA Objects_State,X
     CMP #OBJSTATE_KILLED
@@ -3331,7 +3331,7 @@ PRG002_B01A:
     ; Get the correct starting sprite tile based on whether this is
     ; a true Patooie or just the piranha pretending to be one
 PatooiePiranha_StartTileX:
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
     LDA Level_ObjectID,X     ; Get object ID
 
@@ -3491,7 +3491,7 @@ PRG002_B0C1:
     LDA #SPR_PAL3
     STA Objects_SprAttr,X
 
-    LDY SlotIndexBackup     ; Y = dead Goomba's object slot index
+    LDY object_index     ; Y = dead Goomba's object slot index
 
     ; Set equal to Shoe's X
     LDA Objects_X,Y
@@ -3521,7 +3521,7 @@ PRG002_B0C1:
     STA Objects_YVel,X
 
 PRG002_B0FB:
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
     RTS      ; Return
 
 
@@ -3575,7 +3575,7 @@ Shoe_DrawGoomba:
     LDA Temp_Var3
     BPL PRG002_B14E  ; If object is not vertically flipped, jump to PRG002_B14E
 
-    LDX SlotIndexBackup     ; X = object slot index
+    LDX object_index     ; X = object slot index
 
     LDA Objects_Var5,X
     TAX      ; X = Var5
@@ -3590,7 +3590,7 @@ Shoe_DrawGoomba:
 PRG002_B14E:
     JSR Object_Draw16x16Sprite   ; Draw the shoe
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
     LDA Objects_SpriteY,X  ; Get sprite Y for object
 
@@ -3642,7 +3642,7 @@ PRG002_B16C:
     SBC #$01
     STA Sprite_RAM+$07,Y
 
-    LDX SlotIndexBackup     ; X = object slot index
+    LDX object_index     ; X = object slot index
 
 
 PRG002_B196:
@@ -3901,7 +3901,7 @@ PRG002_B2E3:
     INX
     STX Graphics_BufCnt
 
-    LDX SlotIndexBackup     ; X = object slot index
+    LDX object_index     ; X = object slot index
 
     INC ToadTalk_CPos    ; Next row
 
@@ -4274,7 +4274,7 @@ PRG002_B572:
     LDA ToadItem_AttrRight-1,X
     STA Sprite_RAM+$06,Y
 
-    LDX SlotIndexBackup     ; X = object slot index
+    LDX object_index     ; X = object slot index
 
     ; Store item sprite Xs
     LDA Objects_X,X
@@ -4342,7 +4342,7 @@ PRG002_B5C7:
 
     JSR Object_Draw24x16Sprite   ; Draw wide sprite
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
     RTS      ; Return
 
 ObjNorm_NipperFireBreathe:
@@ -4431,7 +4431,7 @@ PRG002_B61F:
     SBC Temp_Var15
     STA SpecialObj_YVel,Y
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
 PRG002_B65A:
     RTS      ; Return
@@ -4587,14 +4587,14 @@ PRG002_B71C:
     JSR Object_DetermineHorzVisY     ; Determine horizontal visibility
     JSR Object_ShakeAndCalcSprite    ; Calculate sprite X/Y
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
     LDY Objects_Frame,X      ; Y = Dry Bones' frame
 
     LDX DryBones_CrumblePats-2,Y     ; X = pattern start for this frame of Dry Bones (-2 because we start crumbling at frame 2)
     LDY Temp_Var7           ; Y = Sprite_RAM offset
     JSR Object_Draw24x16Sprite   ; Draw wide sprite (crumbled Dry Bones)
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
     BIT Temp_Var3
     BVC PRG002_B73C     ; If Dry Bones is not horizontally flipped, jump to PRG002_B73C
 
@@ -4614,7 +4614,7 @@ PRG002_B73C:
     ADC DryBones_HeadYOff,X
     STA Sprite_RAM+$00,Y
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
     ; Restore Dry Bones' X/Hi
     PLA
@@ -4718,7 +4718,7 @@ PRG002_B7A9:
     JSR ObjectObject_Intersect
     BCC PRG002_B815  ; If object did not intersect with prior object, jump to PRG002_B815
 
-    LDY SlotIndexBackup     ; Y = object slot index
+    LDY object_index     ; Y = object slot index
 
     LDA Objects_X,X
     SEC
@@ -4747,7 +4747,7 @@ PRG002_B7EC:
     TYA
     STA Temp_Var1   ; Temp_Var1
 
-    LDY SlotIndexBackup     ; Y = The Dry Bones who started this
+    LDY object_index     ; Y = The Dry Bones who started this
 
     LDA Objects_Var5,Y
     BNE PRG002_B7FB  ; If Var5 <> 0, jump to PRG002_B7FB (crumbled Dry Bones need not turn around)
@@ -4778,7 +4778,7 @@ PRG002_B815:
     DEX      ; X--
     BPL PRG002_B79E  ; While X >= 0, loop!
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
     RTS      ; Return
 
 Respawn_XLo:    .byte $40, -$40
@@ -5127,7 +5127,7 @@ PRG002_B9CB:
     INC Objects_Frame,X  ; Big Bertha's frame++
     JSR Object_ShakeAndCalcSprite    ; Calculate sprite data
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
     LDA Objects_Frame,X
     DEC Objects_Frame,X  ; Big Bertha's frame--
@@ -5175,7 +5175,7 @@ PRG002_B9FB:
     STA Temp_Var1
     JSR Object_Draw24x16Sprite ; Draw lower half of Big Bertha
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
     RTS      ; Return
 
 CheepCheepCharge_ProxLimit: .byte $06, -$06 ; How close (in coarse units) Cheep Cheep must be to Player to lunge
@@ -5939,7 +5939,7 @@ EndLevelCard_Give1UpsAndCycle:
 
     INC Player_Lives,X   ; Extra life to this player!
 
-    LDX SlotIndexBackup     ; X = object slot index
+    LDX object_index     ; X = object slot index
     DEC Objects_Var1,X   ; Var1--
 
 PRG002_BD91:
@@ -5989,7 +5989,7 @@ PRG002_BDBE:
     DEX      ; X--
     BPL PRG002_BDA4  ; While X >= 0, loop!
 
-    LDX SlotIndexBackup     ; X = object slot index
+    LDX object_index     ; X = object slot index
 
     LDA Objects_Var5,X
     TAX      ; X = Var5
@@ -5998,7 +5998,7 @@ PRG002_BDBE:
     LDA XUp_NumPats-1,X
     STA Sprite_RAM-3,Y
 
-    LDX SlotIndexBackup     ; X = object slot index
+    LDX object_index     ; X = object slot index
 
     LDY Objects_Var2,X   ; Y = Var2
 
@@ -6012,7 +6012,7 @@ PRG002_BDBE:
     LDA #$00
     STA Inventory_Cards,Y
     JSR StatusBar_DrawCardPiece
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
     LDY Objects_Var2,X   ; Y = Var2 (which card is being vanished)
     PLA
     STA Inventory_Cards,Y
@@ -6022,7 +6022,7 @@ PRG002_BDBE:
 PRG002_BDF8:
     JSR StatusBar_DrawCardPiece
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
     LDY Objects_Var2,X
 
     INY      ; Y++
@@ -6167,7 +6167,7 @@ EndLevelCard_DrawFlashing:
     PLA
     TAY
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
     ; Reset the card to what it should be
     LDA Objects_Frame,X
@@ -6179,7 +6179,7 @@ PRG002_BEA3:
     JSR StatusBar_DrawCardPiece  ; Redraw the card
 
 Object_ResetXToSlotIndex:
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
     RTS      ; Return
 
     ; Gets the last card since that's the card you just picked up
@@ -6313,7 +6313,7 @@ PRG002_BF4B:
     DEX      ; X--
     BPL PRG002_BEFC  ; While X >= 0, loop
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
     ; Stop the level clock and animations
     LDA #$81
@@ -6342,7 +6342,7 @@ PRG002_BF4B:
     TYA      ; -> 'A'
     JSR Player_GetCard  ; Give this card to the Player
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
     ; Jump to internal state 4 (Regular get card, no fanfare)
     LDA #$04
@@ -6399,7 +6399,7 @@ EndLevelCard_Draw:
 
     JSR Object_Draw16x16Sprite   ; Draw the End Level card
 
-    LDX SlotIndexBackup     ; X = object slot index
+    LDX object_index     ; X = object slot index
 
     LDA Objects_Frame,X
     CMP #$0f
@@ -6414,7 +6414,7 @@ EndLevelCard_Draw:
     EOR #SPR_HFLIP   ; Mirror second half
     STA Sprite_RAM+$06,Y     ; Set attributes
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
 PRG002_BFD3:
     RTS      ; Return

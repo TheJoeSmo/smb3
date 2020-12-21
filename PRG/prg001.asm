@@ -2162,7 +2162,7 @@ ObjHit_Obj1A:
     STA Player_XVel
     STA Player_YVel
 
-    LDX SlotIndexBackup     ; Restore 'X' as Object slot index
+    LDX object_index     ; Restore 'X' as Object slot index
     RTS      ; Return
 
 PRG001_AA41:
@@ -2929,7 +2929,7 @@ ObjHit_Card:
     ; Update the Player's card collection
     JSR Player_GetCardAndUpdate
 
-    LDX SlotIndexBackup    ; Restore 'X' as object slot index
+    LDX object_index    ; Restore 'X' as object slot index
 
 PRG001_ADE2:
     RTS      ; Return
@@ -3027,7 +3027,7 @@ PRG001_AE56:
     CPX #$1c
     BLT PRG001_AE56  ; If X < $1C (end of Pal_Data offset), loop!
 
-    LDX SlotIndexBackup     ; X = current object slot index
+    LDX object_index     ; X = current object slot index
 
 
     ; 10 hits to take out a Koopaling
@@ -3729,7 +3729,7 @@ PRG001_B193:
     ; Set all objects besides the Koopaling to "Dying" state!
     LDY #$04     ; Y = 4
 PRG001_B195:
-    CPY SlotIndexBackup
+    CPY object_index
     BEQ PRG001_B1A8  ; If this is the Koopaling's object index, jump to PRG001_B1A8 (do nothing)
 
     LDA Objects_State,Y
@@ -3938,7 +3938,7 @@ PRG001_B336:
     JSR Draw_KoopalingWand      ; Draw the Koopaling's wand
     JSR Object_ShakeAndCalcSprite   ; Calculate sprite info
 
-    LDX SlotIndexBackup        ; X = object's slot index
+    LDX object_index        ; X = object's slot index
 
     LDA Objects_Frame,X
     CMP #$04
@@ -4010,7 +4010,7 @@ PRG001_B368:
 
     JSR Draw_KoopalingBody   ; Draw lower half Koopaling
 
-    LDX SlotIndexBackup     ; X = object slot index
+    LDX object_index     ; X = object slot index
 
     LDY Temp_Var7       ; Y = starting Sprite_RAM offset
 
@@ -4119,7 +4119,7 @@ PRG001_B3FF:
     JSR Object_DetermineVertVis ; Set flags based on which sprites of this object are vertically visible
     JSR Object_ShakeAndCalcSprite   ; Calculate sprite info
 
-    LDX SlotIndexBackup        ; Restore 'X' as object index
+    LDX object_index        ; Restore 'X' as object index
 
     LDY #$02     ; Y = 2
 
@@ -4154,7 +4154,7 @@ PRG001_B43A:
     EOR #SPR_HFLIP
     STA Sprite_RAM+2,Y
 
-    LDX SlotIndexBackup    ; X = Object's index
+    LDX object_index    ; X = Object's index
 
     PLA         ; Restore pre-offset X Hi
     STA Objects_XHi,X  ; Store as object's X Hi
@@ -4385,7 +4385,7 @@ PRG001_B53D:
 
     BPL PRG001_B53D  ; While X >= 0, loop!
 
-    LDX SlotIndexBackup    ; X = restored object index (what for?)
+    LDX object_index    ; X = restored object index (what for?)
 
     RTS      ; Return
 
@@ -4463,7 +4463,7 @@ PRG001_B5A1:
     DEX      ; X--
     BPL PRG001_B571  ; While X >= 0, loop!
 
-    LDX SlotIndexBackup    ; X = restore object slot index
+    LDX object_index    ; X = restore object slot index
 
     RTS      ; Return
 
@@ -4900,7 +4900,7 @@ PRG001_B7A7:
 
     JSR Level_PrepareNewObject   ; Prepare new object!
 
-    LDX SlotIndexBackup     ; X = original object slot index
+    LDX object_index     ; X = original object slot index
 
     ; New object in state 2 (normal operation)
     LDA #OBJSTATE_NORMAL
@@ -4937,7 +4937,7 @@ PRG001_B7A7:
     LDA #$02
     STA Objects_SprAttr,Y    ; Set sprite priority
 
-    LDX SlotIndexBackup         ; Restore 'X' as object slot index yet again
+    LDX object_index         ; Restore 'X' as object slot index yet again
     RTS      ; Return
 
 
@@ -5629,7 +5629,7 @@ PRG001_BB5E:
     LDA #$10
     STA Objects_YVel,Y
 
-    LDX SlotIndexBackup     ; Restore 'X' to Bowser's object slot index
+    LDX object_index     ; Restore 'X' to Bowser's object slot index
 
     ; Set fireball Y to Bowser's +16
     LDA Objects_Y,X
@@ -5652,7 +5652,7 @@ PRG001_BB5E:
     LDA Bowser_FireballXVel,X
     STA Objects_XVel,Y
 
-    LDX SlotIndexBackup     ; Restore 'X' to Bowser's object slot index
+    LDX object_index     ; Restore 'X' to Bowser's object slot index
 
     ; X Hi is just copied
     LDA Objects_XHi,X
@@ -5685,7 +5685,7 @@ PRG001_BB5E:
     LDA #SND_LEVELFLAME
     STA Sound_QLevel2
 
-    LDX SlotIndexBackup    ; Restore 'X' to Bowser's object slot index
+    LDX object_index    ; Restore 'X' to Bowser's object slot index
 
     RTS      ; Return
 
@@ -6097,7 +6097,7 @@ PRG001_BE49:
     CMP #12
     BNE PRG001_BDDF  ; If Temp_Var16 <> 12, loop!
 
-    LDX SlotIndexBackup     ; Restore 'X' as Bowser's object slot index
+    LDX object_index     ; Restore 'X' as Bowser's object slot index
 
     RTS      ; Return
 
@@ -6399,7 +6399,7 @@ PRG001_BF9B:
     LDA #$06
     ABS_STA Graphics_Queue ; STA Graphics_Queue
 
-    LDX SlotIndexBackup    ; X = object slot index
+    LDX object_index    ; X = object slot index
     RTS      ; Return
 
 ; Rest of ROM bank was empty

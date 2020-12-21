@@ -793,7 +793,7 @@ PRG005_A402:
     STA Sprite_RAM+$12,Y
     STA Sprite_RAM+$16,Y
 
-    LDX SlotIndexBackup     ; X = object slot index
+    LDX object_index     ; X = object slot index
 
     ; Set Sprite X for edge sprites
     LDA Objects_SpriteX,X
@@ -1176,7 +1176,7 @@ PRG005_A5D8:
 PRG005_A5DD:
     STA Sprite_RAM+$02,Y     ; Set sprite attribute
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
     ; Temp_Var15 = Temp_Var16 (sprite ram offset)
     LDA Temp_Var16
@@ -1204,7 +1204,7 @@ PRG005_A5F4:
     LDA FireJetLR_Patterns,X
     STA Sprite_RAM+$01,Y
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
 PRG005_A605:
 
@@ -1451,7 +1451,7 @@ PRG005_A72E:
     STA Sprite_RAM+$06,Y
 
 PRG005_A738:
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
 
     ; The following adds the masking sprite over the bottom of the Piranha,
@@ -1805,7 +1805,7 @@ PRG005_A8D9:
     STA SpecialObj_XVelFrac,Y
     STA SpecialObj_YVelFrac,Y
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
     RTS      ; Return
 
 ObjInit_AirshipProp:
@@ -1897,7 +1897,7 @@ PRG005_A947:
     ADC Prop_LowerYOff,X    ; Add Y offset to lower sprite Y
     STA Sprite_RAM+$04,Y    ; Update Sprite Y
 
-    LDX SlotIndexBackup    ; X = object slot index
+    LDX object_index    ; X = object slot index
 
 PRG005_A95B:
     RTS      ; Return
@@ -1912,7 +1912,7 @@ FireJetLR_SpriteVisibleTest:
     STY Temp_Var3
     STA Temp_Var2
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
 
     LDA Objects_SprVVis,X
@@ -2643,7 +2643,7 @@ PRG005_ACA9:
     JSR ObjectObject_Intersect
     BCC PRG005_AD01  ; If the two bolts are colliding with eachother, jump to PRG005_AD01 (skip this object)
 
-    LDY SlotIndexBackup     ; Y = current bolt's object slot index
+    LDY object_index     ; Y = current bolt's object slot index
 
     LDA Objects_X,X
     SEC
@@ -2674,7 +2674,7 @@ PRG005_ACF3:
 
     STX Temp_Var16      ; Backup this other bolt's index
 
-    LDX SlotIndexBackup     ; X = original bolt object slot index
+    LDX object_index     ; X = original bolt object slot index
     STA Objects_XVel,X  ; Set this bolt's X velocity
 
     PHA      ; ?? doesn't do anything useful (see immediately below)
@@ -2691,7 +2691,7 @@ PRG005_AD01:
     DEX      ; X-- (previous object)
     BPL PRG005_ACA9  ; While X >= 0, loop!
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
 PRG005_AD06:
 ObjInit_Sun:
@@ -3075,7 +3075,7 @@ PRG005_AEBC:
     STA Temp_Var16
     STA Sprite_RAM+$16,Y
 
-    LDX SlotIndexBackup     ; X = object slot index
+    LDX object_index     ; X = object slot index
 
     ; Sun Sprite X -> Temp_Var2 and sprite
     LDA Objects_SpriteX,X
@@ -3437,7 +3437,7 @@ PRG005_B062:
 PRG005_B08F:
     STA Sprite_RAM+$02,Y     ; Set sprite attribute
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
     INY
     INY
@@ -4311,7 +4311,7 @@ PRG005_B49F:
     STA Temp_Var5,X
 
 PRG005_B4B4:
-    LDX SlotIndexBackup
+    LDX object_index
     RTS
 
 
@@ -4417,7 +4417,7 @@ PRG005_B551:
     DEX
     BPL PRG005_B526
 
-    LDX SlotIndexBackup
+    LDX object_index
     RTS
 
 
@@ -4814,7 +4814,7 @@ BigQBlock_EmergePowerup:
     LDA #$01
     STA Player_BounceDir
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
     ; Set timer to $50 (masks powerup)
     LDA #$50
@@ -4834,7 +4834,7 @@ BigQBlock_Draw:
     LDA Temp_Var8
     STA Temp_Var15     ; Horizontal visibility -> Temp_Var15
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
     LDA Objects_Frame,X
     LDX #$06     ; X = 6
@@ -4905,7 +4905,7 @@ PRG005_B788:
     JMP PRG005_B76E  ; Loop!
 
 PRG005_B7BC:
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
     LDA Objects_Timer2,X
     BEQ PRG005_B7E5  ; If timer2 expired, jump to PRG005_B7E5
@@ -4946,7 +4946,7 @@ PRG005_B7DD:
     STA Sprite_RAM-$14,Y
 
 PRG005_B7E5:
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
     RTS      ; Return
 
 
@@ -6271,7 +6271,7 @@ Level_SpawnObjSetMax:
 ;
 ; This function counts the number of objects that are not in the
 ; "dead/empty" state in object slots 0 - 4
-; It also sets X = SlotIndexBackup
+; It also sets X = object_index
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 Level_CountNotDeadObjs:
     STA Temp_Var1   ; Store object ID we're hunting for -> Temp_Var1
@@ -6293,7 +6293,7 @@ PRG005_BE20:
     DEX      ; X--
     BPL PRG005_BE13  ; While X >= 0, loop!
 
-    LDX SlotIndexBackup     ; X = SlotIndexBackup
+    LDX object_index     ; X = object_index
     RTS      ; Return
 
 

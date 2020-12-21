@@ -573,7 +573,7 @@ PRG003_A321:
     LDA Level_TreasureItem
     JSR Player_GetItem
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
     ; ?? This is the "full power" ringing noise, and really can't be heard this way
     LDA Sound_QPlayer
@@ -899,7 +899,7 @@ PRG003_A4A1:
     SBC Piledriver_YOff,X
     STA Sprite_RAM+$04,Y
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
     LDA Objects_SpriteY,X
     STA Sprite_RAM+$08,Y
@@ -1026,7 +1026,7 @@ PRG003_A54E:
     STA SpecialObj_Data,Y
     STA SpecialObj_Timer,Y
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
     LDA Level_ObjectID,X
     CMP #OBJ_ICEBLOCK
@@ -1672,7 +1672,7 @@ PRG003_A85C:
     DEC Temp_Var3   ; Temp_Var3--
     BPL PRG003_A85C  ; While Temp_Var3 >= 0, loop!
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
     JSR Sprite_NoCarryIfVisible
     BCS PRG003_A89D  ; If this star is not visible, jump to PRG003_A89D
@@ -1699,7 +1699,7 @@ PRG003_A85C:
     LSR A
     LSR A
     CLC
-    ADC SlotIndexBackup
+    ADC object_index
     AND #$03     ; Palette select 0 to 3
     STA Sprite_RAM+$02,Y     ; Set attributes
 
@@ -1924,7 +1924,7 @@ PRG003_A99E:
 
     LDA FloatingBGCloud_Patterns,X   ; Get this pattern
 
-    LDX SlotIndexBackup     ; X = object slot index
+    LDX object_index     ; X = object slot index
 
     CMP #$71
     BEQ PRG003_A9DA  ; If pattern is $71, jump to PRG003_A9DA
@@ -2818,7 +2818,7 @@ PRG003_AE17:
     ORA #SPR_HFLIP
     STA Sprite_RAM+$16,Y
 
-    LDX SlotIndexBackup     ; X = object slot index
+    LDX object_index     ; X = object slot index
 
     ; Temp_Var2 = Sprite X
     LDA Objects_SpriteX,X
@@ -3014,7 +3014,7 @@ PRG003_AEF1:
     LDA #$3F
     STA SpecialObj_Timer,Y
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
     DEY      ; Y--
     BPL PRG003_AEF1 ; While Y >= 0, loop!
@@ -3326,7 +3326,7 @@ PRG003_B094:
     LDA LavaLotus_RightEdgePatBottom,X
     STA Sprite_RAM+$15,Y     ; Set bottom pattern
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
 PRG003_B0B1:
     RTS      ; Return
@@ -3395,7 +3395,7 @@ PRG003_B0D1:
     LDA #$01
     STA SpecialObj_Data,Y
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
     ; Store parent's object index into SpecialObj_Var1
     TXA
@@ -3859,7 +3859,7 @@ PRG003_B353:
 
     JSR Level_PrepareNewObject
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
     ; Set to normal state
     LDA #OBJSTATE_NORMAL
@@ -3900,7 +3900,7 @@ PRG003_B37D:
     LDA TinyCheep_Flip,X
     STA Objects_FlipBits,Y
 
-    LDX SlotIndexBackup     ; X = object slot index
+    LDX object_index     ; X = object slot index
 
     ; Set tiny Cheep Cheep's X Hi
     LDA Objects_XHi,X
@@ -4204,7 +4204,7 @@ PRG003_B578:
     DEX      ; X--
     BPL PRG003_B578  ; While X >= 0, loop
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
     ABS_LDA Player_IsDying ; LDA Player_IsDying
     ORA Player_OffScreen
@@ -4468,7 +4468,7 @@ Tornado_Masks:
     .byte $0F, $03, $01, $00, $00, $00, $00, $00
 
 Tornado_DrawParticle:
-    LDY SlotIndexBackup    ; Y = object's slot index
+    LDY object_index    ; Y = object's slot index
 
     LDA Objects_Var5,Y
     BEQ PRG003_B6B1  ; If Var5 = 0, jump to PRG003_B6B1 (RTS)
@@ -4491,7 +4491,7 @@ Tornado_DrawParticle:
 
     JSR Object_GetRandNearUnusedSpr
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
     BGS PRG003_B6FD  ; Jump (technically always) to PRG003_B6FD
 
 PRG003_B6F3:
@@ -4500,7 +4500,7 @@ PRG003_B6F3:
     ASL A
     ASL A   ; A *= 4 (next sprite over)
 
-    LDX SlotIndexBackup     ; X = object slot index
+    LDX object_index     ; X = object slot index
     CLC
     ADC Object_SprRAM,X  ; Base Sprite_RAM offset
 
@@ -4536,7 +4536,7 @@ PRG003_B6FD:
     ; Temp_Var2 (Sprite X) = Tornado's Sprite X + Temp_Var10
     LDA PRG003_B6B6,X ; A = PRG003_B6B6[X]
     CLC      ; Clear carry
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
     ABS_ADC_X Objects_SpriteX ; ADC Objects_SpriteX,X
     CLC
     ADC Temp_Var10
@@ -4858,7 +4858,7 @@ PRG003_B876:
     LDA #$ff
     STA SpecialObj_Timer,Y
 
-    LDX SlotIndexBackup     ; X = object slot index
+    LDX object_index     ; X = object slot index
     DEC Temp_Var1       ; Temp_Var1--
     BPL PRG003_B876  ; While Temp_Var1 >= 0, loop
 
@@ -5086,7 +5086,7 @@ PRG003_B99E:
     DEY      ; Y--
     BPL PRG003_B99E  ; While Y >= 0, loop!
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
     RTS      ; Return
 
@@ -5308,7 +5308,7 @@ PRG003_BAB0:
     DEX      ; X-- (decrement counter)
     BPL PRG003_BAB0 ; While X >= 0, loop!
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
     RTS      ; Return
 
 FireChompTail_Patterns:
@@ -5373,7 +5373,7 @@ PRG003_BAFF:
     BPL PRG003_BAFF  ; While X >= 0, loop!
 
 PRG003_BB17:
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
     LDA Level_ObjectID,X
     CMP #OBJ_BLOOPERCHILDSHOOT
@@ -5476,7 +5476,7 @@ PRG003_BB54:
     LDA FireChompTail_Attributes,X
     STA Sprite_RAM+$02,Y
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
     JMP PRG003_BBDD  ; Jump to PRG003_BBDD
 
@@ -5535,7 +5535,7 @@ PRG003_BBCC:
     TXA      ; Pattern -> 'X'
     STA Sprite_RAM+$01,Y     ; Set pattern
 
-    LDX SlotIndexBackup     ; X = object slot index
+    LDX object_index     ; X = object slot index
 PRG003_BBD2:
     LDY Object_SprRAM,X  ; Y = Sprite_RAM offset
 
@@ -5564,7 +5564,7 @@ PRG003_BBE0:
     JMP PRG003_BB54  ; Otherwise, loop!
 
 PRG003_BBF5:
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
     RTS      ; Return
 
 RotoDiscSpin:

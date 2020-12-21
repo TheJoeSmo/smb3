@@ -592,7 +592,7 @@ convert_time_to_bonus:
         BPL -
 
 +
-    LDX SlotIndexBackup     ; Restore 'X' as object slot index
+    LDX object_index     ; Restore 'X' as object slot index
 
     ; Play tick sound
     LDA Sound_QLevel1
@@ -649,7 +649,7 @@ Score_Get100PlusPts:
     CLC
     ADC #$05    ; Base at 100 points
     JSR Score_PopUp
-    LDX SlotIndexBackup     ; X = object slot index
+    LDX object_index     ; X = object slot index
     RTS      ; Return
 
 
@@ -1089,7 +1089,7 @@ PRG000_C62E:
 PRG000_C635:
     STX Temp_Var1   ; -> Temp_Var1
 
-    LDX SlotIndexBackup     ; X = object slot index
+    LDX object_index     ; X = object slot index
     STA Objects_Slope,X  ; Absolute value slope
 
     LDA Temp_Var1       ; A = value from slope_velocity_object_effect_lookup
@@ -1240,7 +1240,7 @@ Object_GetAttrAndMoveTiles:
 PRG000_C6D0:
     TXA      ; X -> A
 
-    LDX SlotIndexBackup    ; Restore 'X' as object slot index
+    LDX object_index    ; Restore 'X' as object slot index
 
     CMP Objects_InWater,X
     BEQ PRG000_C6FA     ; If object is either still in water / out of water (hasn't changed), jump to PRG000_C6FA
@@ -1367,7 +1367,7 @@ PRG000_C736:
     LDA (Temp_Var3),Y   ; Get slope value
     STA Level_Tile_Slope    ; -> Level_Tile_Slope
 
-    LDX SlotIndexBackup    ; Restore X as object slot index
+    LDX object_index    ; Restore X as object slot index
 
 PRG000_C76C:
     LDA #$00
@@ -1815,7 +1815,7 @@ PRG000_C973:
     LDX #$07
 
 PRG000_C975:
-    STX SlotIndexBackup     ; Backup current object index -> SlotIndexBackup
+    STX object_index     ; Backup current object index -> object_index
 
     LDA Player_HaltGame
     BNE PRG000_C9B6  ; If gameplay is halted, jump to PRG000_C9B6
@@ -2037,7 +2037,7 @@ PRG000_CA7A:
     STA PatTable_BankSel+4,X     ; Store pattern bank
 
 PRG000_CA7F:
-    LDX SlotIndexBackup         ; Restore X as the object slot index
+    LDX object_index         ; Restore X as the object slot index
 
 PRG000_CA81:
     JSR AScrlURDiag_CheckWrapping   ; Handle diagonal autoscroll's scroll wrappping
@@ -2108,7 +2108,7 @@ PRG000_CAAE:
     EOR #$c0
     STA Sprite_RAM+$06,Y
 
-    LDX SlotIndexBackup     ; X = object slot index
+    LDX object_index     ; X = object slot index
 
 PRG000_CAF0:
     RTS      ; Return
@@ -2387,7 +2387,7 @@ PRG000_CBF8:
     STA Sprite_RAM+$09,Y
     STA Sprite_RAM+$0D,Y
 
-    LDX SlotIndexBackup ; Restore 'X' as object index
+    LDX object_index ; Restore 'X' as object index
 
 PRG000_CC23:
     RTS      ; Return
@@ -2433,7 +2433,7 @@ PRG000_CC37:
     JSR ObjectObject_Intersect
     BCC PRG000_CC66  ; If object did not intersect with prior object, jump to PRG000_CC66
 
-    LDY SlotIndexBackup     ; Y = object slot index
+    LDY object_index     ; Y = object slot index
 
     LDA Objects_SpriteX,X
     CMP Objects_SpriteX,Y
@@ -2449,7 +2449,7 @@ PRG000_CC66:
     DEX      ; X--
     BPL PRG000_CC37  ; While X >= 0, loop!
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
 PRG000_CC6B:
     RTS      ; Return
@@ -2539,7 +2539,7 @@ PRG000_CCAE:
     LDA Object_TileWall2
     JSR Object_BumpOffBlocks
 
-    LDX SlotIndexBackup     ; X = object slot index
+    LDX object_index     ; X = object slot index
 
     ; Restore page @ A000 to previous value
     PLA
@@ -2612,7 +2612,7 @@ PRG000_CD36:
     TAX      ; X = the other object we just hit
     JSR ObjectKill_SetShellKillVars  ; Kill the impacted object and set ShellKill variables
 
-    LDX SlotIndexBackup         ; X = object slot index (our kicked object)
+    LDX object_index         ; X = object slot index (our kicked object)
     LDA Objects_KillTally,X
     INC Objects_KillTally,X     ; Increase our kicked object's kill tally...
     JSR Score_Get100PlusPtsY    ; Get points by the kill tally!  (Incidentally, Score_Get100PlusPts would work too)
@@ -2761,7 +2761,7 @@ Object_BumpBlocks:
     LDA Temp_Var8
     JSR Object_BumpOffBlocks
 
-    LDX SlotIndexBackup    ; X = object slot index
+    LDX object_index    ; X = object slot index
 
     ; Restore page @ A000 to previous page
     PLA
@@ -3121,7 +3121,7 @@ PRG000_CF49:
     STA Objects_XVel,X
 
 PRG000_CF98:
-    LDX SlotIndexBackup     ; Restore 'X' to the object slot index
+    LDX object_index     ; Restore 'X' to the object slot index
 
     LDA Player_IsDying
     BNE PRG000_CFA5  ; If Player is dying, jump to PRG000_CFA5
@@ -4608,7 +4608,7 @@ PRG000_D5BF:
 
     TAX         ; -> 'X'
 
-    LDY SlotIndexBackup    ; Y = object slot index
+    LDY object_index    ; Y = object slot index
 
     LDA Object_SprRAM,Y
     STA Temp_Var7      ; Temp_Var7 = Object_SprRAM[Y]
@@ -4626,7 +4626,7 @@ Object_ShakeAndDraw:
     JSR Object_ShakeAndCalcSprite
     JSR Object_Draw16x16Sprite
 
-    LDX SlotIndexBackup
+    LDX object_index
     RTS      ; Return
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -4676,7 +4676,7 @@ Object_DrawTallAndHFlip:
 Object_Draw16x32Sprite:
     JSR Object_ShakeAndCalcSprite
 
-    LDX SlotIndexBackup    ; X = object slot index
+    LDX object_index    ; X = object slot index
 
     LDA Objects_Frame,X
     ASL A
@@ -4720,7 +4720,7 @@ PRG000_D63F:
 
     JSR Object_Draw16x16Sprite   ; Draw sprite
 
-    LDX SlotIndexBackup         ; X = object slot index
+    LDX object_index         ; X = object slot index
 
     RTS      ; Return
 
@@ -4733,7 +4733,7 @@ PRG000_D63F:
 Object_DrawWide:
     JSR Object_ShakeAndCalcSprite
 
-    LDX SlotIndexBackup    ; X = object's slot index
+    LDX object_index    ; X = object's slot index
 
     ; Calculate offset into the ObjectGroup_PatternSets table
     LDA Objects_Frame,X
@@ -4743,7 +4743,7 @@ Object_DrawWide:
     TAX         ; -> 'X'
     JSR Object_Draw24x16Sprite  ; Draw wide sprite
 
-    LDX SlotIndexBackup     ; X = object's slot index
+    LDX object_index     ; X = object's slot index
     RTS      ; Return
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -4955,7 +4955,7 @@ Object_GetRandNearUnusedSpr:
 PRG000_D73A:
     STY Temp_Var7   ; Update Temp_Var7
 
-    LDX SlotIndexBackup     ; X = object slot index
+    LDX object_index     ; X = object slot index
 
     LDA RandomN,X
     AND #$07
@@ -5617,7 +5617,7 @@ PRG000_D9B7:
     ; Proper Collision routine for this object
 ; $D9BB
 Object_DoCollision:
-    LDX SlotIndexBackup    ; X = the current object slot
+    LDX object_index    ; X = the current object slot
 
 
     LDA ObjGroupRel_Idx ; Get the object's group relative index
@@ -5773,7 +5773,7 @@ PRG000_DA6D:
     RTS      ; Return
 
 PRG000_DA7A:
-    LDX SlotIndexBackup     ; X = SlotIndexBackup
+    LDX object_index     ; X = object_index
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -6143,7 +6143,7 @@ ObjectToObject_HitTest:
 PRG000_DC09:
     LDX #$04     ; X = 4
 PRG000_DC0B:
-    CPX SlotIndexBackup
+    CPX object_index
     BEQ PRG000_DC51  ; If this object slot is the current object, jump to PRG000_DC51 (don't do anything to self)
 
     LDY Objects_State,X
@@ -6164,7 +6164,7 @@ PRG000_DC0B:
 
     ; These two objects have collided...!
 
-    LDY SlotIndexBackup     ; Y = object slot index
+    LDY object_index     ; Y = object slot index
 
     LDA Objects_X,X
     SEC
@@ -6207,7 +6207,7 @@ PRG000_DC57:
     LDA Level_ObjectID,Y     ; A = the ID of the OTHER object
 
 PRG000_DC5C:
-    LDX SlotIndexBackup     ; Restore 'X' as the object slot index
+    LDX object_index     ; Restore 'X' as the object slot index
     RTS      ; Return
 
 
@@ -6378,7 +6378,7 @@ Object_ApplyYVel_NoLimit:
 
     JSR Object_AddVelFrac    ; Apply the velocity to the object's position
 
-    LDX SlotIndexBackup     ; Restore X as Object slot index
+    LDX object_index     ; Restore X as Object slot index
 
     RTS      ; Return
 
