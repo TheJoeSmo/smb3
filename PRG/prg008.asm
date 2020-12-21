@@ -6429,7 +6429,7 @@ PRG008_BD4B:
     LDX #$01     ; X = 1 (check one tile by foot, then check the other!)
 
 PRG008_BD59:
-    LDA ConveyorEnable,Y
+    LDA conveyor_enable_by_tileset_lookup,Y
     BEQ PRG008_BD73  ; If value is zero, jump to PRG008_BD73
 
     ; Otherwise...

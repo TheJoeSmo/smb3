@@ -492,7 +492,7 @@ spike_enable_by_tileset_lookup:
 
     ; Index by Level_TilesetIdx
     ; Enables conveyor tiles where available (this tile and tile before it)
-ConveyorEnable:
+conveyor_enable_by_tileset_lookup:
     .byte $00   ;  0 Plains style
     .byte TILE2_CONVEYORR   ;  1 Mini Fortress style
     .byte $00   ;  2 Hills style
