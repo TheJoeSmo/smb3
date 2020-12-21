@@ -18,6 +18,8 @@
 ; \s*;.*                            --> (nothing)   (Cleans off remaining address constants)
 
 
+    .include src/macros/load_pointer.asm
+
 ; Handy pseudo instructions... only make sense in the context of CMPing a number...
 .macro BLT _1
     BCC _1  ; A < CMP (unsigned)
