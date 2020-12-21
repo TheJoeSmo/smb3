@@ -96,7 +96,7 @@ slope_velocity_effect_lookup:
 
     ; Effect on Object's velocity per slope "shape" index (slope_detection_lookup above)
     ; NOTE: Incomplete -- probably avoids concering with certain ceiling slopes
-Slope_ObjectVel_Effect:
+slope_velocity_object_effect_lookup:
     ; $80 disables response to this slope
     .byte $00, -$02,  $02,  $00,  $00,  $80,  $80,  $00 ; $00-$07
     .byte $00,  $80,  $00,  $80, -$01, -$01,  $01,  $01 ; $08-$0F
@@ -1063,7 +1063,7 @@ PRG000_C5D3:
     STA Temp_Var16 ; Temp_Var16 = object's tile-relative horizontal position
 
     LDY Level_Tile_Slope     ; Y = object's detected slope
-    LDA Slope_ObjectVel_Effect,Y     ; Get value by slope
+    LDA slope_velocity_object_effect_lookup,Y     ; Get value by slope
     CMP #$80
     BNE PRG000_C5EC  ; If value <> $80, jump to PRG000_C5EC
     JMP PRG000_C65D  ; Otherwise, jump to PRG000_C65D
@@ -1124,7 +1124,7 @@ PRG000_C61E:
     ORA #$f0     ; Sign extend
 
 PRG000_C624:
-    LDX Slope_ObjectVel_Effect,Y ; X = value from Slope_ObjectVel_Effect
+    LDX slope_velocity_object_effect_lookup,Y ; X = value from slope_velocity_object_effect_lookup
     CPX #$00
     BNE PRG000_C62E  ; If value <> 0, jump to PRG000_C62E
 
@@ -1144,7 +1144,7 @@ PRG000_C635:
     LDX SlotIndexBackup     ; X = object slot index
     STA Objects_Slope,X  ; Absolute value slope
 
-    LDA Temp_Var1       ; A = value from Slope_ObjectVel_Effect
+    LDA Temp_Var1       ; A = value from slope_velocity_object_effect_lookup
 
     LDY Objects_XVel,X
     BPL PRG000_C645  ; If X Velocity >= 0, jump to PRG000_C645
