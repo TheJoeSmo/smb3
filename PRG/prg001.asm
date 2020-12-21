@@ -1302,7 +1302,7 @@ PRG001_A63F:
     ADC Counter_7to0
     TAY      ; Y = 5 + (0 to 7)
 
-    LDA SprRamOffsets,Y
+    LDA sprite_ram_offset_lookup,Y
     PHA      ; Save this value
 
     ; Block bouncers always appear in object slot 6 or 7, so this makes it relative to 0 or 1

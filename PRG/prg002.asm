@@ -6392,7 +6392,7 @@ EndLevelCard_Draw:
     ADC Counter_7to0
     TAY      ; Y = 5 to 12
 
-    LDA SprRamOffsets,Y
+    LDA sprite_ram_offset_lookup,Y
     CLC
     ADC #$08
     TAY      ; -> 'Y'

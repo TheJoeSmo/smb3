@@ -539,7 +539,7 @@ powerup_ability_lookup:
     .byte $00,   $00, $00,  $01,  $02,  $01,     $02
 
     ; Offsets into Sprite_RAM used by objects
-SprRamOffsets:
+sprite_ram_offset_lookup:
     ; The specified Sprite_RAM offset is calculated by object's index
     ; added to Counter_7to0 (i.e. a value 0 to 7) so as to evenly
     ; distribute the drawing of objects over available sprites and
@@ -1879,7 +1879,7 @@ PRG000_C9B6:
     ADC Counter_7to0 ; Add current value of Counter_7to0
     TAY      ; -> 'Y' (anywhere from 0 to 14)
 
-    LDA SprRamOffsets,Y
+    LDA sprite_ram_offset_lookup,Y
     STA Object_SprRAM,X  ; Store this object's Sprite_RAM offset
 
     JSR Object_DoStateAction    ; Do whatever's required by this object by its current state
@@ -4997,7 +4997,7 @@ PRG000_D763:
     ADC Counter_7to0
     TAY     ; Y = object slot + (0-7)
 
-    LDX SprRamOffsets,Y  ; X = Sprite_RAM offset
+    LDX sprite_ram_offset_lookup,Y  ; X = Sprite_RAM offset
 
     LDY #$05     ; Y = 5
 
