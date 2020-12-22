@@ -753,8 +753,10 @@ PRG000_C4A7:
     RTS      ; Return
 
 
-Conveyor_CarryX:    .byte -$01, $01 ; Left, Right
-Conveyor_CarryXHi:  .byte $FF, $00  ; 16-bit sign extension
+object_conveyor_movement_lookup:    
+    .byte -$01, $01 ; Left, Right
+object_conveyor_movement_hi_lookup:  
+    .byte $FF, $00  ; 16-bit sign extension
 
     ; Checks for and handles object touching conveyor belt by carrying object
 ; $C4D6
@@ -772,7 +774,7 @@ object_apply_conveyor_movement:
     TAY      ; Conveyor tile relative index -> 'Y'
 
     LDA Objects_X,X
-    ADC Conveyor_CarryX,Y
+    ADC object_conveyor_movement_lookup,Y
     STA Objects_X,X
 
     LDA Objects_XHi,X
@@ -797,7 +799,7 @@ Object_HandleConveyorBounceVel:
 
     TAY      ; Conveyor tile relative index -> 'Y'
 
-    LDA Conveyor_CarryX,Y
+    LDA object_conveyor_movement_lookup,Y
 
     LDY #-$01    ; Y = -$01
 
