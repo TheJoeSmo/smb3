@@ -758,7 +758,7 @@ Conveyor_CarryXHi:  .byte $FF, $00  ; 16-bit sign extension
 
     ; Checks for and handles object touching conveyor belt by carrying object
 ; $C4D6
-Object_HandleConveyorCarry:
+object_apply_conveyor_movement:
     LDA Objects_DetStat,X
     AND #$03
     BNE PRG000_C4F5  ; If object has hit a wall, jump to PRG000_C4F5 (RTS)

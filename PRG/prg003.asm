@@ -1850,7 +1850,7 @@ Object_DoMoveBounceConveyor:
     BLT ObjInit_BoomBoomQBall ; If ball is higher than $70, jump to ObjInit_BoomBoomQBall
 
 PRG003_A946:
-    JSR Object_HandleConveyorCarry   ; Carry ball along conveyor
+    JSR object_apply_conveyor_movement   ; Carry ball along conveyor
 
     LDA Objects_YVel,X
     PHA      ; Save Y velocity
