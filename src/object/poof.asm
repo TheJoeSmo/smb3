@@ -1,53 +1,50 @@
     ; Patterns selected by "poof" death frame
-PoofDeath_Pats:
+object_poof_pattern:
     .byte $47, $45, $41, $43
 
-ObjState_PoofDying:
-    LDA Objects_Timer,X
-    BNE PRG000_CAAE  ; If object timer is not expired, jump to PRG000_CAAE
+object_poof:
+    LDA objects_timer, x
+    BNE +
+    JMP Object_SetDeadEmpty     ; Object is completely dead
 
-    JMP PRG000_D068  ; Jump to PRG000_D068 (Object_SetDeadEmpty)
-
-PRG000_CAAE:
++
     JSR Object_AnySprOffscreen
-    BNE PRG000_CAF0  ; If any sprite is off-screen, jump to PRG000_CAF0 (RTS)
+    BNE +return  ; Only draw the poof if it is on the screen
 
-    ; Set the "poof" pixel positions
+; Set the "poof" pixel positions
     JSR Object_CalcSpriteXY_NoHi
-    LDY Object_SprRAM,X
-    LDA object_sprite_y,X
-    STA Sprite_RAM+$00,Y
-    STA Sprite_RAM+$04,Y
-    LDA object_sprite_x,X
-    STA Sprite_RAM+$03,Y
+    LDY objects_sprite_offset,x
+    LDA object_sprite_y,x
+    STA sprite_data_y,y
+    STA sprite_data_y+4,y
+    LDA object_sprite_x,x
+    STA sprite_data_x,y
     CLC
     ADC #$08
-    STA Sprite_RAM+$07,Y
+    STA sprite_data_x+4,y
 
-    LDA Objects_Timer,X
+; Set pattern for the poof by the timer
+    LDA objects_timer,x
     LSR A
     LSR A
     LSR A
-    TAX      ; X = "poof" frame
+    TAX
+    LDA object_poof_pattern,x
+    STA sprite_data_graphic,y
+    STA sprite_data_graphic+4,y
 
-    ; Set "poof" death patterns
-    LDA PoofDeath_Pats,X
-    STA Sprite_RAM+$01,Y
-    STA Sprite_RAM+$05,Y
-
-    ; Set the attributes
+; Set the attributes
     LDA Level_NoStopCnt
     LSR A
     LSR A
     ROR A
     AND #$80
     ORA #$01
-    STA Sprite_RAM+$02,Y
+    STA sprite_data_attributes,y
+    EOR #$C0
+    STA sprite_data_attributes+4,y
 
-    EOR #$c0
-    STA Sprite_RAM+$06,Y
+    LDX object_index     ; Reload the object index
 
-    LDX object_index     ; X = object slot index
-
-PRG000_CAF0:
++return:
     RTS      ; Return
