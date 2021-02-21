@@ -1,30 +1,29 @@
-ObjState_Squashed:
-    LDA Objects_Timer3,X
-    BEQ PRG000_D090  ; If timer 3 is expired, jump to PRG000_D090
+
+object_squish:
+    LDA objects_timer_3,x
+    BNE +
+    JMP Object_SetDeadEmpty  ; Remove the object
++
 
     JSR Object_Move  ; Perform standard object movements
 
-    LDA Objects_DetStat,X
-    AND #$04
-    BEQ PRG000_D07E  ; If object did NOT hit ground, jump to PRG000_D07E
+; Allign to the ground
+    LDA objects_detection_flags,x
+    AND #object_hit_ground
+    BEQ +
+    JSR Object_HitGround
+    STA objects_x_velocity,x
 
-    JSR Object_HitGround     ; Align to ground
-    STA Objects_XVel,X  ; Clear X velocity
++
 
-PRG000_D07E:
-
-    ; Set object frame to 3
+; Set object frame to 3
     LDA #$03
-    STA Objects_Frame,X
+    STA objects_animation_frame,x
 
-    LDA Level_ObjectID,X
+    LDA objects_ids,x
     CMP #OBJ_GOOMBA
-    BNE PRG000_D08D  ; If object is not a goomba, jump to PRG000_D08D (ObjectGroup_PatternSets, i.e. the "giant" enemy alternative)
+    BNE +  ; If object is not a goomba, jump to + (ObjectGroup_PatternSets, i.e. the "giant" enemy alternative)
 
     JMP Object_ShakeAndDrawMirrored  ; Draw goomba as mirrored sprite and don't come back
-
-PRG000_D08D:
++
     JMP ObjectGroup_PatternSets  ; Do the giant enemy draw routine and don't come back
-
-PRG000_D090:
-    JMP Object_SetDeadEmpty  ; Jump to Object_SetDeadEmpty (mark object as dead/empty)
