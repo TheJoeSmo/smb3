@@ -4662,7 +4662,7 @@ TILE18_LADDER       = $C0   ; Ladder (used in final variation)
 TILE18_BOUNCEBLOCK  = $C1   ; Block that bounces when Player hits underneath it
 TILE18_BOUNCEDBLOCK = $C2   ; Temporary tile for when block has been bounced
 
-
+TERMINATOR         = $00   ; Used in the credits as a terminator for end of list of background images to draw
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; ASM INCLUDES

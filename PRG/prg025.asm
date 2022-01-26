@@ -116,99 +116,119 @@ EndPicByWorld_L:.byte <EndPic_World1, <EndPic_World2, <EndPic_World3, <EndPic_Wo
     ; The value $70 inserts $70 once
     ; The value $F1 inserts $71 twice
 
+    ; End world images are 16 8x8 blocks wide by 12 8x8 blocks tall
+
 EndPic_World1:
-    .byte $70, $F1, $F1, $F1, $F1, $F1, $F1, $F1, $72, $73, $BF, $3F, $00, $04, $06, $04
-    .byte $00, $04, $00, $04, $06, $BF, $73, $73, $BF, $3F, $05, $BF, $3F, $05, $BF, $3F
-    .byte $05, $BF, $73, $73, $04, $0E, $04, $07, $BF, $3F, $63, $04, $00, $04, $0A, $BF
-    .byte $73, $73, $BF, $3F, $0B, $BF, $3F, $05, $BF, $BF, $BF, $73, $73, $BF, $3F, $63
-    .byte $04, $62, $04, $10, $BF, $38, $44, $39, $3F, $73, $73, $3F, $D5, $05, $55, $BF
-    .byte $3F, $38, $44, $49, $3D, $3C, $3F, $73, $73, $D5, $65, $63, $65, $0A, $04, $06
-    .byte $1E, $06, $04, $3E, $3C, $3F, $73, $73, $55, $E5, $05, $E5, $55, $05, $3C, $D5
-    .byte $55, $3C, $3F, $73, $73, $55, $E5, $00, $04, $06, $04, $00, $48, $C4, $44, $49
-    .byte $3F, $73, $73, $D5, $D5, $D5, $D5, $D5, $D5, $D5, $73, $74, $F1, $F1, $F1, $F1
-    .byte $F1, $F1, $F1, $75
+    .byte $70, $F1, $F1, $F1, $F1, $F1, $F1, $F1, $72                                       ; row 1
+    .byte $73, $BF, $3F, $00, $04, $06, $04, $00, $04, $00, $04, $06, $BF, $73              ; row 2
+    .byte $73, $BF, $3F, $05, $BF, $3F, $05, $BF, $3F, $05, $BF, $73                        ; row 3
+    .byte $73, $04, $0E, $04, $07, $BF, $3F, $63, $04, $00, $04, $0A, $BF, $73              ; row 4
+    .byte $73, $BF, $3F, $0B, $BF, $3F, $05, $BF, $BF, $BF, $73                             ; row 5
+    .byte $73, $BF, $3F, $63, $04, $62, $04, $10, $BF, $38, $44, $39, $3F, $73              ; row 6
+    .byte $73, $3F, $D5, $05, $55, $BF, $3F, $38, $44, $49, $3D, $3C, $3F, $73              ; row 7
+    .byte $73, $D5, $65, $63, $65, $0A, $04, $06, $1E, $06, $04, $3E, $3C, $3F, $73         ; row 8
+    .byte $73, $55, $E5, $05, $E5, $55, $05, $3C, $D5, $55, $3C, $3F, $73                   ; row 9
+    .byte $73, $55, $E5, $00, $04, $06, $04, $00, $48, $C4, $44, $49, $3F, $73              ; row 10
+    .byte $73, $D5, $D5, $D5, $D5, $D5, $D5, $D5, $73                                       ; row 11
+    .byte $74, $F1, $F1, $F1, $F1, $F1, $F1, $F1, $75                                       ; row 12
 
 EndPic_World2:
-    .byte $70, $F1, $F1, $F1, $F1, $F1, $F1, $F1, $72, $73, $35, $03, $04, $06, $5C, $0A
-    .byte $04, $06, $04, $00, $04, $06, $65, $2F, $73, $73, $66, $05, $66, $05, $2F, $55
-    .byte $02, $05, $E5, $65, $05, $E5, $73, $73, $66, $63, $5C, $00, $04, $06, $04, $66
-    .byte $E6, $65, $63, $2F, $65, $73, $73, $0C, $05, $66, $05, $66, $66, $66, $05, $66
-    .byte $3D, $66, $05, $2F, $65, $73, $73, $04, $07, $04, $07, $04, $1F, $5C, $63, $66
-    .byte $3E, $66, $63, $66, $65, $73, $73, $66, $AF, $05, $66, $E6, $05, $0C, $05, $0C
-    .byte $05, $66, $66, $73, $73, $66, $65, $2F, $63, $65, $06, $5C, $00, $66, $63, $04
-    .byte $0C, $E6, $73, $73, $E5, $AF, $2F, $05, $66, $05, $2F, $E6, $05, $E6, $73, $73
-    .byte $66, $E5, $66, $2F, $10, $04, $07, $04, $06, $04, $07, $E6, $73, $73, $E6, $E6
-    .byte $E6, $E6, $E6, $E6, $E6, $73, $74, $F1, $F1, $F1, $F1, $F1, $F1, $F1, $75
+    .byte $70, $F1, $F1, $F1, $F1, $F1, $F1, $F1, $72                                       ; row 1
+    .byte $73, $35, $03, $04, $06, $5C, $0A, $04, $06, $04, $00, $04, $06, $65, $2F, $73    ; row 2
+    .byte $73, $66, $05, $66, $05, $2F, $55, $02, $05, $E5, $65, $05, $E5, $73              ; row 3
+    .byte $73, $66, $63, $5C, $00, $04, $06, $04, $66, $E6, $65, $63, $2F, $65, $73         ; row 4
+    .byte $73, $0C, $05, $66, $05, $66, $66, $66, $05, $66, $3D, $66, $05, $2F, $65, $73    ; row 5
+    .byte $73, $04, $07, $04, $07, $04, $1F, $5C, $63, $66, $3E, $66, $63, $66, $65, $73    ; row 6
+    .byte $73, $66, $AF, $05, $66, $E6, $05, $0C, $05, $0C, $05, $66, $66, $73              ; row 7
+    .byte $73, $66, $65, $2F, $63, $65, $06, $5C, $00, $66, $63, $04, $0C, $E6, $73         ; row 8
+    .byte $73, $E5, $AF, $2F, $05, $66, $05, $2F, $E6, $05, $E6, $73                        ; row 9
+    .byte $73, $66, $E5, $66, $2F, $10, $04, $07, $04, $06, $04, $07, $E6, $73              ; row 10
+    .byte $73, $E6, $E6, $E6, $E6, $E6, $E6, $E6, $73                                       ; row 11
+    .byte $74, $F1, $F1, $F1, $F1, $F1, $F1, $F1, $75                                       ; row 12
 
 EndPic_World3:
-    .byte $70, $F1, $F1, $F1, $F1, $F1, $F1, $F1, $72, $73, $04, $0A, $AF, $23, $E7, $E7
-    .byte $6B, $B4, $17, $67, $73, $73, $2F, $5C, $13, $14, $27, $E7, $E7, $25, $BF, $23
-    .byte $67, $73, $73, $94, $27, $E7, $E7, $E7, $25, $5C, $3F, $23, $67, $73, $73, $E7
-    .byte $E7, $E7, $E7, $67, $31, $44, $3B, $27, $67, $73, $73, $E7, $E7, $6B, $B4, $B4
-    .byte $35, $3F, $23, $E7, $73, $73, $E7, $6B, $34, $37, $5C, $BF, $3D, $3F, $3F, $23
-    .byte $E7, $73, $73, $E7, $25, $3F, $21, $44, $2D, $39, $3E, $04, $06, $4E, $1F, $67
-    .byte $73, $73, $E7, $25, $3F, $3C, $3F, $5C, $46, $94, $14, $27, $E7, $73, $73, $E7
-    .byte $26, $14, $30, $94, $27, $E7, $E7, $E7, $73, $73, $E7, $E7, $E7, $E7, $E7, $E7
-    .byte $E7, $73, $74, $F1, $F1, $F1, $F1, $F1, $F1, $F1, $75
+    .byte $70, $F1, $F1, $F1, $F1, $F1, $F1, $F1, $72                                       ; row 1
+    .byte $73, $04, $0A, $AF, $23, $E7, $E7, $6B, $B4, $17, $67, $73                        ; row 2
+    .byte $73, $2F, $5C, $13, $14, $27, $E7, $E7, $25, $BF, $23, $67, $73                   ; row 3
+    .byte $73, $94, $27, $E7, $E7, $E7, $25, $5C, $3F, $23, $67, $73                        ; row 4
+    .byte $73, $E7, $E7, $E7, $E7, $67, $31, $44, $3B, $27, $67, $73                        ; row 5
+    .byte $73, $E7, $E7, $6B, $B4, $B4, $35, $3F, $23, $E7, $73                             ; row 6
+    .byte $73, $E7, $6B, $34, $37, $5C, $BF, $3D, $3F, $3F, $23, $E7, $73                   ; row 7
+    .byte $73, $E7, $25, $3F, $21, $44, $2D, $39, $3E, $04, $06, $4E, $1F, $67, $73         ; row 8
+    .byte $73, $E7, $25, $3F, $3C, $3F, $5C, $46, $94, $14, $27, $E7, $73                   ; row 9
+    .byte $73, $E7, $26, $14, $30, $94, $27, $E7, $E7, $E7, $73                             ; row 10
+    .byte $73, $E7, $E7, $E7, $E7, $E7, $E7, $E7, $73                                       ; row 11
+    .byte $74, $F1, $F1, $F1, $F1, $F1, $F1, $F1, $75                                       ; row 12
 
 EndPic_World4:
-    .byte $70, $F1, $F1, $F1, $F1, $F1, $F1, $F1, $72, $73, $E7, $E7, $E7, $E7, $E7, $6B
-    .byte $B4, $34, $73, $73, $34, $34, $20, $34, $17, $E7, $67, $6B, $34, $35, $52, $55
-    .byte $52, $73, $73, $04, $0E, $1E, $1F, $23, $67, $6B, $34, $35, $0A, $04, $00, $04
-    .byte $06, $73, $73, $14, $1A, $30, $3A, $32, $6B, $35, $3D, $D2, $38, $22, $12, $44
-    .byte $73, $73, $67, $4C, $67, $26, $27, $25, $55, $3E, $04, $06, $3C, $07, $1E, $62
-    .byte $73, $73, $6B, $1B, $17, $67, $6B, $41, $6A, $55, $D2, $48, $22, $11, $44, $73
-    .byte $73, $25, $1F, $23, $67, $26, $27, $31, $44, $45, $10, $04, $00, $04, $06, $73
-    .byte $73, $35, $2F, $33, $17, $E7, $25, $52, $55, $52, $13, $94, $14, $73, $73, $55
-    .byte $AF, $33, $B4, $4A, $C4, $44, $4B, $B4, $34, $73, $73, $D5, $D5, $D5, $D5, $D5
-    .byte $D5, $D5, $73, $74, $F1, $F1, $F1, $F1, $F1, $F1, $F1, $75
+    .byte $70, $F1, $F1, $F1, $F1, $F1, $F1, $F1, $72                                       ; row 1
+    .byte $73, $E7, $E7, $E7, $E7, $E7, $6B, $B4, $34, $73                                  ; row 2
+    .byte $73, $34, $34, $20, $34, $17, $E7, $67, $6B, $34, $35, $52, $55, $52, $73         ; row 3
+    .byte $73, $04, $0E, $1E, $1F, $23, $67, $6B, $34, $35, $0A, $04, $00, $04, $06, $73    ; row 4
+    .byte $73, $14, $1A, $30, $3A, $32, $6B, $35, $3D, $D2, $38, $22, $12, $44, $73         ; row 5
+    .byte $73, $67, $4C, $67, $26, $27, $25, $55, $3E, $04, $06, $3C, $07, $1E, $62, $73    ; row 6
+    .byte $73, $6B, $1B, $17, $67, $6B, $41, $6A, $55, $D2, $48, $22, $11, $44, $73         ; row 7
+    .byte $73, $25, $1F, $23, $67, $26, $27, $31, $44, $45, $10, $04, $00, $04, $06, $73    ; row 8
+    .byte $73, $35, $2F, $33, $17, $E7, $25, $52, $55, $52, $13, $94, $14, $73              ; row 9
+    .byte $73, $55, $AF, $33, $B4, $4A, $C4, $44, $4B, $B4, $34, $73                        ; row 10
+    .byte $73, $D5, $D5, $D5, $D5, $D5, $D5, $D5, $73                                       ; row 11
+    .byte $74, $F1, $F1, $F1, $F1, $F1, $F1, $F1, $75                                       ; row 12
 
 EndPic_World5:
-    .byte $70, $F1, $F1, $F1, $F1, $F1, $F1, $F1, $72, $73, $BF, $BF, $47, $43, $A4, $A4
-    .byte $53, $D5, $0A, $73, $73, $BF, $BF, $42, $A4, $A4, $24, $53, $D5, $05, $73, $73
-    .byte $B6, $B6, $43, $24, $50, $1F, $D1, $59, $03, $04, $00, $73, $73, $A4, $A4, $50
-    .byte $51, $59, $05, $D5, $55, $05, $55, $05, $73, $73, $A4, $50, $51, $59, $03, $0B
-    .byte $07, $04, $00, $04, $07, $55, $10, $73, $73, $D1, $59, $D5, $05, $D5, $D5, $D5
-    .byte $55, $05, $73, $73, $D5, $55, $10, $04, $07, $04, $62, $04, $06, $04, $00, $04
-    .byte $07, $73, $73, $55, $3D, $D5, $D5, $55, $05, $55, $05, $D5, $55, $05, $73, $73
-    .byte $55, $3E, $04, $06, $04, $00, $04, $00, $55, $63, $04, $0A, $04, $00, $73, $73
-    .byte $DC, $DC, $DC, $DC, $DC, $DC, $DC, $73, $74, $F1, $F1, $F1, $F1, $F1, $F1, $F1
-    .byte $75
+    .byte $70, $F1, $F1, $F1, $F1, $F1, $F1, $F1, $72                                       ; row 1
+    .byte $73, $BF, $BF, $47, $43, $A4, $A4, $53, $D5, $0A, $73                             ; row 2
+    .byte $73, $BF, $BF, $42, $A4, $A4, $24, $53, $D5, $05, $73                             ; row 3
+    .byte $73, $B6, $B6, $43, $24, $50, $1F, $D1, $59, $03, $04, $00, $73                   ; row 4
+    .byte $73, $A4, $A4, $50, $51, $59, $05, $D5, $55, $05, $55, $05, $73                   ; row 5
+    .byte $73, $A4, $50, $51, $59, $03, $0B, $07, $04, $00, $04, $07, $55, $10, $73         ; row 6
+    .byte $73, $D1, $59, $D5, $05, $D5, $D5, $D5, $55, $05, $73                             ; row 7
+    .byte $73, $D5, $55, $10, $04, $07, $04, $62, $04, $06, $04, $00, $04, $07, $73         ; row 8
+    .byte $73, $55, $3D, $D5, $D5, $55, $05, $55, $05, $D5, $55, $05, $73                   ; row 9
+    .byte $73, $55, $3E, $04, $06, $04, $00, $04, $00, $55, $63, $04, $0A, $04, $00, $73    ; row 10
+    .byte $73, $DC, $DC, $DC, $DC, $DC, $DC, $DC, $73                                       ; row 11
+    .byte $74, $F1, $F1, $F1, $F1, $F1, $F1, $F1, $75                                       ; row 12
 
 EndPic_World6:
-    .byte $70, $F1, $F1, $F1, $F1, $F1, $F1, $F1, $72, $73, $60, $55, $33, $B4, $17, $67
-    .byte $6B, $34, $17, $E7, $E7, $73, $73, $6A, $D5, $D5, $33, $17, $25, $60, $23, $E7
-    .byte $E7, $73, $73, $00, $04, $06, $04, $06, $55, $23, $26, $14, $27, $6B, $B4, $17
-    .byte $73, $73, $05, $38, $44, $39, $05, $55, $33, $20, $34, $20, $35, $3F, $3D, $23
-    .byte $73, $73, $07, $3C, $62, $1E, $07, $0B, $06, $1E, $06, $1E, $06, $04, $3E, $23
-    .byte $73, $73, $05, $48, $44, $49, $05, $02, $13, $30, $14, $30, $6A, $3F, $5C, $23
-    .byte $73, $73, $63, $04, $06, $04, $00, $60, $33, $17, $E7, $26, $94, $27, $73, $73
-    .byte $E0, $E0, $E0, $60, $33, $17, $E7, $E7, $67, $73, $73, $3F, $E0, $E0, $E0, $60
-    .byte $33, $B4, $B4, $34, $73, $73, $DC, $DC, $DC, $DC, $DC, $DC, $DC, $73, $74, $F1
-    .byte $F1, $F1, $F1, $F1, $F1, $F1, $75
+    .byte $70, $F1, $F1, $F1, $F1, $F1, $F1, $F1, $72                                       ; row 1
+    .byte $73, $60, $55, $33, $B4, $17, $67, $6B, $34, $17, $E7, $E7, $73                   ; row 2
+    .byte $73, $6A, $D5, $D5, $33, $17, $25, $60, $23, $E7, $E7, $73                        ; row 3
+    .byte $73, $00, $04, $06, $04, $06, $55, $23, $26, $14, $27, $6B, $B4, $17, $73         ; row 4
+    .byte $73, $05, $38, $44, $39, $05, $55, $33, $20, $34, $20, $35, $3F, $3D, $23, $73    ; row 5
+    .byte $73, $07, $3C, $62, $1E, $07, $0B, $06, $1E, $06, $1E, $06, $04, $3E, $23, $73    ; row 6
+    .byte $73, $05, $48, $44, $49, $05, $02, $13, $30, $14, $30, $6A, $3F, $5C, $23, $73    ; row 7
+    .byte $73, $63, $04, $06, $04, $00, $60, $33, $17, $E7, $26, $94, $27, $73              ; row 8
+    .byte $73, $E0, $E0, $E0, $60, $33, $17, $E7, $E7, $67, $73                             ; row 9
+    .byte $73, $3F, $E0, $E0, $E0, $60, $33, $B4, $B4, $34, $73                             ; row 10
+    .byte $73, $DC, $DC, $DC, $DC, $DC, $DC, $DC, $73                                       ; row 11
+    .byte $74, $F1, $F1, $F1, $F1, $F1, $F1, $F1, $75                                       ; row 12
 
 EndPic_World7:
-    .byte $70, $F1, $F1, $F1, $F1, $F1, $F1, $F1, $72, $73, $34, $20, $34, $17, $6B, $B4
-    .byte $B4, $B4, $20, $34, $17, $73, $73, $10, $4F, $00, $23, $25, $00, $04, $06, $04
-    .byte $1F, $1D, $3C, $1D, $23, $73, $73, $1D, $3C, $05, $23, $25, $05, $9D, $1D, $05
-    .byte $1D, $3C, $1F, $23, $73, $73, $1F, $3C, $1F, $23, $25, $10, $04, $06, $04, $00
-    .byte $04, $0A, $1D, $23, $73, $73, $12, $11, $3B, $27, $26, $3A, $44, $22, $C4, $12
-    .byte $44, $3B, $27, $73, $73, $4F, $1F, $23, $E7, $1F, $0B, $00, $04, $06, $4F, $62
-    .byte $23, $67, $73, $73, $3C, $05, $23, $E7, $25, $52, $3D, $52, $5C, $3C, $05, $23
-    .byte $67, $73, $73, $3C, $0A, $23, $E7, $25, $5C, $3E, $04, $06, $1E, $07, $23, $67
-    .byte $73, $73, $11, $44, $4B, $B4, $4A, $C4, $C4, $11, $44, $4B, $34, $73, $73, $DC
-    .byte $DC, $DC, $DC, $DC, $DC, $DC, $73, $74, $F1, $F1, $F1, $F1, $F1, $F1, $F1, $75
+    .byte $70, $F1, $F1, $F1, $F1, $F1, $F1, $F1, $72                                       ; row 1
+    .byte $73, $34, $20, $34, $17, $6B, $B4, $B4, $B4, $20, $34, $17, $73                   ; row 2
+    .byte $73, $10, $4F, $00, $23, $25, $00, $04, $06, $04, $1F, $1D, $3C, $1D, $23, $73    ; row 3
+    .byte $73, $1D, $3C, $05, $23, $25, $05, $9D, $1D, $05, $1D, $3C, $1F, $23, $73         ; row 4
+    .byte $73, $1F, $3C, $1F, $23, $25, $10, $04, $06, $04, $00, $04, $0A, $1D, $23, $73    ; row 5
+    .byte $73, $12, $11, $3B, $27, $26, $3A, $44, $22, $C4, $12, $44, $3B, $27, $73         ; row 6
+    .byte $73, $4F, $1F, $23, $E7, $1F, $0B, $00, $04, $06, $4F, $62, $23, $67, $73         ; row 7
+    .byte $73, $3C, $05, $23, $E7, $25, $52, $3D, $52, $5C, $3C, $05, $23, $67, $73         ; row 8
+    .byte $73, $3C, $0A, $23, $E7, $25, $5C, $3E, $04, $06, $1E, $07, $23, $67, $73         ; row 9
+    .byte $73, $11, $44, $4B, $B4, $4A, $C4, $C4, $11, $44, $4B, $34, $73                   ; row 10
+    .byte $73, $DC, $DC, $DC, $DC, $DC, $DC, $DC, $73                                       ; row 11
+    .byte $74, $F1, $F1, $F1, $F1, $F1, $F1, $F1, $75                                       ; row 12
 
 EndPic_World8:
-    .byte $70, $F1, $F1, $F1, $F1, $F1, $F1, $F1, $72, $73, $AA, $AA, $AA, $AA, $AA, $AA
-    .byte $AA, $73, $73, $AA, $AA, $AA, $AA, $AA, $AA, $AA, $73, $73, $0F, $AA, $2A, $0F
-    .byte $AA, $AA, $0F, $AA, $2A, $0F, $73, $73, $2E, $D4, $54, $68, $D4, $D4, $68, $D4
-    .byte $54, $2E, $73, $73, $2E, $5B, $2B, $5B, $2B, $5B, $2B, $5B, $2B, $DB, $6C, $6D
-    .byte $2E, $73, $73, $2E, $1F, $61, $69, $0B, $69, $61, $69, $61, $69, $61, $6E, $6F
-    .byte $2E, $73, $73, $0F, $D4, $54, $0F, $D4, $D4, $0F, $D4, $54, $0F, $73, $73, $9C
-    .byte $9C, $9C, $9C, $9C, $9C, $9C, $73, $73, $AA, $AA, $AA, $AA, $AA, $AA, $AA, $73
-    .byte $73, $AA, $AA, $AA, $AA, $AA, $AA, $AA, $73, $74, $F1, $F1, $F1, $F1, $F1, $F1
-    .byte $F1, $75
+    .byte $70, $F1, $F1, $F1, $F1, $F1, $F1, $F1, $72                                       ; row 1
+    .byte $73, $AA, $AA, $AA, $AA, $AA, $AA, $AA, $73                                       ; row 2
+    .byte $73, $AA, $AA, $AA, $AA, $AA, $AA, $AA, $73                                       ; row 3
+    .byte $73, $0F, $AA, $2A, $0F, $AA, $AA, $0F, $AA, $2A, $0F, $73                        ; row 4
+    .byte $73, $2E, $D4, $54, $68, $D4, $D4, $68, $D4, $54, $2E, $73                        ; row 5
+    .byte $73, $2E, $5B, $2B, $5B, $2B, $5B, $2B, $5B, $2B, $DB, $6C, $6D, $2E, $73         ; row 6
+    .byte $73, $2E, $1F, $61, $69, $0B, $69, $61, $69, $61, $69, $61, $6E, $6F, $2E, $73    ; row 7
+    .byte $73, $0F, $D4, $54, $0F, $D4, $D4, $0F, $D4, $54, $0F, $73                        ; row 8
+    .byte $73, $9C, $9C, $9C, $9C, $9C, $9C, $9C, $73                                       ; row 9
+    .byte $73, $AA, $AA, $AA, $AA, $AA, $AA, $AA, $73                                       ; row 10
+    .byte $73, $AA, $AA, $AA, $AA, $AA, $AA, $AA, $73                                       ; row 11
+    .byte $74, $F1, $F1, $F1, $F1, $F1, $F1, $F1, $75                                       ; row 12
 
     ; Split address, parallel tables for the starting VRAM address of the end picture for each world
 EndPic_VRAMStart_H: .byte $28, $28, $28, $29, $29, $28, $28, $28    ; High
@@ -269,41 +289,41 @@ Video_Upd_Table2:
     .word EndSeq_WorldFadeIn2   ; $27 - End pic world fade in effect part 2
     .word EndSeq_WorldFadeIn3   ; $28 - End pic world fade in effect part 3
     .word EndSeq_WorldFadeIn4   ; $29 - End pic world fade in effect part 4
-    .word PRG025_CD82       ; $2A - ???
-    .word PRG025_CDA6       ; $2B - ???
-    .word PRG025_CDBB       ; $2C - ???
-    .word PRG025_CDD1       ; $2D - ???
-    .word PRG025_CDE7       ; $2E - ???
-    .word PRG025_CE02       ; $2F - ???
-    .word PRG025_CE19       ; $30 - ???
-    .word PRG025_CE2D       ; $31 -
-    .word PRG025_CE43       ; $32 -
-    .word PRG025_CE57       ; $33 -
-    .word PRG025_CE6D       ; $34 -
-    .word PRG025_CE7B       ; $35 -
-    .word PRG025_CE91       ; $36 -
-    .word PRG025_CE9E       ; $37 -
-    .word PRG025_CEAE       ; $38 -
-    .word PRG025_CEB6       ; $39 -
-    .word PRG025_CEC5       ; $3A -
-    .word PRG025_CEE2       ; $3B -
-    .word PRG025_CEFF       ; $3C -
-    .word PRG025_CF0A       ; $3D -
-    .word PRG025_CF20       ; $3E -
-    .word PRG025_CF43       ; $3F -
-    .word PRG025_CF6B       ; $40 -
-    .word PRG025_CF8A       ; $41 -
-    .word PRG025_CF9E       ; $42 -
-    .word PRG025_CFB2       ; $43 -
-    .word PRG025_CFC8       ; $44 -
-    .word PRG025_CFED       ; $45 -
-    .word PRG025_CFF6       ; $46 -
-    .word PRG025_D009       ; $47 -
-    .word PRG025_D01F       ; $48 -
-    .word PRG025_D035       ; $49 -
-    .word PRG025_D044       ; $4A -
-    .word PRG025_D051       ; $4B -
-    .word PRG025_D059       ; $4C -
+    .word EndSeq_World1_Background1 ; $2A - Background for World 1 credits screen part 1 (images)
+    .word EndSeq_World1_Background2 ; $2B - Background for World 1 credits screen part 2 (images)
+    .word EndSeq_World1_Background3 ; $2C - Background for World 1 credits screen part 3 (images)
+    .word EndSeq_World1_Background4 ; $2D - Background for World 1 credits screen part 4 (palette data)
+    .word EndSeq_World2_Background1 ; $2E - Background for World 2 credits screen part 1 (images)
+    .word EndSeq_World2_Background2 ; $2F - Background for World 2 credits screen part 2 (images)
+    .word EndSeq_World2_Background3 ; $30 - Background for World 2 credits screen part 3 (images)
+    .word EndSeq_World2_Background4 ; $31 - Background for World 2 credits screen part 4 (palette data)
+    .word EndSeq_World3_Background1 ; $32 - Background for World 3 credits screen part 1 (images)
+    .word EndSeq_World3_Background2 ; $33 - Background for World 3 credits screen part 2 (images)
+    .word EndSeq_World3_Background3 ; $34 - Background for World 3 credits screen part 3 (images)
+    .word EndSeq_World3_Background4 ; $35 - Background for World 3 credits screen part 4 (palette data)
+    .word EndSeq_World4_Background1 ; $36 - Background for World 4 credits screen part 1 (images)
+    .word EndSeq_World4_Background2 ; $37 - Background for World 4 credits screen part 2 (images)
+    .word EndSeq_World4_Background3 ; $38 - Background for World 4 credits screen part 3 (palette data)
+    .word EndSeq_World4_Background4 ; $39 - Background for World 4 credits screen part 4 (palette data)
+    .word EndSeq_World5_Background1 ; $3A - Background for World 5 credits screen part 1 (images)
+    .word EndSeq_World5_Background2 ; $3B - Background for World 5 credits screen part 2 (images)
+    .word EndSeq_World5_Background3 ; $3C - Background for World 5 credits screen part 3 (images)
+    .word EndSeq_World5_Background4 ; $3D - Background for World 5 credits screen part 4 (palette data)
+    .word EndSeq_World6_Background1 ; $3E - Background for World 6 credits screen part 1 (images)
+    .word EndSeq_World6_Background2 ; $3F - Background for World 6 credits screen part 2 (images)
+    .word EndSeq_World6_Background3 ; $40 - Background for World 6 credits screen part 3 (images)
+    .word EndSeq_World6_Background4 ; $41 - Background for World 6 credits screen part 4 (images)
+    .word EndSeq_World6_Background5 ; $42 - Background for World 6 credits screen part 5 (images)
+    .word EndSeq_World6_Background6 ; $43 - Background for World 6 credits screen part 6 (palette data)
+    .word EndSeq_World7_Background1 ; $44 - Background for World 7 credits screen part 1 (images)
+    .word EndSeq_World7_Background2 ; $45 - Background for World 7 credits screen part 2 (images)
+    .word EndSeq_World7_Background3 ; $46 - Background for World 7 credits screen part 3 (images)
+    .word EndSeq_World7_Background4 ; $47 - Background for World 7 credits screen part 4 (images)
+    .word EndSeq_World7_Background5 ; $48 - Background for World 7 credits screen part 5 (palette data)
+    .word EndSeq_World8_Background1 ; $49 - Background for World 8 credits screen part 1 (images)
+    .word EndSeq_World8_Background2 ; $4A - Background for World 8 credits screen part 2 (images)
+    .word EndSeq_World8_Background3 ; $4B - Background for World 8 credits screen part 3 (palette data)
+    .word EndSeq_World8_Background4 ; $4C - Background for World 8 credits screen part 4 (palette data)
     .word EndSeq_World1Pal      ; $4D - Ending pic World 1 full palette
     .word EndSeq_World2Pal      ; $4E - Ending pic World 2 full palette
     .word EndSeq_World3Pal      ; $4F - Ending pic World 3 full palette
@@ -815,154 +835,518 @@ EndSeq_WorldFadeIn4:
     ; Terminator
     .byte $00
 
-PRG025_CD82:
-    .byte $28, $F4, $07, $DE, $F4, $EF, $F1, $E3 ; $CD7A - $CD89
-    .byte $5C, $77, $29, $74, $0A, $E8, $EF, $E0, $F8, $F8, $5C, $F1, $E0, $F3, $E3, $2A ; $CD8A - $CD99
-    .byte $5C, $04, $D0, $D1, $D2, $D3, $2A, $7C, $82, $D4, $D6, $00
+EndSeq_World1_Background1:
+PRG025_CD82:    
+    ; See Video_Upd_Table in PRG30.asm for format
 
+    DBYT $28F4
+    .byte $07
+    .byte $DE, $F4, $EF, $F1, $E3, $5C, $77 ; WORLD 1 Text
+
+    DBYT $2974
+    .byte $0A
+    .byte $E8, $EF, $E0, $F8, $F8, $5C, $F1, $E0, $F3, $E3  ; GRASS LAND Text
+
+    DBYT $2A5C
+    .byte $04
+    .byte $D0, $D1, $D2, $D3    ; Part of right hand bush
+
+    DBYT $2A7C
+    .byte VU_VERT | $02
+    .byte $D4, $D6  ;Part of right hand bush
+
+    .byte TERMINATOR
+
+EndSeq_World1_Background2:
 PRG025_CDA6:
-    .byte $2A, $7F, $85, $D5 ; $CD9A - $CDA9
-    .byte $D7, $D7, $D7, $D7, $2A, $BA, $04, $D0, $D1, $D2, $D3, $2A, $DA, $82, $D4, $D6 ; $CDAA - $CDB9
-    .byte $00
+    
+    DBYT $2A7F 
+    .byte VU_VERT | $05 
+    .byte $D5, $D7, $D7, $D7, $D7   ;Part of right hand bush
 
+    DBYT $2ABA
+    .byte $04
+    .byte $D0, $D1, $D2, $D3    ;Part of right hand bush
+
+    DBYT $2ADA
+    .byte VU_VERT | $02
+    .byte $D4, $D6  ;Part of right hand bush
+
+    .byte TERMINATOR
+
+
+EndSeq_World1_Background3:
 PRG025_CDBB:
-    .byte $2A, $80, $03, $D1, $D2, $D3, $2A, $A2, $01, $D5, $2A, $C1, $04, $D0, $D1 ; $CDBA - $CDC9
-    .byte $D2, $D3, $2A, $E4, $01, $D5, $00
+    
+    DBYT $2A80
+    .byte $03
+    .byte $D1, $D2, $D3   
 
+    DBYT $2AA2
+    .byte $01
+    .byte $D5   ;Part of left hand bush
+    
+    DBYT $2AC1
+    .byte $04
+    .byte $D0, $D1, $D2, $D3    ;Part of left hand bush
+    
+    DBYT $2AE4
+    .byte $01
+    .byte $D5   ;Part of left hand bush
+
+    .byte TERMINATOR
+
+EndSeq_World1_Background4:
 PRG025_CDD1:
-    .byte $2B, $D1, $04, $55, $55, $55, $99, $2B, $D9 ; $CDCA - $CDD9
-    .byte $04, $55, $55, $7F, $BB, $2B, $E1, $04, $A5, $A5, $AF, $AB, $00
+        
+    DBYT $2BD1
+    .byte $04
+    .byte $55, $55, $55, $99    ; Background palette data for W1 Map (upper)
 
+    DBYT $2BD9
+    .byte $04
+    .byte $55, $55, $7F, $BB    ; Background palette data for W1 Map (middle)
+    
+    DBYT $2BE1
+    .byte $04
+    .byte $A5, $A5, $AF, $AB    ; Background palette data for W1 Map (lower)
+
+    .byte TERMINATOR
+
+EndSeq_World2_Background1:
 PRG025_CDE7:
-    .byte $28, $E3, $07 ; $CDDA - $CDE9
-    .byte $DE, $F4, $EF, $F1, $E3, $5C, $78, $29, $24, $06, $E3, $E4, $F8, $E4, $EF, $F9 ; $CDEA - $CDF9
-    .byte $29, $67, $04, $F1, $E0, $F3, $E3, $00
 
+    DBYT $28E3
+    .byte $07
+    .byte $DE, $F4, $EF, $F1, $E3, $5C, $78 ; WORLD 2 text
+    
+    DBYT $2924
+    .byte $06
+    .byte $E3, $E4, $F8, $E4, $EF, $F9  ; DESERT text
+    
+    DBYT $2967
+    .byte $04
+    .byte $F1, $E0, $F3, $E3    ; LAND text
+    
+    .byte TERMINATOR
+
+EndSeq_World2_Background2:
 PRG025_CE02:
-    .byte $2A, $65, $01, $58, $2A, $82, $05, $58 ; $CDFA - $CE09
-    .byte $5C, $57, $5C, $56, $2A, $A1, $07, $57, $5C, $5A, $5C, $5C, $5C, $56, $00
+    DBYT $2A65
+    .byte $01
+    .byte $58   ; Pyramid top
+    
+    DBYT $2A82
+    .byte $05
+    .byte $58, $5C, $57, $5C, $56   ; Pyramid row 2
 
+    DBYT $2AA1
+    .byte $07
+    .byte $57, $5C, $5A, $5C, $5C, $5C, $56 ; Pyramid row 3
+
+    .byte TERMINATOR        
+
+EndSeq_World2_Background3:
 PRG025_CE19:
-    .byte $2A ; $CE0A - $CE19
-    .byte $C0, $03, $57, $5C, $57, $2A, $C8, $01, $56, $2A, $E1, $01, $57, $2A, $E9, $01 ; $CE1A - $CE29
-    .byte $56, $00, $00
+    DBYT $2AC0
+    .byte $03
+    .byte $57, $5C, $57 ; Pyramid bottom row
+        
+    DBYT $2AC8
+    .byte $01
+    .byte $56 ; Pyramid bottom row
+    
+    DBYT $2AE1
+    .byte $01
+    .byte $57 ; Pyramid bottom row
+    
+    DBYT $2AE9
+    .byte $01
+    .byte $56 ; Pyramid bottom row
+    
+    .byte TERMINATOR
+    .byte TERMINATOR
 
+EndSeq_World2_Background4:
 PRG025_CE2D:
-    .byte $2B, $CB, $04, $EA, $5A, $5A, $5A, $2B, $D3, $04, $66, $55, $55 ; $CE2A - $CE39
-    .byte $55, $2B, $DB, $04, $66, $55, $55, $55, $00
+    DBYT $2BCB
+    .byte $04
+    .byte $EA, $5A, $5A, $5A    ; Background palette data for world map
+    
+    DBYT $2BD3
+    .byte $04
+    .byte $66, $55, $55, $55    ; Background palette data for world map
+    
+    DBYT $2BDB
+    .byte $04
+    .byte $66, $55, $55, $55    ; Background palette data for world map
+    
+    .byte TERMINATOR
 
+
+EndSeq_World3_Background1:
 PRG025_CE43:
-    .byte $29, $A2, $05, $DE, $F4, $EF, $F1 ; $CE3A - $CE49
-    .byte $E3, $29, $E4, $01, $79, $2A, $9A, $04, $CA, $CB, $CC, $CD, $00
 
+    DBYT $29A2
+    .byte $05
+    .byte $DE, $F4, $EF, $F1, $E3 ; "World" text
+
+    DBYT $29E4
+    .byte $01
+    .byte $79   ; "3" in World 3 text
+
+    DBYT $2A9A
+    .byte $04
+    .byte $CA, $CB, $CC, $CD    ; Top of the pipe
+    
+    .byte TERMINATOR
+
+EndSeq_World3_Background2:
 PRG025_CE57:
-    .byte $2A, $BA, $04 ; $CE4A - $CE59
-    .byte $DA, $DB, $DC, $DD, $2A, $DA, $04, $CE, $CF, $5C, $DF, $2A, $FA, $04, $CE, $CF ; $CE5A - $CE69
-    .byte $5C, $DF, $00
+    DBYT $2ABA
+    .byte $04
+    .byte $DA, $DB, $DC, $DD    ; Middle top of pipe
+    
+    DBYT $2ADA
+    .byte $04
+    .byte $CE, $CF, $5C, $DF ; Middle bottom of pipe
+    
+    DBYT $2AFA
+    .byte $04
+    .byte $CE, $CF, $5C, $DF    ; Bottom of pipe
 
+    .byte TERMINATOR
+
+EndSeq_World3_Background3:
 PRG025_CE6D:
-    .byte $2A, $89, $0A, $DE, $E0, $F9, $E4, $EF, $5C, $F1, $E0, $F3, $E3 ; $CE6A - $CE79
-    .byte $00
+    DBYT $2A89
+    .byte $0A
+    .byte $DE, $E0, $F9, $E4, $EF, $5C, $F1, $E0, $F3, $E3  ; "Water Land" text
 
+    .byte TERMINATOR
+
+EndSeq_World3_Background4:
 PRG025_CE7B:
-    .byte $2B, $D2, $04, $E6, $FF, $FF, $FF, $2B, $DA, $04, $EE, $FF, $FF, $FF, $2B ; $CE7A - $CE89
-    .byte $E2, $04, $AE, $AF, $AF, $AF, $00
+    DBYT $2BD2
+    .byte $04
+    .byte $E6, $FF, $FF, $FF    ; Background palette data for world map
+    
+    DBYT $2BDA
+    .byte $04
+    .byte $EE, $FF, $FF, $FF    ; Background palette data for world map
+    
+    DBYT $2BE2
+    .byte $04
+    .byte $AE, $AF, $AF, $AF    ; Background palette data for world map
+    
+    .byte TERMINATOR
 
+EndSeq_World4_Background1:
 PRG025_CE91:
-    .byte $29, $78, $05, $DE, $F4, $EF, $F1, $E3, $29 ; $CE8A - $CE99
-    .byte $BA, $01, $7A, $00
 
+    DBYT $2978
+    .byte $05
+    .byte $DE, $F4, $EF, $F1, $E3   ; World
+
+    DBYT $29BA
+    .byte $01
+    .byte $7A                       ; 4
+
+    .byte TERMINATOR   
+
+
+EndSeq_World4_Background2:
 PRG025_CE9E:
-    .byte $2A, $19, $05, $E8, $EA, $E0, $F3, $F9, $2A, $59, $04, $F1 ; $CE9A - $CEA9
-    .byte $E0, $F3, $E3, $00
+    DBYT $2A19
+    .byte $05
+    .byte $E8, $EA, $E0, $F3, $F9   ; Giant
+    
+    DBYT $2A59
+    .byte $04
+    .byte $F1, $E0, $F3, $E3    ; Land
+    
+    .byte TERMINATOR
 
+EndSeq_World4_Background3:
 PRG025_CEAE:
-    .byte $2B, $DA, $04, $FF, $FF, $FF, $BB, $00
+    DBYT $2BDA
+    .byte $04
+    .byte $FF, $FF, $FF, $BB    ; Background palette for world map
+    
+    .byte TERMINATOR
 
+EndSeq_World4_Background4:
 PRG025_CEB6:
-    .byte $2B, $E2, $04, $FF ; $CEAA - $CEB9
-    .byte $FF, $FF, $BB, $2B, $EA, $04, $AF, $AF, $AF, $AB, $00
+    DBYT $2BE2
+    .byte $04
+    .byte $FF, $FF, $FF, $BB    ; Background palette for world map
+    
+    DBYT $2BEA
+    .byte $04
+    .byte $AF, $AF, $AF, $AB    ; Background palette for world map
+    
+    .byte TERMINATOR
 
+EndSeq_World5_Background1:
 PRG025_CEC5:
-    .byte $28, $F6, $07, $DE, $F4 ; $CEBA - $CEC9
-    .byte $EF, $F1, $E3, $5C, $7B, $29, $36, $08, $F8, $F0, $FE, $5C, $F1, $E0, $F3, $E3 ; $CECA - $CED9
-    .byte $28, $D0, $04, $C0, $C1, $C2, $C3, $00
+    DBYT $28F6
+    .byte $07
+    .byte $DE, $F4, $EF, $F1, $E3, $5C, $7B ; "World 5"
+    
+    DBYT $2936
+    .byte $08
+    .byte $F8, $F0, $FE, $5C, $F1, $E0, $F3, $E3 ; "Sky Land"
+    
+    DBYT $28D0
+    .byte $04
+    .byte $C0, $C1, $C2, $C3 ; - top half of top left cloud
+     
+    .byte TERMINATOR
 
+EndSeq_World5_Background2:
 PRG025_CEE2:
-    .byte $28, $F0, $04, $C4, $C5, $C6, $C7, $29 ; $CEDA - $CEE9
-    .byte $99, $04, $C0, $C1, $C2, $C3, $29, $B9, $04, $C4, $C5, $C6, $C7, $2A, $F9, $04 ; $CEEA - $CEF9
-    .byte $D0, $D1, $D2, $D3, $00
+    DBYT $28F0
+    .byte $04
+    .byte $C4, $C5, $C6, $C7 ; - bottom half of top left cloud
+    
+    DBYT $2999
+    .byte $04
+    .byte $C0, $C1, $C2, $C3 ; - top half of bottom right cloud
+    
+    DBYT $29B9
+    .byte $04
+    .byte $C4, $C5, $C6, $C7 ; - bottom half of bottom right cloud
+    
+    DBYT $2AF9
+    .byte $04
+    .byte $D0, $D1, $D2, $D3 ; - mound under statue Mario
+    
+    .byte TERMINATOR
 
+EndSeq_World5_Background3:
 PRG025_CEFF:
-    .byte $28, $F6, $07, $DE, $F4, $EF, $F1, $E3, $5C, $7B, $00 ; $CEFA - $CF09
 
+    DBYT $28F6
+    .byte $07
+    .byte $DE, $F4, $EF, $F1, $E3, $5C, $7B ; - "World 5" - repeated from above
+    
+    .byte TERMINATOR
+
+EndSeq_World5_Background4:
 PRG025_CF0A:
-    .byte $2B, $D1, $04, $5A, $FA, $FA, $9A, $2B, $D9, $04, $FF, $7F, $5F, $99, $2B, $E1 ; $CF0A - $CF19
-    .byte $04, $55, $55, $55, $99, $00
+    DBYT $2BD1
+    .byte $04
+    .byte $5A, $FA, $FA, $9A    ; Background palette for world map
+    
+    DBYT $2BD9
+    .byte $04
+    .byte $FF, $7F, $5F, $99    ; Background palette for world map
+    
+    DBYT $2BE1
+    .byte $04 
+    .byte $55, $55, $55, $99    ; Background palette for world map
+    
+    .byte TERMINATOR
 
+EndSeq_World6_Background1:
 PRG025_CF20:
-    .byte $28, $E3, $07, $DE, $F4, $EF, $F1, $E3, $5C, $7C ; $CF1A - $CF29
-    .byte $2A, $51, $08, $EA, $E2, $E4, $5C, $F1, $E0, $F3, $E3, $2A, $20, $0A, $01, $0D ; $CF2A - $CF39
-    .byte $01, $0D, $01, $0D, $01, $0D, $01, $0D, $00
+    DBYT $28E3 
+    .byte $07
+    .byte $DE, $F4, $EF, $F1, $E3, $5C, $7C ; - World 6
 
+    DBYT $2A51
+    .byte $08
+    .byte $EA, $E2, $E4, $5C, $F1, $E0, $F3, $E3 ; - Ice Land
+    
+    DBYT $2A20
+    .byte $0A
+    .byte $01, $0D, $01, $0D, $01, $0D, $01, $0D, $01, $0D ; - top of the top row of block pile
+    
+    .byte TERMINATOR
+
+EndSeq_World6_Background2:
 PRG025_CF43:
-    .byte $2A, $40, $0A, $40, $4D, $40, $4D ; $CF3A - $CF49
-    .byte $40, $4D, $40, $4D, $40, $4D, $2A, $60, $0A, $01, $0D, $01, $0D, $01, $0D, $01 ; $CF4A - $CF59
-    .byte $0D, $01, $0D, $2A, $80, $0A, $40, $4D, $40, $4D, $40, $4D, $40, $4D, $40, $4D ; $CF5A - $CF69
-    .byte $00
+    DBYT $2A40
+    .byte $0A
+    .byte $40, $4D, $40, $4D, $40, $4D, $40, $4D, $40, $4D ; - bottom of the top row of block pile
+    
+    DBYT $2A60
+    .byte $0A
+    .byte $01, $0D, $01, $0D, $01, $0D, $01, $0D, $01, $0D ; - top of the middle row of block pile
+    
+    DBYT $2A80
+    .byte $0A
+    .byte $40, $4D, $40, $4D, $40, $4D, $40, $4D, $40, $4D ; - bottom of the middle row of block pile
 
+    .byte TERMINATOR
+
+EndSeq_World6_Background3:
 PRG025_CF6B:
-    .byte $2A, $A0, $0C, $01, $0D, $01, $0D, $01, $0D, $01, $0D, $01, $0D, $01, $0D ; $CF6A - $CF79
-    .byte $2A, $C0, $0C, $40, $4D, $40, $4D, $40, $4D, $40, $4D, $40, $4D, $40, $4D, $00 ; $CF7A - $CF89
+    DBYT $2AA0
+    .byte $0C
+    .byte $01, $0D, $01, $0D, $01, $0D, $01, $0D, $01, $0D, $01, $0D ; top of bottom row of block pile
 
-PRG025_CF8A:
-    .byte $2A, $E0, $10, $D8, $C9, $D8, $C9, $D8, $C9, $D8, $C9, $D8, $C9, $D8, $C9, $D8 ; $CF8A - $CF99
-    .byte $C9, $D8, $C9, $00
+    DBYT $2AC0
+    .byte $0C
+    .byte $40, $4D, $40, $4D, $40, $4D, $40, $4D, $40, $4D, $40, $4D ; bottom of bottom row of block pile
+    
+    .byte TERMINATOR
 
+EndSeq_World6_Background4:
+PRG025_CF8A:   
+    DBYT $2AE0
+    .byte $10
+    .byte $D8, $C9, $D8, $C9, $D8, $C9, $D8, $C9, $D8, $C9, $D8, $C9, $D8, $C9, $D8, $C9 ; part of line under blocks pile
+    
+    .byte TERMINATOR
+
+EndSeq_World6_Background5:
 PRG025_CF9E:
-    .byte $2A, $F0, $10, $D8, $C9, $D8, $C9, $D8, $C9, $D8, $C9, $D8 ; $CF9A - $CFA9
-    .byte $C9, $D8, $C9, $D8, $C9, $D8, $C9, $00
+    DBYT $2AF0
+    .byte $10
+    .byte $D8, $C9, $D8, $C9, $D8, $C9, $D8, $C9, $D8, $C9, $D8, $C9, $D8, $C9, $D8, $C9 ; rest of line under block pile
+    
+    .byte TERMINATOR
 
+EndSeq_World6_Background6:
 PRG025_CFB2:
-    .byte $2B, $CB, $04, $EA, $FA, $FA, $FA, $2B ; $CFAA - $CFB9
-    .byte $D3, $04, $EE, $7F, $FF, $FF, $2B, $DB, $04, $EE, $FF, $FF, $FF, $00
+    DBYT $2BCB
+    .byte $04
+    .byte $EA, $FA, $FA, $FA    ; Background palette for world map
+    
+    DBYT $2BD3
+    .byte $04
+    .byte $EE, $7F, $FF, $FF    ; Background palette for world map
+    
+    DBYT $2BDB
+    .byte $04
+    .byte $EE, $FF, $FF, $FF    ; Background palette for world map
+    
+    .byte TERMINATOR
 
+EndSeq_World7_Background1:
 PRG025_CFC8:
-    .byte $2A, $43 ; $CFBA - $CFC9
-    .byte $07, $DE, $F4, $EF, $F1, $E3, $5C, $7D, $2A, $84, $09, $F5, $EA, $F5, $E4, $5C ; $CFCA - $CFD9
-    .byte $F1, $E0, $F3, $E3, $29, $9A, $04, $CA, $CB, $CC, $CD, $29, $BA, $04, $DA, $DB ; $CFDA - $CFE9
-    .byte $DC, $DD, $00
+    DBYT $2A43
+    .byte $07
+    .byte $DE, $F4, $EF, $F1, $E3, $5C, $7D ; "World 7"
+    
+    DBYT $2A84
+    .byte $09
+    .byte $F5, $EA, $F5, $E4, $5C, $F1, $E0, $F3, $E3 ; "Pipe Land"
+    
+    DBYT $299A
+    .byte $04
+    .byte $CA, $CB, $CC, $CD ; - Top of rim of tall right pipe
+    
+    DBYT $29BA
+    .byte $04
+    .byte $DA, $DB, $DC, $DD ; - Bottom of rim of tall right pipe
 
+    .byte TERMINATOR
+
+EndSeq_World7_Background2:
 PRG025_CFED:
-    .byte $29, $DA, $CA, $CE, $29, $DB, $CA, $CF, $00
+    DBYT $29DA
+    .byte VU_VERT | VU_REPEAT | $0A ; Left wall of tall right pipe
+    .byte $CE
+    
+    DBYT $29DB
+    .byte VU_VERT | VU_REPEAT | $0A
+    .byte $CF ; Interior lines of tall right pipe
+    
+    .byte TERMINATOR
 
+EndSeq_World7_Background3:
 PRG025_CFF6:
-    .byte $29, $DD, $CA, $DF ; $CFEA - $CFF9
-    .byte $2A, $74, $04, $CA, $CB, $CC, $CD, $2A, $94, $04, $DA, $DB, $DC, $DD, $00
+    .DBYT $29DD
+    .byte VU_VERT | VU_REPEAT | $0A
+    .byte $DF ; Right wall of tall right pipe
 
+    DBYT $2A74
+    .byte $04
+    .byte $CA, $CB, $CC, $CD ; Top of rim of low left pipe
+    
+    DBYT $2A94
+    .byte $04
+    .byte $DA, $DB, $DC, $DD ; Bottom of rim of low left pipe
+    
+    .byte TERMINATOR
+
+EndSeq_World7_Background4:
 PRG025_D009:
-    .byte $2A ; $CFFA - $D009
-    .byte $B4, $04, $CE, $CF, $5C, $DF, $2A, $D4, $04, $CE, $CF, $5C, $DF, $2A, $F4, $04 ; $D00A - $D019
-    .byte $CE, $CF, $5C, $DF, $00
+    DBYT $2AB4
+    .byte $04
+    .byte $CE, $CF, $5C, $DF ; top row of pipe shaft for low left pipe
+    
+    DBYT $2AD4
+    .byte $04
+    .byte $CE, $CF, $5C, $DF ; middle row of pipe shaft for low left pipe
+    
+    DBYT $2AF4
+    .byte $04
+    .byte $CE, $CF, $5C, $DF ; bottom row of pipe shaft for low left pipe
 
+    .byte TERMINATOR
+
+EndSeq_World7_Background5:
 PRG025_D01F:
-    .byte $2B, $C9, $04, $FA, $FA, $FA, $BA, $2B, $D1, $04, $FF ; $D01A - $D029
-    .byte $FF, $FF, $BB, $2B, $D9, $04, $FF, $FF, $FF, $BB, $00
+    DBYT $2BC9
+    .byte $04
+    .byte $FA, $FA, $FA, $BA    ; Background palette for world map
+    
+    DBYT $2BD1
+    .byte $04
+    .byte $FF, $FF, $FF, $BB    ; Background palette for world map
+    
+    DBYT $2BD9
+    .byte $04
+    .byte $FF, $FF, $FF, $BB    ; Background palette for world map
+    
+    .byte TERMINATOR
 
+EndSeq_World8_Background1:
 PRG025_D035:
-    .byte $29, $63, $04, $E3, $E0 ; $D02A - $D039
-    .byte $EF, $F0, $29, $A3, $04, $F1, $E0, $F3, $E3, $00
+    DBYT $2963
+    .byte $04
+    .byte $E3, $E0, $EF, $F0    ; "Dark"
+    
+    DBYT $29A3
+    .byte $04
+    .byte $F1, $E0, $F3, $E3    ; "Land"
+    
+    .byte TERMINATOR
 
+EndSeq_World8_Background2:
 PRG025_D044:
-    .byte $29, $7A, $05, $DE, $F4, $EF ; $D03A - $D049
-    .byte $F1, $E3, $29, $9C, $01, $7E, $00
+    DBYT $297A
+    .byte $05
+    .byte $DE, $F4, $EF, $F1, $E3   ; "World"
+    
+    DBYT $299C
+    .byte $01
+    .byte $7E                   ; "8"
+    
+    .byte TERMINATOR
 
+EndSeq_World8_Background3:
 PRG025_D051:
-    .byte $2B, $CA, $04, $6A, $5A, $5A, $5A, $00
+    DBYT $2BCA
+    .byte $04
+    .byte $6A, $5A, $5A, $5A    ; Background palette for world map
+    
+    .byte TERMINATOR
 
+EndSeq_World8_Background4:
 PRG025_D059:
-    .byte $2B ; $D04A - $D059
-    .byte $D2, $04, $66, $55, $55, $55, $2B, $DA, $04, $66, $55, $55, $55, $00
+    DBYT $2BD2
+    .byte $04
+    .byte $66, $55, $55, $55    ; Background palette for world map
+    
+    DBYT $2BDA
+    .byte $04
+    .byte $66, $55, $55, $55    ; Background palette for world map
+    
+    .byte TERMINATOR
 
 EndSeq_World1Pal:
         DBYT $3F00
