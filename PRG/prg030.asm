@@ -53,8 +53,8 @@ Tile_Mem_AddrVH:
 ; Format:
 ;   [2B TVA][CMD][DATA]
 ;   TVA: Target Video Address, typ. inside the nametable somewhere
-;   CMD:    - Bit 7 set = Use vertical updates (32B) else use horizontal (1B)
-;       - Bit 6 set = Means that there is only one byte of DATA, repeated
+;   CMD:    - Bit 7 set = Use vertical updates (32B) else use horizontal (1B) - VU_VERT
+;       - Bit 6 set = Means that there is only one byte of DATA, repeated - VU_REPEAT
 ;       - Bits 0-5  = Count of bytes to write directly to PPU
 ;   DATA: Raw byte(s) to write to the PPU, count specified by CMD
 ; After a data chunk has been read, a new TVA is expected, or a $00 byte which terminates the stream.
