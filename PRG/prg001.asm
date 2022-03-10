@@ -3084,6 +3084,10 @@ Koopaling_JumpChanceMask:
 
     ; Jump velocities of the Koopaling kids. This determines how high each koopaling will
     ; jump.  It is dependent on the number of times they are hit.
+    ;
+    ; NOTE: At PRG001_B624 the YVelocity of the Koopaling is divided by 8 for worlds
+    ; 5 and 7 thus why they have large velocities in this table, but very small
+    ; jump heights in the game.
 Koopaling_JumpYVels:
     ;World   1     2     3     4     5     6     7
     .byte -$30, -$30, -$10, -$30, -$50,  $00, -$50 ; - No hits
