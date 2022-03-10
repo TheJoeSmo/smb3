@@ -3077,13 +3077,18 @@ PRG001_AE85:
     ; Provides a bitmask placed against Counter_1 which if zero means
     ; the Koopaling will jump; thus, less bits means greater chance
 Koopaling_JumpChanceMask:
-    .byte $BF, $BF, $41, $83, $FF, $00, $7F, $BF, $BF, $41, $83, $FF, $00, $7F, $DF, $DF
-    .byte $41, $83, $7F, $00, $9F
+    ;World  1    2    3    4    5    6    7
+    .byte $BF, $BF, $41, $83, $FF, $00, $7F ; - No hits
+    .byte $BF, $BF, $41, $83, $FF, $00, $7F ; - 1 hit
+    .byte $DF, $DF, $41, $83, $7F, $00, $9F ; - 2 hits
 
-    ; Jump velocities
+    ; Jump velocities of the Koopaling kids. This determines how high each koopaling will
+    ; jump.  It is dependent on the number of times they are hit.
 Koopaling_JumpYVels:
-    .byte -$30, -$30, -$10, -$30, -$50,  $00, -$50, -$40, -$38, -$20, -$40, -$60,  $00, -$60, -$50, -$50
-    .byte -$50, -$50, -$70,  $00, -$70
+    ;World   1     2     3     4     5     6     7
+    .byte -$30, -$30, -$10, -$30, -$50,  $00, -$50 ; - No hits
+    .byte -$40, -$38, -$20, -$40, -$60,  $00, -$60 ; - 1 hit
+    .byte -$50, -$50, -$50, -$50, -$70,  $00, -$70 ; - 2 hits
 
 
 ObjNorm_Koopaling:
@@ -3299,14 +3304,13 @@ PRG001_AFC5:
     AND #$01
     STA Objects_Frame,X ; Set current walking frame 0/1
 
-    ; this basically selects a jump velocity from the Koopaling_JumpYVels
-    ; table with certain values only being reached by later world Koopalings
-    ; and making the overall height a bit variable
-    LDY Objects_Var4,X  ; Get Koopaling's current hit count
-    LDA Koopaling_JumpYVelsBase,Y
+    ; Calculate the Koopaling jump height based on the current
+    ; number of hits and the current world.
+    LDY Objects_Var4,X  ; Y = Get Koopaling's current hit count
+    LDA Koopaling_JumpYVelsBase,Y ; A = Koopaling_JumpYVelsBase[CurrentHitCount]
     CLC
     ADC World_Num
-    TAY     ; -> 'Y'
+    TAY     ; Y = Koopaling_JumpYVelsBase[CurrentHitCount] + World_Num = JumpHeightIndex
 
     ; This determines the chance that they will actually jump
     LDA Counter_1
@@ -3314,7 +3318,7 @@ PRG001_AFC5:
     BNE PRG001_AFE6 ; If not jumping, jump to PRG001_AFE6
 
     ; Koopaling jumps!
-    LDA Koopaling_JumpYVels,Y
+    LDA Koopaling_JumpYVels,Y ; A = Koopaling_JumpYVels[JumpHeightIndex]
     STA Objects_YVel,X
 
     RTS      ; Return
