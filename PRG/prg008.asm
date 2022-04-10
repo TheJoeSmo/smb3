@@ -6497,8 +6497,11 @@ PRG008_BD98:
     CMP MuncherJelectroSet,Y
     BEQ PRG008_BDA4     ; If Player is touching muncher/jelectro (whichever is appropriate), jump to PRG008_BDA4
 
-    ; SB: This check seems superfluous and also incorrect
-    CMP #TILEA_MUNCHER  ; Assuming muncher tile!  Should be MuncherJelectroSet,Y?
+    ; In water and ice levels, both jelectros and munchers will damage you.  The check
+    ; above will check of Jelectros if the level is water or ice.  The check below
+    ; will then check for munchers for water/ice levels (or double check that a tile
+    ; is still not a muncher in other level types). 
+    CMP #TILEA_MUNCHER  
     BNE PRG008_BDB1  ; If Player is NOT touching a muncher, jump to PRG008_BDB1
 
     ; Kuribo-on-muncher handling
