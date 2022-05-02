@@ -3070,9 +3070,13 @@ Koopaling_XVelMidAir:   .byte $10, $F0
 Koopaling_JumpYVelsBase:
     .byte $00, $07, $0E
 
-PRG001_AE85:
-    .byte $63, $63, $9F, $63, $63, $00, $3F, $63, $3F, $9F, $23, $63, $00
-    .byte $33, $33, $33, $9F, $43, $63, $00, $23
+    ; Provides a bitmask placed against Counter_1 which if zero means
+    ; the Koopaling will fire their wand; thus, less bits means greater chance
+Koopaling_WandFireChanceMask:
+    ;World  1    2    3    4    5    6    7
+    .byte $63, $63, $9F, $63, $63, $00, $3F ; - No hits
+    .byte $63, $3F, $9F, $23, $63, $00, $33 ; - 1 hit
+    .byte $33, $33, $9F, $43, $63, $00, $23 ; - 2 hits
 
     ; Provides a bitmask placed against Counter_1 which if zero means
     ; the Koopaling will jump; thus, less bits means greater chance
@@ -3347,7 +3351,7 @@ PRG001_AFE6:
 
 PRG001_AFF9:
     LDA Counter_1
-    AND PRG001_AE85,Y
+    AND Koopaling_WandFireChanceMask,Y
     BNE PRG001_B01F
 
 PRG001_B000:
