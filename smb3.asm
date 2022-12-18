@@ -1,6 +1,6 @@
     .db "NES", $1a ;identification of the iNES header
-    .db 16 ;number of 16KB PRG-ROM pages
-    .db 16 ;number of 8KB CHR-ROM pages
+    .db 32 ;number of 16KB PRG-ROM pages
+    .db 32 ;number of 8KB CHR-ROM pages
     .db $40|0 ;mapper 4 and mirroring
     .dsb 9, $00 ;clear the remaining bytes
 
@@ -4854,6 +4854,12 @@ TERMINATOR         = $00   ; Used in the credits as a terminator for end of list
     .include "PRG/prg029.asm"
     .pad $E000, $FF
 
+    ; Pad our way to the end of file for bank 62, 63
+    REPT 32
+    .base $C000
+    .pad $E000, $FF
+    ENDR
+
     ; This bank is ALWAYS active in ROM, sitting at 8000h-9FFFh
     ; Contains interrupt handling code and other constantly reused functionality
     ; bank 30
@@ -5000,3 +5006,6 @@ TERMINATOR         = $00   ; Used in the credits as a terminator for end of list
     .incbin "CHR/chr126.chr"
     .incbin "CHR/chr127.chr"
 
+    REPT 128
+    .incbin "CHR/chr126.chr"
+    ENDR
