@@ -4854,24 +4854,30 @@ TERMINATOR         = $00   ; Used in the credits as a terminator for end of list
     .include "PRG/prg029.asm"
     .pad $E000, $FF
 
+    ; Objects $00
+    ; bank 30
+    .base $A000
+    .include "PRG/prg030.asm"
+    .pad $C000, $FF
+
     ; Pad our way to the end of file for bank 62, 63
-    REPT 32
+    REPT 31
     .base $C000
     .pad $E000, $FF
     ENDR
 
     ; This bank is ALWAYS active in ROM, sitting at 8000h-9FFFh
     ; Contains interrupt handling code and other constantly reused functionality
-    ; bank 30
+    ; bank 62
     .base $8000
-    .include "PRG/prg030.asm"
+    .include "PRG/prg062.asm"
     .pad $A000, $FF
 
     ; This bank is ALWAYS active in ROM, sitting at E000h-FFFFh
     ; Contains interrupt handling code and other constantly reused functionality
-    ; bank 31
+    ; bank 63
     .base $E000
-    .include "PRG/prg031.asm"
+    .include "PRG/prg063.asm"
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -5005,7 +5011,9 @@ TERMINATOR         = $00   ; Used in the credits as a terminator for end of list
     .incbin "CHR/chr125.chr"
     .incbin "CHR/chr126.chr"
     .incbin "CHR/chr127.chr"
+    .incbin "CHR/chr128.chr"
+    .incbin "CHR/chr129.chr"
 
-    REPT 128
+    REPT 126
     .incbin "CHR/chr126.chr"
     ENDR
