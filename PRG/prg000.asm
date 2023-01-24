@@ -316,8 +316,8 @@ Object_AttrFlags:
     .byte OAT_BOUNDBOX00    ; Object $12
     .byte OAT_BOUNDBOX00    ; Object $13
     .byte OAT_BOUNDBOX00    ; Object $14
-    .byte OAT_BOUNDBOX00    ; Object $15
-    .byte OAT_BOUNDBOX00    ; Object $16
+    .byte OAT_BOUNDBOX02 | OAT_BOUNCEOFFOTHERS    ; Object $15 - OBJ_REX
+    .byte OAT_BOUNDBOX01 | OAT_BOUNCEOFFOTHERS    ; Object $16 - OBJ_REX_SQUISHED
     .byte OAT_BOUNDBOX01    ; Object $17 - OBJ_SPINYCHEEP
     .byte OAT_BOUNDBOX13    ; Object $18 - OBJ_BOSS_BOWSER
     .byte OAT_BOUNDBOX01 | OAT_FIREIMMUNITY | OAT_HITNOTKILL    ; Object $19 - OBJ_POWERUP_FIREFLOWER
@@ -7088,4 +7088,3 @@ Video_3CMFlowBot
     DBYT $226C
     .byte VU_REPEAT | $08, $A9
     .byte $00   ; Terminator
-

@@ -46,8 +46,8 @@ ObjectGroup00_InitJumpTable:
     .word ObjInit_DoNothing ; Object $12
     .word ObjInit_DoNothing ; Object $13
     .word ObjInit_DoNothing ; Object $14
-    .word ObjInit_DoNothing ; Object $15
-    .word ObjInit_DoNothing ; Object $16
+    .word ObjInit_Rex       ; Object $15 - OBJ_REX
+    .word ObjInit_RexSquished ; Object $16 - OBJ_REX_SQUISHED
     .word ObjInit_SpinyCheep; Object $17 - OBJ_SPINYCHEEP
     .word ObjInit_Bowser    ; Object $18 - OBJ_BOSS_BOWSER
     .word ObjInit_FireFlower; Object $19 - OBJ_POWERUP_FIREFLOWER
@@ -88,8 +88,8 @@ ObjectGroup00_NormalJumpTable:
     .word ObjNorm_DoNothing ; Object $12
     .word ObjNorm_DoNothing ; Object $13
     .word ObjNorm_DoNothing ; Object $14
-    .word ObjNorm_DoNothing ; Object $15
-    .word ObjNorm_DoNothing ; Object $16
+    .word ObjNorm_Rex       ; Object $15 - OBJ_REX
+    .word ObjNorm_RexSquashed ; Object $16 - OBJ_REX_SQUISHED
     .word ObjNorm_SpinyCheep; Object $17 - OBJ_SPINYCHEEP
     .word ObjNorm_Bowser    ; Object $18 - OBJ_BOSS_BOWSER
     .word ObjNorm_FireFlower; Object $19 - OBJ_POWERUP_FIREFLOWER
@@ -131,8 +131,8 @@ ObjectGroup00_CollideJumpTable:
     .word ObjHit_DoNothing  ; Object $12
     .word ObjHit_DoNothing  ; Object $13
     .word ObjHit_DoNothing  ; Object $14
-    .word ObjHit_DoNothing  ; Object $15
-    .word ObjHit_DoNothing  ; Object $16
+    .word ObjHit_DoNothing  ; Object $15 - OBJ_REX
+    .word ObjHit_DoNothing  ; Object $16 - OBJ_REX_SQUISHED
     .word ObjHit_DoNothing  ; Object $17 - OBJ_SPINYCHEEP
     .word OCSPECIAL_HIGHSCORE; Object $18 - OBJ_BOSS_BOWSER
     .word ObjHit_FireFlower ; Object $19 - OBJ_POWERUP_FIREFLOWER
@@ -173,8 +173,8 @@ ObjectGroup00_Attributes:
     .byte OA1_PAL0 | OA1_HEIGHT16 | OA1_WIDTH8  ; Object $12
     .byte OA1_PAL0 | OA1_HEIGHT16 | OA1_WIDTH8  ; Object $13
     .byte OA1_PAL0 | OA1_HEIGHT16 | OA1_WIDTH8  ; Object $14
-    .byte OA1_PAL0 | OA1_HEIGHT16 | OA1_WIDTH8  ; Object $15
-    .byte OA1_PAL1 | OA1_HEIGHT16 | OA1_WIDTH24 ; Object $16
+    .byte OA1_PAL2 | OA1_HEIGHT32 | OA1_WIDTH16 ; Object $15 - OBJ_REX
+    .byte OA1_PAL2 | OA1_HEIGHT16 | OA1_WIDTH16 ; Object $16 - OBJ_REX_SQUISHED
     .byte OA1_PAL3 | OA1_HEIGHT32 | OA1_WIDTH24 ; Object $17 - OBJ_SPINYCHEEP
     .byte OA1_PAL1 | OA1_HEIGHT48 | OA1_WIDTH32 ; Object $18 - OBJ_BOSS_BOWSER
     .byte OA1_PAL2 | OA1_HEIGHT16 | OA1_WIDTH16 ; Object $19 - OBJ_POWERUP_FIREFLOWER
@@ -222,8 +222,8 @@ ObjectGroup00_Attributes2:
     .byte OA2_TDOGRP0   ; Object $12
     .byte OA2_TDOGRP0   ; Object $13
     .byte OA2_TDOGRP0   ; Object $14
-    .byte OA2_TDOGRP0   ; Object $15
-    .byte OA2_TDOGRP5   ; Object $16
+    .byte OA2_TDOGRP2   ; Object $15 - OBJ_REX
+    .byte OA2_TDOGRP1   ; Object $16 - OBJ_REX_SQUISHED
     .byte OA2_TDOGRP1   ; Object $17 - OBJ_SPINYCHEEP
     .byte OA2_STOMPDONTCARE | OA2_TDOGRP12  ; Object $18 - OBJ_BOSS_BOWSER
     .byte OA2_TDOGRP1   ; Object $19 - OBJ_POWERUP_FIREFLOWER
@@ -271,8 +271,8 @@ ObjectGroup00_Attributes3:
     .byte OA3_HALT_HOTFOOTSPECIAL   ; Object $12
     .byte OA3_HALT_HOTFOOTSPECIAL   ; Object $13
     .byte OA3_HALT_HOTFOOTSPECIAL   ; Object $14
-    .byte OA3_HALT_HOTFOOTSPECIAL   ; Object $15
-    .byte OA3_HALT_DONOTHING4   ; Object $16
+    .byte OA3_HALT_JUSTDRAWTALL | OA3_SQUASH    ; Object $15 - OBJ_REX
+    .byte OA3_HALT_JUSTDRAW | OA3_SQUASH        ; Object $16 - OBJ_REX_SQUISHED
     .byte OA3_HALT_NORMALONLY | OA3_NOTSTOMPABLE    ; Object $17 - OBJ_SPINYCHEEP
     .byte OA3_HALT_NORMALONLY | OA3_TAILATKIMMUNE   ; Object $18 - OBJ_BOSS_BOWSER
     .byte OA3_HALT_NORMALONLY | OA3_TAILATKIMMUNE   ; Object $19 - OBJ_POWERUP_FIREFLOWER
@@ -313,8 +313,8 @@ ObjectGroup00_PatTableSel:
     .byte OPTS_NOCHANGE ; Object $12
     .byte OPTS_NOCHANGE ; Object $13
     .byte OPTS_NOCHANGE ; Object $14
-    .byte OPTS_NOCHANGE ; Object $15
-    .byte OPTS_SETPT5 | $48 ; Object $16
+    .byte OPTS_SETPT6 | $0F ; Object $15 - OBJ_REX
+    .byte OPTS_SETPT6 | $0F ; Object $16 - OBJ_REX_SQUISHED
     .byte OPTS_SETPT5 | $1A ; Object $17 - OBJ_SPINYCHEEP
     .byte OPTS_SETPT5 | $3A ; Object $18 - OBJ_BOSS_BOWSER
     .byte OPTS_NOCHANGE ; Object $19 - OBJ_POWERUP_FIREFLOWER
@@ -355,8 +355,8 @@ ObjectGroup00_KillAction:
     .byte KILLACT_STANDARD  ; Object $12
     .byte KILLACT_STANDARD  ; Object $13
     .byte KILLACT_STANDARD  ; Object $14
-    .byte KILLACT_STANDARD  ; Object $15
-    .byte KILLACT_STANDARD  ; Object $16
+    .byte KILLACT_JUSTDRAW16X32  ; Object $15 - OBJ_REX
+    .byte KILLACT_JUSTDRAW16X16  ; Object $16 - OBJ_REX_SQUISHED
     .byte KILLACT_JUSTDRAW16X16 ; Object $17 - OBJ_SPINYCHEEP
     .byte KILLACT_NORMALSTATE   ; Object $18 - OBJ_BOSS_BOWSER
     .byte KILLACT_JUSTDRAWMIRROR    ; Object $19 - OBJ_POWERUP_FIREFLOWER
@@ -402,6 +402,9 @@ ObjectGroup00_PatternStarts:
 
     .base ObjectGroup_PatternSets    ; <-- help enforce this table *here*
 ObjectGroup00_PatternSets:
+; Squash routine
+JMP ObjSquashed_Rex
+    
     ; (End restricted alignment space)
 ObjP00:
 ObjP03:
@@ -413,8 +416,6 @@ ObjP11:
 ObjP12:
 ObjP13:
 ObjP14:
-ObjP15:
-ObjP16:
 ObjP17:
 ObjP18:
 ObjP1D:
@@ -439,6 +440,165 @@ ObjP21: .byte $51, $51
 ObjP22: .byte $53, $53
 ObjP23: .byte $55, $55
 ObjP08: .byte $FB, $FB, $FB, $FB, $BB, $B9, $B9, $BB, $BF, $BD
+ObjP15: .byte $E9, $EB, $ED, $EF, $E9, $EB, $F1, $F3, $E9, $EB, $ED, $EF
+ObjP16: .byte $F5, $F7, $F9, $FB, $F5, $F7, $FD, $FF
+
+; Starting rex direction
+RexEnterFlip: .byte  $00, SPR_HFLIP
+
+; Starting rex x velocity
+RexEnterXVel:       .byte -$08, $08
+RexSquashEnterXVel: .byte -$0C, $0C
+
+
+ObjInit_Rex:
+	; Determine the starting direction to walk
+	LDY Scroll_LastDir
+	LDA RexEnterFlip,Y
+	STA Objects_FlipBits,X
+	LDA RexEnterXVel,Y
+	STA Objects_XVel,X
+	RTS
+
+
+ObjInit_RexSquished:
+	; Determine the starting direction to walk
+	LDY Scroll_LastDir
+	LDA RexEnterFlip,Y
+	STA Objects_FlipBits,X
+	LDA RexSquashEnterXVel,Y
+	STA Objects_XVel,X
+	RTS
+
+
+ObjSquashed_Rex:
+    ; Simply draw the entity once the timer is 0
+    LDA Objects_Timer3,X
+    BEQ ObjSquashed_RexKill
+
+    JSR Object_Move
+
+    ; Check if hit ground, otherwise simply draw the entity
+	LDA Objects_DetStat,X
+	AND #$04
+	BEQ ObjSquashed_RexSquashedAnimation
+
+	JSR Object_HitGround	 ; Align to ground
+	STA Objects_XVel,X	 ; Clear X velocity
+
+ObjSquashed_RexSquashedAnimation:
+    ; Set object frame to 3
+	LDA #$03
+	STA Objects_Frame,X
+
+    JMP Object_ShakeAndDrawMirrored
+
+ObjSquashed_RexKill:
+    JMP Object_SetDeadEmpty
+
+
+ObjNorm_Rex:
+    ; Alternate the walking animation every couple frames.
+	LDA Counter_1
+	AND #$08
+	LSR A
+	LSR A
+	LSR A
+	STA Objects_Frame,X
+
+    ; Delete the entity if it off the screen.
+	JSR Object_DeleteOffScreen
+
+    ; Handle interactions with the world.
+	JSR Rex_MoveCommon
+
+    ; Check if bumped from underneath.
+	JSR Object_HandleBumpUnderneath
+
+	; Check if being stomped.
+	LDA Objects_State,X
+	CMP #OBJSTATE_SHELLED
+	BNE Rex_Draw
+
+        LDA Objects_XVel,X
+        ASL A
+        PHA
+
+        JSR Level_PrepareNewObject
+        
+        LDA #OBJ_REX_SQUISHED
+        STA Level_ObjectID,X
+            
+        LDA #OBJSTATE_NORMAL
+        STA Objects_State,X
+        
+        LDA Objects_Y,X
+        CLC
+        ADC #17
+        STA Objects_Y,X
+        LDA Objects_YHi,X
+        ADC #0
+        STA Objects_YHi,X
+        
+        LDA Player_Kuribo
+        BEQ Rex_NotInShoe
+            ; Kill the rex instantly if the player is in a shoe.
+            LDA #OBJSTATE_KILLED
+            STA Objects_State,X
+        
+Rex_NotInShoe:
+        PLA
+        STA Objects_XVel,X
+
+        ; Draw normally
+        JMP Object_ShakeAndDraw
+        
+Rex_Draw:
+	JSR Object_Draw16x32Sprite
+	LDX SlotIndexBackup	 ; X = object slot index
+	RTS
+
+
+Rex_MoveCommon:
+    ; Handle normal movements
+	JSR Object_Move
+
+    ; Handle hitting the ceiling.
+	LDA Objects_DetStat,X
+	AND #$08
+	BEQ Rex_DidNotHitCeiling
+	    STA Objects_YVel,X
+
+Rex_DidNotHitCeiling:
+    ; Turn around if hit a wall and moving.
+	LDA Objects_DetStat,X
+	AND #$03
+	BEQ Rex_AllignToGround
+	LDA Objects_XVel,X
+	BEQ Rex_AllignToGround
+	    JSR Object_AboutFace
+
+Rex_AllignToGround:
+    ; Aligns object that impacts the ground onto the floor
+    JMP Object_HitGroundAlign
+
+
+ObjNorm_RexSquashed:
+	LDA Counter_1
+	AND #$08
+	LSR A
+	LSR A
+	LSR A
+	STA Objects_Frame,X
+
+	JSR Object_DeleteOffScreen
+
+	JSR Rex_MoveCommon
+
+	JSR Object_HandleBumpUnderneath
+	
+	JMP Object_ShakeAndDraw
+
 
 SpinyCheep_XVel:
     .byte 8, -8
@@ -538,138 +698,21 @@ PRG001_A277:
     RTS      ; Return
 
 ObjInit_Obj01:
-    LDA #$00
-    STA Objects_FlipBits,X   ; Clear flip bits
-    STA Objects_Var1,X   ; Clear var 1
-    RTS      ; Return
-
-
 ObjNorm_Obj01:
-    LDA Objects_Var1,X
-    BNE PRG001_A28F  ; If var 1 <> 0, jump to PRG001_A28F
-
-    JSR Object_HitTestRespond ; If Player has collided with this object, do Collide routine!
-    JMP PRG001_A292  ; Jump to PRG001_A292
-
 PRG001_A28F:
-    JSR ObjHit_Obj01     ; Do "Hit" routine
-
 PRG001_A292:
-    JSR Object_InteractWithWorld     ; Move, detect, interact with blocks of world
-
-    LDA #$00
-    STA Objects_XVel,X  ; Halt X velocity
-    STA Objects_Frame,X  ; Clear Objects_Frame
-
-    LDA Obj01_Flag
-    BEQ PRG001_A2B0  ; If Obj01_Flag = 0, jump to PRG001_A2B0
-
-    LDA Objects_X,X
-    AND #$0f
-    BEQ PRG001_A2B0  ; If object is right on left edge of tile, jump to PRG001_A2B0
-
-    LDY #$0f     ; Y = $F (X velocity)
-
-    LDA Player_XVel
-    BPL PRG001_A2AE  ; If object's X Velocity >= 0 (still or moving rightward), jump to PRG001_A2AE
-
-    LDY #-$0f    ; Y = -$F (X velocity)
-
 PRG001_A2AE:
-    STY Objects_XVel,X ; Set X velocity appropriately
-
 PRG001_A2B0:
-    JSR Object_ShakeAndDraw     ; Draw object and "shake awake"
-    JMP Object_DeleteOffScreen   ; Delete object if it falls off screen and don't come back
-
-
 PRG001_A2B6:
-    .byte $04, $01, $00, $00, $00, $00
-
 ObjHit_Obj01:
-    LDA Player_InAir
-    BEQ PRG001_A2CB  ; If Player is NOT mid air, jump to PRG001_A2CB
-
-    LDA Player_YVel
-    BMI PRG001_A2D5  ; If Player's Y velocity < 0 (moving upward), jump to PRG001_A2D5
-
-    LDA #$00
-    STA Player_YVel ; Otherwise, halt Player
-
-    JMP PRG001_A2D5  ; Jump to PRG001_A2D5
-
 PRG001_A2CB:
-    LDA Obj01_Flag
-    BNE PRG001_A320  ; If Obj01_Flag <> 0, jump to PRG001_A320 (RTS)
-
-    LDA Pad_Holding
-    AND #PAD_LEFT | PAD_RIGHT
-    BNE PRG001_A2EB  ; If Player is pressing left or right, jump to PRG001_A2EB
-
 PRG001_A2D5:
-    LDA Objects_Var1,X
-    CMP #$18
-    BGS PRG001_A2DE  ; If var 1 > $18, jump to PRG001_A2DE
-
-    LDA #$0a     ; Otherwise, A = 10
-
 PRG001_A2DE:
-    PHA      ; Save var 1
-
-    LDA Player_SpriteX
-    CMP Objects_SpriteX,X
-
-    PLA      ; Restore var 1
-
-    BGE PRG001_A2E9  ; If Player's sprite X >= Object's sprite X, jump to PRG001_A2E9
-
-    JSR Negate   ; Negate Player's sprite X
-
 PRG001_A2E9:
-    STA Obj01_Flag  ; Store this into Obj01_Flag
-
 PRG001_A2EB:
-    LDA Obj01_Flag
-    BEQ PRG001_A2F7  ; If Obj01_Flag = 0, jump to PRG001_A2F7
-
-    LDA #$00
-    STA Objects_Var1,X   ; Var 1 = 0
-
-    JMP PRG001_A320  ; Jump to PRG001_A320 (RTS)
-
 PRG001_A2F7:
-    LDA Objects_Var1,X
-    LSR A
-    LSR A
-    LSR A
-    LSR A       ; Shift var 1 to the right by 4 (upper 4 bits)
-    TAY      ; -> Y
-
-    LDA PRG001_A2B6,Y ; Get value
-
-    LDY Player_XVel
-    BPL PRG001_A309   ; If Player's X velocity >= 0, jump to PRG001_A309
-
-    JSR Negate   ; Otherwise, negate the value
-
 PRG001_A309:
-    STA Player_XVel    ; Store as Player's X Velocity
-    STA Objects_XVel,X ; Set Object's X velocity to the same
-
-    INC Objects_Var1,X  ; var 1 ++
-
-    LDA Objects_Var1,X
-    CMP #$40
-    BLS PRG001_A320  ; If var 1 < $40, jump to PRG001_A320 (RTS)
-
-    DEC Objects_Var1,X  ; var 1 --
-
-    LDA #$00
-    STA Player_XVel     ; Halt Player
-    STA Objects_XVel,X  ; Object stops too
-
 PRG001_A320:
-    RTS      ; Return
 
 ObjInit_Obj02:
     LDA #$00
@@ -6415,4 +6458,3 @@ PRG001_BF9B:
     RTS      ; Return
 
 ; Rest of ROM bank was empty
-

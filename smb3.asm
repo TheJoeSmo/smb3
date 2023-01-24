@@ -3301,6 +3301,8 @@ OBJ_POWERUP_1UP     = $0B   ; 1-Up Mushroom
 OBJ_POWERUP_STARMAN = $0C   ; Starman (primarily, but also the super suits -- Tanooki, Frog, Hammer)
 OBJ_POWERUP_MUSHROOM    = $0D   ; Super Mushroom
 OBJ_BOSS_KOOPALING  = $0E   ; Koopaling (as appropriate to current world)
+OBJ_REX             = $15   ; SMW Rex (2 high)
+OBJ_REX_SQUISHED    = $16   ; SMW Rex (1 high)
 OBJ_SPINYCHEEP      = $17   ; Spiny cheep
 OBJ_BOSS_BOWSER     = $18   ; King Bowser
 OBJ_POWERUP_FIREFLOWER  = $19   ; Fire flower
@@ -4999,4 +5001,3 @@ TERMINATOR         = $00   ; Used in the credits as a terminator for end of list
     .incbin "CHR/chr125.chr"
     .incbin "CHR/chr126.chr"
     .incbin "CHR/chr127.chr"
-
