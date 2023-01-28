@@ -1,6 +1,6 @@
     .db "NES", $1a ;identification of the iNES header
-    .db 16 ;number of 16KB PRG-ROM pages
-    .db 16 ;number of 8KB CHR-ROM pages
+    .db 32 ;number of 16KB PRG-ROM pages
+    .db 32 ;number of 8KB CHR-ROM pages
     .db $40|0 ;mapper 4 and mirroring
     .dsb 9, $00 ;clear the remaining bytes
 
@@ -4854,18 +4854,24 @@ TERMINATOR         = $00   ; Used in the credits as a terminator for end of list
     .include "PRG/prg029.asm"
     .pad $E000, $FF
 
+; Add a series of 32 empty program banks
+REPT 32
+    .base $A000
+    .pad $C000, $FF
+ENDR
+
     ; This bank is ALWAYS active in ROM, sitting at 8000h-9FFFh
     ; Contains interrupt handling code and other constantly reused functionality
-    ; bank 30
+    ; bank 62
     .base $8000
-    .include "PRG/prg030.asm"
+    .include "PRG/prg062.asm"
     .pad $A000, $FF
 
     ; This bank is ALWAYS active in ROM, sitting at E000h-FFFFh
     ; Contains interrupt handling code and other constantly reused functionality
-    ; bank 31
+    ; bank 63
     .base $E000
-    .include "PRG/prg031.asm"
+    .include "PRG/prg063.asm"
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -5000,3 +5006,7 @@ TERMINATOR         = $00   ; Used in the credits as a terminator for end of list
     .incbin "CHR/chr126.chr"
     .incbin "CHR/chr127.chr"
 
+; Add a series of 128 empty graphic slots
+REPT 128
+    .incbin "CHR/chr126.chr"
+ENDR
