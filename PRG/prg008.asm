@@ -7065,5 +7065,3 @@ PRG008_BFF9:
     RTS      ; Return
 
 ; Rest of ROM bank was empty
-
-

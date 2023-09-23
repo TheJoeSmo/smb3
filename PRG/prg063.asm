@@ -54,17 +54,6 @@ DMC02:  .byte $55, $60, $6B, $79, $EA, $F8, $FF, $43, $82, $24, $00, $20, $8E, $
     .byte $AA, $AA, $6A, $59, $69, $55, $55, $B5, $AA, $AA, $B2, $2C, $2B, $55, $55, $55
 DMC02_End
 
-    ;
-
-    .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
-    .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
-    .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
-    .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
-    .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
-    .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
-    .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
-    .byte $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF, $FF
-
 Music_PlayDMC:
     LDA DMC_Queue    ; Get value queued for DMC
     CMP #$7e
@@ -2331,11 +2320,6 @@ PRG031_F9C3:
 
     JMP IntIRQ_32PixelPartition_Part2   ; Jump to IntIRQ_32PixelPartition_Part2
 
-    ; Something removed?
-    NOP
-    NOP
-    NOP
-    NOP
 
 IntIRQ_32PixPart_HideSprites:   ; $F9E3
 
@@ -3348,30 +3332,6 @@ Read_Joypad_Loop:
 
     RTS      ; Return
 
-    ; Most likely filler / reserved space here
-    .byte $ff
-    .byte $ff
-    .byte $ff
-    .byte $ff
-    .byte $ff
-    .byte $ff
-    .byte $ff
-    .byte $ff
-    .byte $ff
-    .byte $ff
-    .byte $ff
-    .byte $ff
-    .byte $ff
-    .byte $ff
-    .byte $ff
-    .byte $ff
-    .byte $ff
-    .byte $ff
-    .byte $ff
-    .byte $ff
-    .byte $ff
-    .byte $ff
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; IntReset
 ; Game begins here...
@@ -3448,11 +3408,6 @@ PRG031_FF80:
     STA PAGE_A000
     JSR PRGROM_Change_Both2     ; Change A000 to page 25 and C000 to page 24
 
-    ; NOPs?
-    NOP
-    NOP
-    NOP
-
     JMP IntReset_Part2  ; Rest of Reset continues in the $8000 bank...
 
 PT2_Full_CHRROM_Switch:  ; $FFAD
@@ -3470,6 +3425,7 @@ PT2_Full_CHRROM_Loop:
 
     RTS      ; Return
 
+.include "PRG/subroutines/cross_jump.asm"
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; PRGROM_Change_Both2
@@ -3513,8 +3469,6 @@ PRGROM_Change_C000: ; $FFD1
     RTS             ; Return
 
 
-    .byte $FF, $FF, $FF
-
     ; A marker of some kind? :)
     .byte "SUPER MARIO 3"
 
@@ -3533,4 +3487,3 @@ Vector_Table:
     .word IntNMI    ; $FFFA - NMI Interrupt (VBlank)
     .word IntReset  ; $FFFC - Reset Interrupt (boot up)
     .word IntIRQ    ; $FFFE - IRQ Interrupt (scanline from MMC3)
-

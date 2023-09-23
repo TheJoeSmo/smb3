@@ -41,7 +41,7 @@ ObjectGroup00_InitJumpTable:
     .word ObjInit_PUpMush   ; Object $0D - OBJ_POWERUP_MUSHROOM
     .word ObjInit_Koopaling ; Object $0E - OBJ_BOSS_KOOPALING
     .word ObjInit_DoNothing ; Object $0F
-    .word ObjInit_DoNothing ; Object $10
+    .word ObjInit_GreenKoopa_1 ; Object $10 - OBJ_GREEN_KOOPA
     .word ObjInit_DoNothing ; Object $11
     .word ObjInit_DoNothing ; Object $12
     .word ObjInit_DoNothing ; Object $13
@@ -83,7 +83,7 @@ ObjectGroup00_NormalJumpTable:
     .word ObjNorm_PUpMush   ; Object $0D - OBJ_POWERUP_MUSHROOM
     .word ObjNorm_Koopaling ; Object $0E - OBJ_BOSS_KOOPALING
     .word ObjNorm_DoNothing ; Object $0F
-    .word ObjNorm_DoNothing ; Object $10
+    .word ObjNorm_GreenKoopa_1 ; Object $10 - OBJ_GREEN_KOOPA
     .word ObjNorm_DoNothing ; Object $11
     .word ObjNorm_DoNothing ; Object $12
     .word ObjNorm_DoNothing ; Object $13
@@ -126,7 +126,7 @@ ObjectGroup00_CollideJumpTable:
     .word ObjHit_PUpMush    ; Object $0D - OBJ_POWERUP_MUSHROOM
     .word ObjHit_Koopaling  ; Object $0E - OBJ_BOSS_KOOPALING
     .word ObjHit_DoNothing  ; Object $0F
-    .word ObjHit_DoNothing  ; Object $10
+    .word ObjHit_GreenKoopa_1  ; Object $10 - OBJ_GREEN_KOOPA
     .word ObjHit_DoNothing  ; Object $11
     .word ObjHit_DoNothing  ; Object $12
     .word ObjHit_DoNothing  ; Object $13
@@ -168,7 +168,7 @@ ObjectGroup00_Attributes:
     .byte OA1_PAL1 | OA1_HEIGHT16 | OA1_WIDTH16 ; Object $0D - OBJ_POWERUP_MUSHROOM
     .byte OA1_PAL2 | OA1_HEIGHT32 | OA1_WIDTH24 ; Object $0E - OBJ_BOSS_KOOPALING
     .byte OA1_PAL0 | OA1_HEIGHT16 | OA1_WIDTH8  ; Object $0F
-    .byte OA1_PAL0 | OA1_HEIGHT16 | OA1_WIDTH8  ; Object $10
+    .byte OA1_PAL2 | OA1_HEIGHT32 | OA1_WIDTH16 ; Object $10 - OBJ_GREEN_KOOPA
     .byte OA1_PAL0 | OA1_HEIGHT16 | OA1_WIDTH8  ; Object $11
     .byte OA1_PAL0 | OA1_HEIGHT16 | OA1_WIDTH8  ; Object $12
     .byte OA1_PAL0 | OA1_HEIGHT16 | OA1_WIDTH8  ; Object $13
@@ -217,7 +217,7 @@ ObjectGroup00_Attributes2:
     .byte OA2_TDOGRP1   ; Object $0D - OBJ_POWERUP_MUSHROOM
     .byte OA2_TDOGRP6   ; Object $0E - OBJ_BOSS_KOOPALING
     .byte OA2_TDOGRP0   ; Object $0F
-    .byte OA2_TDOGRP0   ; Object $10
+    .byte OA2_TDOGRP1   ; Object $10 - OBJ_GREEN_KOOPA
     .byte OA2_TDOGRP0   ; Object $11
     .byte OA2_TDOGRP0   ; Object $12
     .byte OA2_TDOGRP0   ; Object $13
@@ -266,7 +266,7 @@ ObjectGroup00_Attributes3:
     .byte OA3_HALT_NORMALONLY | OA3_TAILATKIMMUNE   ; Object $0D - OBJ_POWERUP_MUSHROOM
     .byte OA3_HALT_NORMALONLY | OA3_TAILATKIMMUNE   ; Object $0E - OBJ_BOSS_KOOPALING
     .byte OA3_HALT_HOTFOOTSPECIAL   ; Object $0F
-    .byte OA3_HALT_HOTFOOTSPECIAL   ; Object $10
+    .byte OA3_HALT_NORMALONLY | OA3_DIESHELLED   ; Object $10 - OBJ_GREEN_KOOPA
     .byte OA3_HALT_HOTFOOTSPECIAL   ; Object $11
     .byte OA3_HALT_HOTFOOTSPECIAL   ; Object $12
     .byte OA3_HALT_HOTFOOTSPECIAL   ; Object $13
@@ -308,7 +308,7 @@ ObjectGroup00_PatTableSel:
     .byte OPTS_NOCHANGE ; Object $0D - OBJ_POWERUP_MUSHROOM
     .byte OPTS_NOCHANGE ; Object $0E - OBJ_BOSS_KOOPALING
     .byte OPTS_NOCHANGE ; Object $0F
-    .byte OPTS_NOCHANGE ; Object $10
+    .byte GreenKoopaPatterns ; Object $10 - OBJ_GREEN_KOOPA
     .byte OPTS_NOCHANGE ; Object $11
     .byte OPTS_NOCHANGE ; Object $12
     .byte OPTS_NOCHANGE ; Object $13
@@ -350,7 +350,7 @@ ObjectGroup00_KillAction:
     .byte KILLACT_JUSTDRAWMIRROR    ; Object $0D - OBJ_POWERUP_MUSHROOM
     .byte KILLACT_NORMALANDKILLED   ; Object $0E - OBJ_BOSS_KOOPALING
     .byte KILLACT_STANDARD  ; Object $0F
-    .byte KILLACT_STANDARD  ; Object $10
+    .byte GreenKoopaKillAction  ; Object $10 - OBJ_GREEN_KOOPA
     .byte KILLACT_STANDARD  ; Object $11
     .byte KILLACT_STANDARD  ; Object $12
     .byte KILLACT_STANDARD  ; Object $13
@@ -439,6 +439,16 @@ ObjP21: .byte $51, $51
 ObjP22: .byte $53, $53
 ObjP23: .byte $55, $55
 ObjP08: .byte $FB, $FB, $FB, $FB, $BB, $B9, $B9, $BB, $BF, $BD
+
+ObjInit_GreenKoopa_1:
+    CrossJumpToA 30, ObjInit_GreenKoopa
+
+ObjNorm_GreenKoopa_1:
+    CrossJumpToA 30, ObjNorm_GreenKoopa
+
+ObjHit_GreenKoopa_1:
+    CrossJumpToA 30, ObjHit_GreenKoopa
+
 
 SpinyCheep_XVel:
     .byte 8, -8
@@ -6415,4 +6425,3 @@ PRG001_BF9B:
     RTS      ; Return
 
 ; Rest of ROM bank was empty
-

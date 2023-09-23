@@ -1,9 +1,9 @@
     .byte $01   ; Unknown purpose
 
-    .byte OBJ_GOOMBA, $0E, $19
+    .byte GreenKoopa, $0E, $18
     .byte OBJ_VENUSFIRETRAP, $16, $17
     .byte OBJ_GOOMBA, $21, $19
-    .byte OBJ_REDTROOPA, $24, $16
+    .byte GreenKoopa, $24, $16
     .byte OBJ_GOOMBA, $34, $18
     .byte OBJ_GOOMBA, $37, $18
     .byte OBJ_PARAGOOMBA, $3B, $18

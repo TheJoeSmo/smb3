@@ -311,7 +311,7 @@ Object_AttrFlags:
     .byte OAT_BOUNDBOX01 | OAT_FIREIMMUNITY | OAT_HITNOTKILL    ; Object $0D - OBJ_POWERUP_MUSHROOM
     .byte OAT_BOUNDBOX09 | OAT_HITNOTKILL   ; Object $0E - OBJ_BOSS_KOOPALING
     .byte OAT_BOUNDBOX00    ; Object $0F
-    .byte OAT_BOUNDBOX00    ; Object $10
+    .byte GreenKoopaBoundBox    ; Object $10 - OBJ_GREEN_KOOPA
     .byte OAT_BOUNDBOX00    ; Object $11
     .byte OAT_BOUNDBOX00    ; Object $12
     .byte OAT_BOUNDBOX00    ; Object $13
@@ -7088,4 +7088,3 @@ Video_3CMFlowBot
     DBYT $226C
     .byte VU_REPEAT | $08, $A9
     .byte $00   ; Terminator
-

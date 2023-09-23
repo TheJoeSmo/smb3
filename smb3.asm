@@ -130,6 +130,9 @@ VU_REPEAT   = $40   ; Repeat following value several times instead of several ra
             .dsb ((_1 + $3F) & $FFC0) - _1
         .endm
 
+; Include custom macros
+.include "PRG/macros/init.asm"
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; PPU I/O regs (CPU side)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -534,14 +537,13 @@ PAD_RIGHT   = $01
     Controller1:        .dsb 1   ; Player 1's controller inputs -- R01 L02 D04 U08 S10 E20 B40 A80
     Controller2:        .dsb 1   ; Player 2's controller inputs -- R01 L02 D04 U08 S10 E20 B40 A80
 
-                .dsb 1   ; $F9 unused
-                .dsb 1   ; $FA unused
-                .dsb 1   ; $FB unused
+    CrossJumpBank:      .dsb 1
+    CrossJumpAddr:      .dsb 2
 
     Vert_Scroll:        .dsb 1   ; Vertical scroll of name table; typically at $EF (239, basically showing the bottom half)
     Horz_Scroll:        .dsb 1   ; Horizontal scroll of name table
 
-                .dsb 1   ; $FE unused
+    CrossJumpFlags:      .dsb 1
 
     PPU_CTL1_Copy:      .dsb 1   ; Holds PPU_CTL1 register data
 
@@ -920,7 +922,6 @@ PLAYERSUIT_LAST     = PLAYERSUIT_HAMMER ; Marker for "last" suit (Debug cycler n
     Obj01_Flag:     .dsb 1   ; Not sure what Obj01 is!! This blocks its left/right handler logic.
 
     .pad $F4
-
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; $1xx LOW STACK VARIABLES
@@ -4854,8 +4855,14 @@ TERMINATOR         = $00   ; Used in the credits as a terminator for end of list
     .include "PRG/prg029.asm"
     .pad $E000, $FF
 
+    ; Custom entities
+    ; bank 30
+    .base $A000
+    .include "PRG/prg030.asm"
+    .pad $C000, $FF
+
 ; Add a series of 32 empty program banks
-REPT 32
+REPT 31
     .base $A000
     .pad $C000, $FF
 ENDR
