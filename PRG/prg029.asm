@@ -2114,14 +2114,10 @@ Player_Die_Dying:
     LDA Player_AboveTop
     BNE PRG029_D6DA  ; If Player is above top of screen, jump to PRG029_D6DA
 
-    NOP
-    NOP
-    NOP
-    NOP
-    NOP
-    NOP
-    NOP
-    JMP PRG029_D6E5
+    LDA Player_SpriteY
+    AND #$f0
+    CMP #$b0
+    BEQ PRG029_D6E5  ; If Player_SpriteY >= $B0 && Player_SpriteY <= $BF (Player is halfway below status bar), jump to PRG029_D6E5
 
 PRG029_D6DA:
     LDA Event_Countdown
