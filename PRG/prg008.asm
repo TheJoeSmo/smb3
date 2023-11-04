@@ -862,7 +862,7 @@ PRG008_A3FA:
     JSR Player_Die   ; Begin death sequence
 
     ; This jumps the initial part of the death sequence
-    LDA #$c0
+    LDA #$30
     STA Event_Countdown ; Event_Countdown = $C0
     LDA #$02
     STA Player_IsDying ; Player_IsDying = 2 (already dropped off screen)
@@ -899,7 +899,7 @@ PRG008_A44D:
     LDA #$01
     STA Player_QueueSuit     ; Queue change to small (superfluous, Player_Die sets it to 1)
 
-    LDA #$50     ; Event_Countdown to be set to $50
+    LDA #$30     ; Event_Countdown to be set to $50
 
     STA Event_Countdown
     JMP PRG008_A472     ; Jump to PRG008_A472
@@ -7065,5 +7065,3 @@ PRG008_BFF9:
     RTS      ; Return
 
 ; Rest of ROM bank was empty
-
-

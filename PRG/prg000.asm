@@ -5857,7 +5857,7 @@ Player_Die:
     LDA #-64
     STA Player_YVel ; Player_YVel = -64
 
-    LDA #$30
+    LDA #$10
     STA Event_Countdown ; Event_Countdown = $30 (ticks until dropped back to map)
 
     LDA #$01
@@ -7088,4 +7088,3 @@ Video_3CMFlowBot
     DBYT $226C
     .byte VU_REPEAT | $08, $A9
     .byte $00   ; Terminator
-

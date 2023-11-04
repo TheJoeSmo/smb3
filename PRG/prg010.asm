@@ -63,7 +63,7 @@ Video_DoWXMario00:
     .byte $05, $BA, $BC, $E9, $FC, $F0  ; MARIO
 
     DBYT $29B3
-    .byte $01, $FB
+    .byte $01, $FE
 
     ; ----
 
@@ -153,7 +153,7 @@ Video_DoWXMario80:
     .byte $05, $BA, $BC, $E9, $FC, $F0 ; MARIO
 
     DBYT $29A3
-    .byte $01, $FB
+    .byte $01, $FE
 
     DBYT $2BD0
     .byte VU_REPEAT | 2, $00
@@ -408,7 +408,7 @@ Video_DoWXLuigi00:
     .byte $05, $EC, $DA, $FC, $EB, $FC  ; LUIGI
 
     DBYT $29B3
-    .byte $01, $FB
+    .byte $01, $FE
 
     DBYT $2BD2
     .byte VU_REPEAT | 4, $00
@@ -495,7 +495,7 @@ Video_DoWXLuigi80:
     .byte $05, $EC, $DA, $FC, $EB, $FC  ; LUIGI
 
     DBYT $29A3
-    .byte $01, $FB
+    .byte $01, $FE
 
     DBYT $2BD0
     .byte VU_REPEAT | 2, $00
@@ -683,9 +683,9 @@ Map_ConfigWorldIntro:
     STA Graphics_Buffer+6
 
     ; Takes the lives from the status bar!
-    LDA StatusBar_LivesH
+    LDA #$FE
     STA Graphics_Buffer+7
-    LDA StatusBar_LivesL
+    LDA #$FE
     STA Graphics_Buffer+8
 
     LDA #$00
@@ -4087,4 +4087,3 @@ DMC08:
 DMC08_End
 
 ; Rest of ROM bank was empty
-

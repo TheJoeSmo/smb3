@@ -217,7 +217,7 @@ Flip_MidBItems:
     DBYT $2B40
 
     ;                 |    < M >     x  [ Lives]
-    .byte  32, $FC, $A6, $74, $75, $FB, $FE, $F3, $FE, $FE
+    .byte  32, $FC, $A6, $74, $75, $FE, $FE, $F3, $FE, $FE
 
     ; Bottom of items start rendering here (replaced at runtime)
     ;      Item 1         Item 2         Item 3         Item 4         Item 5         Item 6         Item 7
@@ -315,7 +315,7 @@ Flip_MidBStatCards:
     DBYT $2B40
 
     ; Discrepency --------v  (Pattern is ... $FE, $FE ... in PRG030 status bar)  Unimportant; inserts <M> which is replaced anyway
-    .byte  32, $FC, $A6, $74, $75, $FB, $FE, $F3, $FE, $F0, $F0, $F0, $F0, $F0, $F0 ; [M/L]x  000000 c000| etc.
+    .byte  32, $FC, $A6, $74, $75, $FE, $FE, $F3, $FE, $F0, $F0, $F0, $F0, $F0, $F0 ; [M/L]x  000000 c000| etc.
     .byte $F0, $FE, $ED, $F0, $F0, $F0, $A7, $A6, $FE, $FE, $AA, $FE, $FE, $AA, $FE
     .byte $FE, $A7, $FC
     ; Discrepency --------^  (Pattern is ... $F4, $F0 ... in PRG030 status bar graphics)
@@ -624,9 +624,9 @@ InvFlipFrame_DrawMLLivesScore:
 
     LDX Temp_Var9       ; X = Temp_Var9
 
-    LDA StatusBar_LivesH
+    LDA #$FE
     STA Graphics_Buffer+8,X
-    LDA StatusBar_LivesL
+    LDA #$FE
     STA Graphics_Buffer+9,X
 
     LDA InvFlip_Frame
@@ -3714,9 +3714,9 @@ PRG026_B48B:
 
     ; *** Lives copy
     LDY Graphics_BufCnt  ; Y = Graphics_BufCnt
-    LDA StatusBar_LivesH
+    LDA #$FE
     STA Graphics_Buffer+18,Y
-    LDA StatusBar_LivesL
+    LDA #$FE
     STA Graphics_Buffer+19,Y
 
     ; *** Score copy loop

@@ -135,7 +135,7 @@ Video_Upd_Table: ; $803E
     ; Sync this with PRG026 Flip_MidBStatCards
     DBYT _1 + $40
     ; Discrepency --------v  (Pattern is ... $FE, $FE ... in PRG030 status bar)  Unimportant; inserts <M> which is replaced anyway
-    .byte $20, $FC, $A6, $FE, $FE, $FB, $FE, $F3, $FE, $F0, $F0, $F0, $F0, $F0, $F0, $F0    ; [M/L]x  000000 c000| etc.
+    .byte $20, $FC, $A6, $FE, $FE, $FE, $FE, $F3, $FE, $F0, $F0, $F0, $F0, $F0, $F0, $F0    ; [M/L]x  000000 c000| etc.
     .byte $FE, $ED, $F4, $F0, $F0, $A7, $A6, $FE, $FE, $AA, $FE, $FE, $AA, $FE, $FE, $A7, $FC
     ; Discrepency --------^  (Pattern is ... $F4, $F0 ... in PRG030 status bar graphics)
 
@@ -2839,7 +2839,7 @@ PRG030_910C:
 
     ; Player returns to map dead
 
-    LDY #$02     ; Y = 2 (Will be the Map_Operation value)
+    LDY #$0D     ; Y = 2 (Will be the Map_Operation value)
 
     ; Map_ReturnStatus = 0
     LDA #$00
@@ -2857,7 +2857,9 @@ PRG030_910C:
     LDA Map_PlayerLost2PVs
     BNE PRG030_9128  ; If Map_PlayerLost2PVs is set, jump to PRG030_9128
 
-    DEC Player_Lives,X  ; One less life for the Player...
+    NOP
+    NOP
+    NOP
     BMI PRG030_9133     ; If fell below zero, GAMEOVER!; jump to PRG030_9133
 
 PRG030_9128:
@@ -5978,4 +5980,3 @@ PRG030_9FAF:
     JMP IntIRQ_32PixelPartition_Part3
 
 ; NOTE: The remaining ROM space was all blank ($FF)
-
