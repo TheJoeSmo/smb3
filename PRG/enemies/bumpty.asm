@@ -70,7 +70,7 @@ ObjInit_Bumpty:
 
     ; Define the patterns to be used
     LDA #BUMPTY_CHR_BANK
-    STA PatTable_BankSel+6
+    STA PatTable_BankSel+5
 
     RTS
 
