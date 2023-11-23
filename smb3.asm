@@ -3450,6 +3450,7 @@ OBJ_BIGQBLOCK_SUPERLEAF = $97   ; Big ? block (-green??- leaf)
 OBJ_BIGQBLOCK_TANOOKI   = $98   ; Big ? block (tanooki)
 OBJ_BIGQBLOCK_FROG  = $99   ; Big ? block (frog suit)
 OBJ_BIGQBLOCK_HAMMER    = $9A   ; Big ? block (hammer suit)
+OBJ_BUMPTY          = $9B   ; Bumpty
 OBJ_FIREJET_UPWARD  = $9D   ; upward fire jet
 OBJ_PODOBOO     = $9E   ; Podoboo
 OBJ_PARABEETLE      = $9F   ; Parabeetle
@@ -5040,8 +5041,18 @@ TERMINATOR         = $00   ; Used in the credits as a terminator for end of list
 
 .if IS_EXPANDED_ROM != 0
 
-    .if INCLUDE_DINO
+    .if INCLUDE_DINO == 0
+        DINO_CHR_BANK = 127
+    .else
+        DINO_CHR_BANK = 128
         .incbin "CHR/dino.chr"
+    .endif
+
+    .if INCLUDE_BUMPTY == 0
+        BUMPTY_CHR_BANK = DINO_CHR_BANK
+    .else
+        BUMPTY_CHR_BANK = DINO_CHR_BANK + 1
+        .incbin "CHR/bumpty.chr"
     .endif
 
     ; Pad a series of unused graphics

@@ -35,7 +35,11 @@ ObjectGroup04_InitJumpTable:
     .word ObjInit_BigQBlock     ; Object $98 - OBJ_BIGQBLOCK_TANOOKI
     .word ObjInit_BigQBlock     ; Object $99 - OBJ_BIGQBLOCK_FROG
     .word ObjInit_BigQBlock     ; Object $9A - OBJ_BIGQBLOCK_HAMMER
+.if INCLUDE_BUMPTY == 0
     .word ObjInit_DoNothing     ; Object $9B
+.else
+    .word ObjInit_Bumpty5        ; Object $9B - OBJ_BUMPTY
+.endif
     .word ObjInit_DoNothing     ; Object $9C
     .word ObjInit_FireJetUpward ; Object $9D - OBJ_FIREJET_UPWARD
     .word ObjInit_Podoboo       ; Object $9E - OBJ_PODOBOO
@@ -77,7 +81,11 @@ ObjectGroup04_NormalJumpTable:
     .word ObjNorm_BigQBlock     ; Object $98 - OBJ_BIGQBLOCK_TANOOKI
     .word ObjNorm_BigQBlock     ; Object $99 - OBJ_BIGQBLOCK_FROG
     .word ObjNorm_BigQBlock     ; Object $9A - OBJ_BIGQBLOCK_HAMMER
+.if INCLUDE_BUMPTY == 0
     .word ObjNorm_DoNothing     ; Object $9B
+.else
+    .word ObjNorm_Bumpty5        ; Object $9B - OBJ_BUMPTY
+.endif
     .word ObjNorm_DoNothing     ; Object $9C
     .word ObjNorm_FireJet       ; Object $9D - OBJ_FIREJET_UPWARD
     .word ObjNorm_Podoboo       ; Object $9E - OBJ_PODOBOO
@@ -120,7 +128,11 @@ ObjectGroup04_CollideJumpTable:
     .word ObjHit_DoNothing  ; Object $98 - OBJ_BIGQBLOCK_TANOOKI
     .word ObjHit_DoNothing  ; Object $99 - OBJ_BIGQBLOCK_FROG
     .word ObjHit_DoNothing  ; Object $9A - OBJ_BIGQBLOCK_HAMMER
-    .word ObjHit_DoNothing  ; Object $9B
+.if INCLUDE_BUMPTY == 0
+    word ObjHit_DoNothing  ; Object $9B
+.else
+    .word ObjHit_DoNothing  ; Object $9B - OBJ_BUMPTY
+.endif
     .word ObjHit_DoNothing  ; Object $9C
     .word ObjHit_DoNothing  ; Object $9D - OBJ_FIREJET_UPWARD
     .word ObjHit_DoNothing  ; Object $9E - OBJ_PODOBOO
@@ -162,7 +174,11 @@ ObjectGroup04_Attributes:
     .byte OA1_PAL0 | OA1_HEIGHT32 | OA1_WIDTH32 ; Object $98 - OBJ_BIGQBLOCK_TANOOKI
     .byte OA1_PAL0 | OA1_HEIGHT32 | OA1_WIDTH32 ; Object $99 - OBJ_BIGQBLOCK_FROG
     .byte OA1_PAL0 | OA1_HEIGHT32 | OA1_WIDTH32 ; Object $9A - OBJ_BIGQBLOCK_HAMMER
+.if INCLUDE_BUMPTY == 0
     .byte OA1_PAL0 | OA1_HEIGHT16 | OA1_WIDTH8  ; Object $9B
+.else
+    .byte OA1_PAL3 | OA1_HEIGHT16 | OA1_WIDTH16 ; Object $9B - OBJ_BUMPTY
+.endif
     .byte OA1_PAL0 | OA1_HEIGHT16 | OA1_WIDTH8  ; Object $9C
     .byte OA1_PAL1 | OA1_HEIGHT48 | OA1_WIDTH16 ; Object $9D - OBJ_FIREJET_UPWARD
     .byte OA1_PAL1 | OA1_HEIGHT32 | OA1_WIDTH16 ; Object $9E - OBJ_PODOBOO
@@ -203,7 +219,11 @@ ObjectGroup04_Attributes2:
     .byte OA2_TDOGRP0   ; Object $98 - OBJ_BIGQBLOCK_TANOOKI
     .byte OA2_TDOGRP0   ; Object $99 - OBJ_BIGQBLOCK_FROG
     .byte OA2_TDOGRP0   ; Object $9A - OBJ_BIGQBLOCK_HAMMER
+.if INCLUDE_BUMPTY == 0
     .byte OA2_TDOGRP0   ; Object $9B
+.else
+    .byte OA2_STOMPDONTCARE | OA2_TDOGRP1   ; Object $9B - OBJ_BUMPTY
+.endif
     .byte OA2_TDOGRP0   ; Object $9C
     .byte OA2_TDOGRP0   ; Object $9D - OBJ_FIREJET_UPWARD
     .byte OA2_TDOGRP0   ; Object $9E - OBJ_PODOBOO
@@ -244,7 +264,11 @@ ObjectGroup04_Attributes3:
     .byte OA3_HALT_NORMALONLY | OA3_TAILATKIMMUNE   ; Object $98 - OBJ_BIGQBLOCK_TANOOKI
     .byte OA3_HALT_NORMALONLY | OA3_TAILATKIMMUNE   ; Object $99 - OBJ_BIGQBLOCK_FROG
     .byte OA3_HALT_NORMALONLY | OA3_TAILATKIMMUNE   ; Object $9A - OBJ_BIGQBLOCK_HAMMER
+.if INCLUDE_BUMPTY == 0
     .byte OA3_HALT_HOTFOOTSPECIAL   ; Object $9B
+.else
+    .byte OA3_HALT_NORMALONLY | OA3_NOTSTOMPABLE | OA3_TAILATKIMMUNE   ; Object $9B - OBJ_BUMPTY
+.endif
     .byte OA3_HALT_HOTFOOTSPECIAL   ; Object $9C
     .byte OA3_HALT_NORMALONLY | OA3_NOTSTOMPABLE | OA3_TAILATKIMMUNE    ; Object $9D - OBJ_FIREJET_UPWARD
     .byte OA3_HALT_NORMALONLY | OA3_NOTSTOMPABLE | OA3_TAILATKIMMUNE    ; Object $9E - OBJ_PODOBOO
@@ -286,7 +310,11 @@ ObjectGroup04_PatTableSel:
     .byte OPTS_SETPT5 | $4C ; Object $98 - OBJ_BIGQBLOCK_TANOOKI
     .byte OPTS_SETPT5 | $4C ; Object $99 - OBJ_BIGQBLOCK_FROG
     .byte OPTS_SETPT5 | $4C ; Object $9A - OBJ_BIGQBLOCK_HAMMER
+.if INCLUDE_BUMPTY == 0
     .byte OPTS_NOCHANGE ; Object $9B
+.else
+    .byte OPTS_NOCHANGE ; Object $9B - OBJ_BUMPTY
+.endif
     .byte OPTS_NOCHANGE ; Object $9C
     .byte OPTS_SETPT6 | $37 ; Object $9D - OBJ_FIREJET_UPWARD
     .byte OPTS_SETPT5 | $12 ; Object $9E - OBJ_PODOBOO
@@ -328,7 +356,11 @@ ObjectGroup04_KillAction:
     .byte KILLACT_STANDARD  ; Object $98 - OBJ_BIGQBLOCK_TANOOKI
     .byte KILLACT_STANDARD  ; Object $99 - OBJ_BIGQBLOCK_FROG
     .byte KILLACT_STANDARD  ; Object $9A - OBJ_BIGQBLOCK_HAMMER
+.if INCLUDE_BUMPTY == 0
     .byte KILLACT_STANDARD  ; Object $9B
+.else
+    .byte KILLACT_STANDARD  ; Object $9B - OBJ_BUMPTY
+.endif
     .byte KILLACT_STANDARD  ; Object $9C
     .byte KILLACT_STANDARD  ; Object $9D - OBJ_FIREJET_UPWARD
     .byte KILLACT_JUSTDRAWMIRROR    ; Object $9E - OBJ_PODOBOO
@@ -399,7 +431,9 @@ ObjP97:
 ObjP98:
 ObjP99:
 ObjP9A:
-ObjP9B:
+.if INCLUDE_BUMPTY == 0
+    ObjP9B:
+.endif
 ObjP9C:
 ObjP9E:
 ObjPA8:
@@ -437,6 +471,15 @@ ObjPAB:
 ObjPAA:
 ; Note to self: Remember, until the label!
     .byte $A9, $71
+.if INCLUDE_BUMPTY != 0
+    ObjP9B:
+        .byte $C5, $C7, $C9, $CB                      ; Walking frames
+        .byte $E1, $E3                                ; Looking frames
+        .byte $C5, $C7, $CD, $CF, $ED, $ED            ; Jumping frames
+        .byte $E1, $E3                                ; Falling frames
+        .byte $E7, $E9, $E1, $E3, $EB, $EB, $C1, $C3  ; Sliding frames
+        .byte $CD, $CF, $D1, $D3, $F5, $D3, $F1, $F3  ; Flying frames
+.endif
 
 ObjInit_Podoboo:
 
@@ -598,107 +641,14 @@ PRG005_A2E1:
 SpinyEgg_TowardsPlayer: .byte $0A, -$0A
 
 ObjInit_ObjB3:
-
-    JSR Level_ObjCalcXDiffs
-
-    ; Set X velocity towards Player
-    LDA SpinyEgg_TowardsPlayer,Y
-    STA Objects_XVel,X
-
-    RTS      ; Return
-
-ObjB3_AttrByFrame:  .byte $03, $01, $02, $01
-
+ObjB3_AttrByFrame:
 ObjNorm_ObjB3:
-
-    ; Strange object... hurts Player, can be killed, appears able to be "bounced" off a sideways bounce block
-
-    LDA Level_NoStopCnt
-    LSR A
-    LSR A
-    AND #$03
-    STA Objects_Frame,X  ; Set frame 0 to 3
-
-    TAY          ; Y = 0 to 3
-    LDA ObjB3_AttrByFrame,Y
-    STA Objects_SprAttr,X    ; Set attribute by frame
-
-    JSR Object_ShakeAndDraw  ; Draw thing
-
-    ; Clear horizontal and vertical flip bits on first sprite
-    LDA Sprite_RAM+$02,Y
-    AND #$3f
-    STA Sprite_RAM+$02,Y
-
-    ; Set horizontal and vertical flip bits on second sprite
-    ORA #$c0
-    STA Sprite_RAM+$06,Y
-
-    LDA Objects_State,X
-    CMP #OBJSTATE_NORMAL
-    BNE PRG005_A34A  ; If object state is not Normal, jump to PRG005_A34A
-
-    LDA Player_HaltGame
-    BNE PRG005_A34A  ; If gameplay halted, jump to PRG005_A34A
-
-    LDA Counter_1
-    LSR A
-    NOP
-    NOP
-    AND #$01
-    STA Objects_Frame,X  ; Toggle frame 0 or 1
-
-    JSR Object_DeleteOffScreen  ; Delete object if it falls off-screen
-    JSR Player_HitEnemy     ; Do Player to "thing" collision
-    JSR Object_Move         ; Do standard movements
-
-    LDA Objects_DetStat,X
-    AND #$04
-    BEQ PRG005_A34F  ; If object did not hit floor, jump to PRG005_A34F
-
-    JSR Object_HitGround    ; Align to floor
-
-    LDA Objects_Timer,X
-    BNE PRG005_A34A  ; If timer not expired, jump to PRG005_A34A
-
-    LDA LRBounce_Vel
-    CMP Objects_Var4,X
-    BEQ PRG005_A34A  ; If bounced different, jump to PRG005_A34A
-
-    JSR PRG005_A355  ; Turn around
-
 PRG005_A34A:
-
-    ; Lock in how object was bounced so it can't be bounced the same again
-    LDA LRBounce_Vel
-    STA Objects_Var4,X
-
 PRG005_A34F:
-    LDA Objects_DetStat,X
-    AND #$03
-    BEQ ObjInit_BigCannonBall    ; If object did not hit wall, jump to ObjInit_BigCannonBall (RTS)
-
-
 PRG005_A355:
-
-    ; Set timer to $20
-    LDA #$20
-    STA Objects_Timer,X
-
-    JSR Object_AboutFace     ; Turn around
-    JSR Object_ApplyXVel     ; Apply X velocity
-    JSR Object_ApplyXVel     ; Apply Y velocity
 
 ObjInit_BigCannonBall:
     RTS      ; Return
-
-
-    ; FIXME: Anybody want to claim this??
-; $A364
-    .byte $A1, $A1, $A1, $A9, $AF, $B5, $A1, $10, $08, $10, $10, $10, $10, $10, $08, $10
-    .byte $10, $10, $10, $10, $10, $03, $83, $03, $03, $03, $03, $03, $C3, $43, $43, $43
-    .byte $43, $43, $43, $00, $03, $08, $0D, $10, $0D, $08, $03, $04, $03, $00, $03, $04
-    .byte $07, $08, $07
 
 ObjNorm_BigCannonBall:
     JSR Object_DeleteOffScreen  ; Delete object if it falls off-screen
@@ -4083,12 +4033,6 @@ PRG005_B38B:
     STA Temp_Var1
     ASL Temp_Var1
     ROR A
-    NOP
-    NOP
-    NOP
-    NOP
-    NOP
-    NOP
     CLC
     ADC Player_XVel
     CLC
@@ -4948,11 +4892,6 @@ PRG005_B7DD:
 PRG005_B7E5:
     LDX SlotIndexBackup         ; X = object slot index
     RTS      ; Return
-
-
-    ; FIXME: Anyone want to claim this??
-PRG005_B7E8:
-    .byte $1C, $FF, $1C, $FA, $1C, $10, $1C, $15
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Level_SpawnObjsAndBounce
@@ -6615,5 +6554,12 @@ PRG005_BFA7:
 
     RTS      ; Return
 
-; Rest of ROM bank was empty...
+.if INCLUDE_BUMPTY != 0
+    ObjInit_Bumpty5:
+        CrossJumpToA000 #30, ObjInit_Bumpty
+        RTS
 
+    ObjNorm_Bumpty5:
+        CrossJumpToA000 #30, ObjNorm_Bumpty
+        RTS   
+.endif

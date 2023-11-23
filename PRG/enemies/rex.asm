@@ -32,7 +32,7 @@ ObjInit_RexSquished:
 
 +
   ; Define the patterns to be used
-  LDA #$80
+  LDA #DINO_CHR_BANK
   STA PatTable_BankSel+5
 	RTS
 
