@@ -316,7 +316,7 @@ Object_AttrFlags:
     .byte OAT_BOUNDBOX00    ; Object $12
     .byte OAT_BOUNDBOX00    ; Object $13
     .byte OAT_BOUNDBOX00    ; Object $14
-.if INCLUDE_DINO == 0
+.if INCLUDE_REX == 0
     .byte OAT_BOUNDBOX00    ; Object $15
     .byte OAT_BOUNDBOX00    ; Object $16
 .else

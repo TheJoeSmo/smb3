@@ -46,7 +46,7 @@ ObjectGroup00_InitJumpTable:
     .word ObjInit_DoNothing ; Object $12
     .word ObjInit_DoNothing ; Object $13
     .word ObjInit_DoNothing ; Object $14
-.if INCLUDE_DINO == 0
+.if INCLUDE_REX == 0
     .word ObjInit_DoNothing ; Object $15
     .word ObjInit_DoNothing ; Object $16
 .else
@@ -93,7 +93,7 @@ ObjectGroup00_NormalJumpTable:
     .word ObjNorm_DoNothing ; Object $12
     .word ObjNorm_DoNothing ; Object $13
     .word ObjNorm_DoNothing ; Object $14
-.if INCLUDE_DINO == 0
+.if INCLUDE_REX == 0
     .word ObjNorm_DoNothing ; Object $15
     .word ObjNorm_DoNothing ; Object $16
 .else
@@ -141,7 +141,7 @@ ObjectGroup00_CollideJumpTable:
     .word ObjHit_DoNothing  ; Object $12
     .word ObjHit_DoNothing  ; Object $13
     .word ObjHit_DoNothing  ; Object $14
-.if INCLUDE_DINO == 00
+.if INCLUDE_REX == 00
     .word ObjHit_DoNothing  ; Object $15
     .word ObjHit_DoNothing  ; Object $16
 .else
@@ -188,7 +188,7 @@ ObjectGroup00_Attributes:
     .byte OA1_PAL0 | OA1_HEIGHT16 | OA1_WIDTH8  ; Object $12
     .byte OA1_PAL0 | OA1_HEIGHT16 | OA1_WIDTH8  ; Object $13
     .byte OA1_PAL0 | OA1_HEIGHT16 | OA1_WIDTH8  ; Object $14
-.if INCLUDE_DINO == 0
+.if INCLUDE_REX == 0
     .byte OA1_PAL0 | OA1_HEIGHT16 | OA1_WIDTH8  ; Object $15
     .byte OA1_PAL1 | OA1_HEIGHT16 | OA1_WIDTH24 ; Object $16
 .else
@@ -242,7 +242,7 @@ ObjectGroup00_Attributes2:
     .byte OA2_TDOGRP0   ; Object $12
     .byte OA2_TDOGRP0   ; Object $13
     .byte OA2_TDOGRP0   ; Object $14
-.if INCLUDE_DINO == 0
+.if INCLUDE_REX == 0
     .byte OA2_TDOGRP0   ; Object $15
     .byte OA2_TDOGRP5   ; Object $16
 .else
@@ -296,7 +296,7 @@ ObjectGroup00_Attributes3:
     .byte OA3_HALT_HOTFOOTSPECIAL   ; Object $12
     .byte OA3_HALT_HOTFOOTSPECIAL   ; Object $13
     .byte OA3_HALT_HOTFOOTSPECIAL   ; Object $14
-.if INCLUDE_DINO == 0
+.if INCLUDE_REX == 0
     .byte OA3_HALT_HOTFOOTSPECIAL   ; Object $15
     .byte OA3_HALT_DONOTHING4       ; Object $16
 .else
@@ -343,7 +343,7 @@ ObjectGroup00_PatTableSel:
     .byte OPTS_NOCHANGE ; Object $12
     .byte OPTS_NOCHANGE ; Object $13
     .byte OPTS_NOCHANGE ; Object $14
-.if INCLUDE_DINO == 0
+.if INCLUDE_REX == 0
     .byte OPTS_NOCHANGE     ; Object $15
     .byte OPTS_SETPT5 | $48 ; Object $16
 .else
@@ -390,7 +390,7 @@ ObjectGroup00_KillAction:
     .byte KILLACT_STANDARD  ; Object $12
     .byte KILLACT_STANDARD  ; Object $13
     .byte KILLACT_STANDARD  ; Object $14
-.if INCLUDE_DINO == 0
+.if INCLUDE_REX == 0
     .byte KILLACT_STANDARD  ; Object $15
     .byte KILLACT_STANDARD  ; Object $16
 .else
@@ -443,7 +443,7 @@ ObjectGroup00_PatternStarts:
     .base ObjectGroup_PatternSets    ; <-- help enforce this table *here*
 ObjectGroup00_PatternSets:
 
-.if INCLUDE_DINO != 0
+.if INCLUDE_REX != 0
     ; Squash routine
     JMP ObjSquashed_Rex1
 .endif
@@ -459,7 +459,7 @@ ObjP11:
 ObjP12:
 ObjP13:
 ObjP14:
-.if INCLUDE_DINO == 0
+.if INCLUDE_REX == 0
     ObjP15:
     ObjP16:
 .endif
@@ -488,7 +488,7 @@ ObjP22: .byte $53, $53
 ObjP23: .byte $55, $55
 ObjP08: .byte $FB, $FB, $FB, $FB, $BB, $B9, $B9, $BB, $BF, $BD
 
-.if INCLUDE_DINO != 0
+.if INCLUDE_REX != 0
     ObjP15: .byte $E9, $EB, $ED, $EF, $E9, $EB, $F1, $F3, $E9, $EB, $ED, $EF
     ObjP16: .byte $F5, $F7, $F9, $FB, $F5, $F7, $FD, $FF
 .endif
@@ -3916,7 +3916,7 @@ KoopalingPats_Ludwig:
     .byte $81, $93, $85, $95, $B7, $8B  ; Wand swing
 
 Koopaling_WandFrame:
-.if INCLUDE_DINO == 0
+.if INCLUDE_REX == 0
     .byte $49, $49, $4B, $4D
 .else
     .byte $4C, $4C, $4E, $50
@@ -6455,7 +6455,7 @@ PRG001_BF9B:
     LDX SlotIndexBackup    ; X = object slot index
     RTS      ; Return
 
-.if INCLUDE_DINO != 0
+.if INCLUDE_REX != 0
     ObjInit_Rex1:
         CrossJumpToA000 #30, ObjInit_Rex
         RTS

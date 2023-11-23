@@ -1,4 +1,4 @@
-.if INCLUDE_DINO == 1
+.if INCLUDE_REX == 1
     .include "PRG/enemies/rex.asm"
 .endif
 

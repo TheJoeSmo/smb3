@@ -5041,7 +5041,7 @@ TERMINATOR         = $00   ; Used in the credits as a terminator for end of list
 
 .if IS_EXPANDED_ROM != 0
 
-    .if INCLUDE_DINO == 0
+    .if INCLUDE_REX == 0
         DINO_CHR_BANK = 127
     .else
         DINO_CHR_BANK = 128
