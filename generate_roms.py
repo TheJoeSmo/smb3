@@ -19,17 +19,22 @@ def extract_include_options(original_content):
         if line.startswith("INCLUDE"):
             key, value = line.strip().split("=")
             include_options[key.strip()] = int(value.strip())
-    del include_options['INCLUDE_TEST_LEVELS']
-    del include_options['INCLUDE_DEMO_LEVELS']
     return include_options
 
-def generate_configurations():
+def generate_configurations(include_test_levels, include_demo_levels):
     original_content = read_original_config()
     include_options = extract_include_options(original_content)
+    
+    # Do not consider additional levels as options.
     options = list(include_options.keys())
+    options.remove('INCLUDE_TEST_LEVELS')
+    options.remove('INCLUDE_DEMO_LEVELS')
 
     for i in range(2 ** len(options)):
         configuration = {option: (i >> j) & 1 for j, option in enumerate(options)}
+        configuration['INCLUDE_TEST_LEVELS'] = include_test_levels
+        configuration['INCLUDE_DEMO_LEVELS'] = include_demo_levels
+
         # Update the configuration in the original content
         for key, value in configuration.items():
             original_content = original_content.replace(f"{key} = {include_options[key]}", f"{key} = {value}")
@@ -56,11 +61,7 @@ def main():
     include_test_levels = args.include_test_levels if args.include_test_levels is not None else 0
     include_demo_levels = args.include_demo_levels if args.include_demo_levels is not None else 0
 
-    for config in generate_configurations():
-        # Set INCLUDE_TEST_LEVELS and INCLUDE_DEMO_LEVELS in the current configuration
-        config['INCLUDE_TEST_LEVELS'] = include_test_levels
-        config['INCLUDE_DEMO_LEVELS'] = include_demo_levels
-
+    for config in generate_configurations(include_test_levels, include_demo_levels):
         # Run the 'make' command with the working directory set to './'
         try:
             subprocess.run(["make"], check=True, cwd="./")
