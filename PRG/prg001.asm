@@ -46,8 +46,13 @@ ObjectGroup00_InitJumpTable:
     .word ObjInit_DoNothing ; Object $12
     .word ObjInit_DoNothing ; Object $13
     .word ObjInit_DoNothing ; Object $14
+.if INCLUDE_DINO == 0
     .word ObjInit_DoNothing ; Object $15
     .word ObjInit_DoNothing ; Object $16
+.else
+    .word ObjInit_Rex1      ; Object $15 - OBJ_REX
+    .word ObjInit_RexSquished1 ; Object $16 - OBJ_REX_SQUISHED
+.endif
     .word ObjInit_SpinyCheep; Object $17 - OBJ_SPINYCHEEP
     .word ObjInit_Bowser    ; Object $18 - OBJ_BOSS_BOWSER
     .word ObjInit_FireFlower; Object $19 - OBJ_POWERUP_FIREFLOWER
@@ -88,8 +93,13 @@ ObjectGroup00_NormalJumpTable:
     .word ObjNorm_DoNothing ; Object $12
     .word ObjNorm_DoNothing ; Object $13
     .word ObjNorm_DoNothing ; Object $14
+.if INCLUDE_DINO == 0
     .word ObjNorm_DoNothing ; Object $15
     .word ObjNorm_DoNothing ; Object $16
+.else
+    .word ObjNorm_Rex1          ; Object $15 - OBJ_REX
+    .word ObjNorm_RexSquashed1  ; Object $16 - OBJ_REX_SQUISHED
+.endif
     .word ObjNorm_SpinyCheep; Object $17 - OBJ_SPINYCHEEP
     .word ObjNorm_Bowser    ; Object $18 - OBJ_BOSS_BOWSER
     .word ObjNorm_FireFlower; Object $19 - OBJ_POWERUP_FIREFLOWER
@@ -131,8 +141,13 @@ ObjectGroup00_CollideJumpTable:
     .word ObjHit_DoNothing  ; Object $12
     .word ObjHit_DoNothing  ; Object $13
     .word ObjHit_DoNothing  ; Object $14
+.if INCLUDE_DINO == 00
     .word ObjHit_DoNothing  ; Object $15
     .word ObjHit_DoNothing  ; Object $16
+.else
+    .word ObjHit_DoNothing  ; Object $15 - OBJ_REX
+    .word ObjHit_DoNothing  ; Object $16 - OBJ_REX_SQUISHED
+.endif
     .word ObjHit_DoNothing  ; Object $17 - OBJ_SPINYCHEEP
     .word OCSPECIAL_HIGHSCORE; Object $18 - OBJ_BOSS_BOWSER
     .word ObjHit_FireFlower ; Object $19 - OBJ_POWERUP_FIREFLOWER
@@ -173,8 +188,13 @@ ObjectGroup00_Attributes:
     .byte OA1_PAL0 | OA1_HEIGHT16 | OA1_WIDTH8  ; Object $12
     .byte OA1_PAL0 | OA1_HEIGHT16 | OA1_WIDTH8  ; Object $13
     .byte OA1_PAL0 | OA1_HEIGHT16 | OA1_WIDTH8  ; Object $14
+.if INCLUDE_DINO == 0
     .byte OA1_PAL0 | OA1_HEIGHT16 | OA1_WIDTH8  ; Object $15
     .byte OA1_PAL1 | OA1_HEIGHT16 | OA1_WIDTH24 ; Object $16
+.else
+    .byte OA1_PAL2 | OA1_HEIGHT32 | OA1_WIDTH16 ; Object $15 - OBJ_REX
+    .byte OA1_PAL2 | OA1_HEIGHT16 | OA1_WIDTH16 ; Object $16 - OBJ_REX_SQUISHED
+.endif
     .byte OA1_PAL3 | OA1_HEIGHT32 | OA1_WIDTH24 ; Object $17 - OBJ_SPINYCHEEP
     .byte OA1_PAL1 | OA1_HEIGHT48 | OA1_WIDTH32 ; Object $18 - OBJ_BOSS_BOWSER
     .byte OA1_PAL2 | OA1_HEIGHT16 | OA1_WIDTH16 ; Object $19 - OBJ_POWERUP_FIREFLOWER
@@ -222,8 +242,13 @@ ObjectGroup00_Attributes2:
     .byte OA2_TDOGRP0   ; Object $12
     .byte OA2_TDOGRP0   ; Object $13
     .byte OA2_TDOGRP0   ; Object $14
+.if INCLUDE_DINO == 0
     .byte OA2_TDOGRP0   ; Object $15
     .byte OA2_TDOGRP5   ; Object $16
+.else
+    .byte OA2_TDOGRP2   ; Object $15 - OBJ_REX
+    .byte OA2_TDOGRP1   ; Object $16 - OBJ_REX_SQUISHED
+.endif
     .byte OA2_TDOGRP1   ; Object $17 - OBJ_SPINYCHEEP
     .byte OA2_STOMPDONTCARE | OA2_TDOGRP12  ; Object $18 - OBJ_BOSS_BOWSER
     .byte OA2_TDOGRP1   ; Object $19 - OBJ_POWERUP_FIREFLOWER
@@ -271,8 +296,13 @@ ObjectGroup00_Attributes3:
     .byte OA3_HALT_HOTFOOTSPECIAL   ; Object $12
     .byte OA3_HALT_HOTFOOTSPECIAL   ; Object $13
     .byte OA3_HALT_HOTFOOTSPECIAL   ; Object $14
+.if INCLUDE_DINO == 0
     .byte OA3_HALT_HOTFOOTSPECIAL   ; Object $15
-    .byte OA3_HALT_DONOTHING4   ; Object $16
+    .byte OA3_HALT_DONOTHING4       ; Object $16
+.else
+    .byte OA3_HALT_JUSTDRAWTALL | OA3_SQUASH    ; Object $15 - OBJ_REX
+    .byte OA3_HALT_JUSTDRAW | OA3_SQUASH        ; Object $16 - OBJ_REX_SQUISHED
+.endif
     .byte OA3_HALT_NORMALONLY | OA3_NOTSTOMPABLE    ; Object $17 - OBJ_SPINYCHEEP
     .byte OA3_HALT_NORMALONLY | OA3_TAILATKIMMUNE   ; Object $18 - OBJ_BOSS_BOWSER
     .byte OA3_HALT_NORMALONLY | OA3_TAILATKIMMUNE   ; Object $19 - OBJ_POWERUP_FIREFLOWER
@@ -313,8 +343,13 @@ ObjectGroup00_PatTableSel:
     .byte OPTS_NOCHANGE ; Object $12
     .byte OPTS_NOCHANGE ; Object $13
     .byte OPTS_NOCHANGE ; Object $14
-    .byte OPTS_NOCHANGE ; Object $15
+.if INCLUDE_DINO == 0
+    .byte OPTS_NOCHANGE     ; Object $15
     .byte OPTS_SETPT5 | $48 ; Object $16
+.else
+    .byte OPTS_NOCHANGE ; Object $15 - OBJ_REX
+    .byte OPTS_NOCHANGE ; Object $16 - OBJ_REX_SQUISHED
+.endif
     .byte OPTS_SETPT5 | $1A ; Object $17 - OBJ_SPINYCHEEP
     .byte OPTS_SETPT5 | $3A ; Object $18 - OBJ_BOSS_BOWSER
     .byte OPTS_NOCHANGE ; Object $19 - OBJ_POWERUP_FIREFLOWER
@@ -355,8 +390,13 @@ ObjectGroup00_KillAction:
     .byte KILLACT_STANDARD  ; Object $12
     .byte KILLACT_STANDARD  ; Object $13
     .byte KILLACT_STANDARD  ; Object $14
+.if INCLUDE_DINO == 0
     .byte KILLACT_STANDARD  ; Object $15
     .byte KILLACT_STANDARD  ; Object $16
+.else
+    .byte KILLACT_JUSTDRAW16X32  ; Object $15 - OBJ_REX
+    .byte KILLACT_JUSTDRAW16X16  ; Object $16 - OBJ_REX_SQUISHED
+.endif
     .byte KILLACT_JUSTDRAW16X16 ; Object $17 - OBJ_SPINYCHEEP
     .byte KILLACT_NORMALSTATE   ; Object $18 - OBJ_BOSS_BOWSER
     .byte KILLACT_JUSTDRAWMIRROR    ; Object $19 - OBJ_POWERUP_FIREFLOWER
@@ -402,6 +442,12 @@ ObjectGroup00_PatternStarts:
 
     .base ObjectGroup_PatternSets    ; <-- help enforce this table *here*
 ObjectGroup00_PatternSets:
+
+.if INCLUDE_DINO != 0
+    ; Squash routine
+    JMP ObjSquashed_Rex1
+.endif
+
     ; (End restricted alignment space)
 ObjP00:
 ObjP03:
@@ -413,8 +459,10 @@ ObjP11:
 ObjP12:
 ObjP13:
 ObjP14:
-ObjP15:
-ObjP16:
+.if INCLUDE_DINO == 0
+    ObjP15:
+    ObjP16:
+.endif
 ObjP17:
 ObjP18:
 ObjP1D:
@@ -439,6 +487,11 @@ ObjP21: .byte $51, $51
 ObjP22: .byte $53, $53
 ObjP23: .byte $55, $55
 ObjP08: .byte $FB, $FB, $FB, $FB, $BB, $B9, $B9, $BB, $BF, $BD
+
+.if INCLUDE_DINO != 0
+    ObjP15: .byte $E9, $EB, $ED, $EF, $E9, $EB, $F1, $F3, $E9, $EB, $ED, $EF
+    ObjP16: .byte $F5, $F7, $F9, $FB, $F5, $F7, $FD, $FF
+.endif
 
 SpinyCheep_XVel:
     .byte 8, -8
@@ -542,7 +595,6 @@ ObjInit_Obj01:
     STA Objects_FlipBits,X   ; Clear flip bits
     STA Objects_Var1,X   ; Clear var 1
     RTS      ; Return
-
 
 ObjNorm_Obj01:
     LDA Objects_Var1,X
@@ -653,21 +705,6 @@ PRG001_A2F7:
     JSR Negate   ; Otherwise, negate the value
 
 PRG001_A309:
-    STA Player_XVel    ; Store as Player's X Velocity
-    STA Objects_XVel,X ; Set Object's X velocity to the same
-
-    INC Objects_Var1,X  ; var 1 ++
-
-    LDA Objects_Var1,X
-    CMP #$40
-    BLS PRG001_A320  ; If var 1 < $40, jump to PRG001_A320 (RTS)
-
-    DEC Objects_Var1,X  ; var 1 --
-
-    LDA #$00
-    STA Player_XVel     ; Halt Player
-    STA Objects_XVel,X  ; Object stops too
-
 PRG001_A320:
     RTS      ; Return
 
@@ -3879,7 +3916,11 @@ KoopalingPats_Ludwig:
     .byte $81, $93, $85, $95, $B7, $8B  ; Wand swing
 
 Koopaling_WandFrame:
+.if INCLUDE_DINO == 0
     .byte $49, $49, $4B, $4D
+.else
+    .byte $4C, $4C, $4E, $50
+.endif
 
 Koopaling_OffYLo:
     .byte $05, $05, $FB, $0A, $0A, $0A, $FF, $0F, $08, $08, $FB, $0D
@@ -6414,5 +6455,24 @@ PRG001_BF9B:
     LDX SlotIndexBackup    ; X = object slot index
     RTS      ; Return
 
-; Rest of ROM bank was empty
+.if INCLUDE_DINO != 0
+    ObjInit_Rex1:
+        CrossJumpToA000 #30, ObjInit_Rex
+        RTS
 
+    ObjInit_RexSquished1:
+        CrossJumpToA000 #30, ObjInit_RexSquished
+        RTS
+
+    ObjNorm_Rex1:
+        CrossJumpToA000 #30, ObjNorm_Rex
+        RTS
+
+    ObjNorm_RexSquashed1:
+        CrossJumpToA000 #30, ObjNorm_RexSquashed
+        RTS
+
+    ObjSquashed_Rex1:
+        CrossJumpToA000 #30, ObjSquashed_Rex
+        RTS
+.endif

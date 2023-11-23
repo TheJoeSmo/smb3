@@ -1,9 +1,13 @@
 W507_LowerL:    .include "PRG/levels/Plains/5-7Lower.asm"   ; 5-7 Lower
 W705_UnderL:    .include "PRG/levels/Plains/7-5Under.asm"   ; 7-5 Underground
-UnusedEnd1L:    .include "PRG/levels/Plains/UnusedE1.asm"   ; Unused exit area 1
-Unused1L:   .include "PRG/levels/Plains/Unused1.asm"    ; "Unused Level 1"
+.if KEEP_USED_LEVELS != 0
+  UnusedEnd1L:    .include "PRG/levels/Plains/UnusedE1.asm"   ; Unused exit area 1
+  Unused1L:       .include "PRG/levels/Plains/Unused1.asm"    ; "Unused Level 1"
+.endif
 W46BL:      .include "PRG/levels/Plains/4-6B.asm"       ; 4-6 B
-Unused2L:   .include "PRG/levels/Plains/Unused2.asm"    ; "Unused Level 2"
+.if KEEP_USED_LEVELS != 0
+  Unused2L:   .include "PRG/levels/Plains/Unused2.asm"    ; "Unused Level 2"
+.endif
 W701L:      .include "PRG/levels/Plains/7-1.asm"        ; 7-1 outside
 W707L:      .include "PRG/levels/Plains/7-7.asm"        ; 7-7 outside
 W46AL:      .include "PRG/levels/Plains/4-6A.asm"       ; 4-6 A
@@ -23,7 +27,9 @@ W7HBA:      .include "PRG/levels/Plains/W7HBA.asm"      ; World 7 Hammer Bro bat
 W501L:      .include "PRG/levels/Plains/5-1.asm"        ; 5-1
 W501_BonusL:    .include "PRG/levels/Plains/5-1Bonus.asm"   ; 5-1 Bonus
 W802_BonusL:    .include "PRG/levels/Plains/8-2Bonus.asm"   ; 8-2 Bonus
-UnusedEnd2L:    .include "PRG/levels/Plains/UnusedE2.asm"   ; Unused exit area 2
+.if KEEP_USED_LEVELS != 0
+  UnusedEnd2L:    .include "PRG/levels/Plains/UnusedE2.asm"   ; Unused exit area 2
+.endif
 W801L:      .include "PRG/levels/Plains/8-1.asm"        ; 8-1
 W307L:      .include "PRG/levels/Plains/3-7.asm"        ; 3-7
 W301_ExitL: .include "PRG/levels/Plains/3-1Exit.asm"    ; 3-1 Exit pipe
@@ -34,7 +40,9 @@ W101_BonusL:    .include "PRG/levels/Plains/1-1Bonus.asm"   ; 1-1 Bonus room
 W705L:      .include "PRG/levels/Plains/7-5.asm"        ; 7-5
 W308_EndL:  .include "PRG/levels/Plains/3-8End.asm"     ; 3-8 Exit
 W503_EndL:  .include "PRG/levels/Plains/5-3End.asm"     ; 5-3 Exit
-Unused2_ExitL:  .include "PRG/levels/Plains/Unused2E.asm"   ; "Unused level 2" exit
+.if KEEP_USED_LEVELS != 0
+  Unused2_ExitL:  .include "PRG/levels/Plains/Unused2E.asm"   ; "Unused level 2" exit
+.endif
 GenericW4L: .include "PRG/levels/Plains/Generic4.asm"   ; Generic Exit for World 4 only
 W3HBD:      .include "PRG/levels/Plains/W3HBD.asm"      ; World 3 Hammer Bro battle area (out of water)
 W3HBC:      .include "PRG/levels/Plains/W3HBC.asm"      ; World 3 Hammer Bro battle area (in water, with powerup)
@@ -42,3 +50,9 @@ WxHBx:      .include "PRG/levels/Plains/WxHBx.asm"      ; ?? Unknown Hammer Bro 
 W104_EndL:  .include "PRG/levels/Plains/1-4End.asm"     ; 1-4 Exit pipe
 W303L:      .include "PRG/levels/Plains/3-3.asm"        ; 3-3
 W303_EndL:  .include "PRG/levels/Plains/3-3End.asm"     ; 3-3 Exit
+.if INCLUDE_DEMO_LEVELS != 0
+REX_LEVEL:  .include "PRG/levels/custom/rex.asm"            ; Demo rex level
+.endif
+.if INCLUDE_TEST_LEVELS != 0
+REX_TEST_LEVEL:  .include "PRG/levels/custom/rex_test.asm"  ; Test rex level
+.endif

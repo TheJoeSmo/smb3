@@ -6,20 +6,28 @@ W603L:      .include "PRG/levels/Ice/6-3.asm"       ; 6-3
 W6F2L:      .include "PRG/levels/Ice/6-F2.asm"      ; World 6 second fortress
 W6F2_AltL:  .include "PRG/levels/Ice/6-F2A.asm"     ; World 6 second fortress boss room
 W605L:      .include "PRG/levels/Ice/6-5.asm"       ; 6-5
-Unused11L:  .include "PRG/levels/HighUp/Unused11.asm"   ; "Unused Level 11"
+.if KEEP_USED_LEVELS != 0
+  Unused11L:  .include "PRG/levels/HighUp/Unused11.asm"   ; "Unused Level 11"
+.endif
 W505L:      .include "PRG/levels/HighUp/5-5.asm"        ; 5-5
-Unused12L:  .include "PRG/levels/HighUp/Unused12.asm"   ; "Unused Level 12"
-Unused13L:  .include "PRG/levels/HighUp/Unused13.asm"   ; "Unused Level 13"
+.if KEEP_USED_LEVELS != 0
+  Unused12L:  .include "PRG/levels/HighUp/Unused12.asm"   ; "Unused Level 12"
+  Unused13L:  .include "PRG/levels/HighUp/Unused13.asm"   ; "Unused Level 13"
+.endif
 W602L:      .include "PRG/levels/Ice/6-2.asm"       ; 6-2
 EmptyHighUp1L:  .include "PRG/levels/HighUp/Empty1.asm"     ; Empty/unused 1
 W601L:      .include "PRG/levels/Ice/6-1.asm"       ; 6-1
-W1UNL:      .include "PRG/levels/HighUp/Unused6.asm"    ; "Unused Level 6" (mapped to World 1 START tile)
+.if KEEP_USED_LEVELS != 0
+  W1UNL:      .include "PRG/levels/HighUp/Unused6.asm"    ; "Unused Level 6" (mapped to World 1 START tile)
+.endif
 W602_EndL:  .include "PRG/levels/Ice/6-2End.asm"        ; 6-2 Exit Pipe
 W106L:      .include "PRG/levels/HighUp/1-6.asm"        ; 1-6
 W104L:      .include "PRG/levels/HighUp/1-4.asm"        ; 1-4
 W604L:      .include "PRG/levels/Ice/6-4.asm"       ; 6-4
-Unused7L:   .include "PRG/levels/Ice/Unused7.asm"       ; "Unused level 7"
-Unused7_EndL:   .include "PRG/levels/Ice/Unused7E.asm"      ; "Unused level 7" Exit area
+.if KEEP_USED_LEVELS != 0
+  Unused7L:   .include "PRG/levels/Ice/Unused7.asm"       ; "Unused level 7"
+  Unused7_EndL:   .include "PRG/levels/Ice/Unused7E.asm"      ; "Unused level 7" Exit area
+.endif
 W606L:      .include "PRG/levels/Ice/6-6.asm"       ; 6-6
 W610L:      .include "PRG/levels/Ice/6-10.asm"      ; 6-10
 W607L:      .include "PRG/levels/Ice/6-7.asm"       ; 6-7

@@ -1,6 +1,9 @@
+; Defines a series of configurations to dynamically add patches.
+.include "config.asm"
+
     .db "NES", $1a ;identification of the iNES header
-    .db 16 ;number of 16KB PRG-ROM pages
-    .db 16 ;number of 8KB CHR-ROM pages
+    .db NUMBER_OF_PRG_BANKS ;number of 16KB PRG-ROM pages
+    .db NUMBER_OF_CHR_BANKS ;number of 8KB CHR-ROM pages
     .db $40|0 ;mapper 4 and mirroring
     .dsb 9, $00 ;clear the remaining bytes
 
@@ -16,7 +19,6 @@
 ; (^\s*.*\s*); (PRG005_[0-9A-F][0-9A-F][0-9A-F][0-9A-F])    --> \n\2:\n\1   (Labels from comment to beginning of line)
 ; ^(\s*[BJ].. PRG005_[0-9A-F][0-9A-F][0-9A-F][0-9A-F]).*    --> \1\n        (Formatting linebreak after B.. J..)
 ; \s*;.*                            --> (nothing)   (Cleans off remaining address constants)
-
 
 ; Handy pseudo instructions... only make sense in the context of CMPing a number...
 .macro BLT _1
@@ -113,6 +115,26 @@
     .byte (_1 & $FF00) >> 8
     .byte (_1 & $00FF)
     .endm
+
+; Macros to easily cross jump between banks
+.macro CrossJumpToA000 _1, _2
+    LDA #<_2
+    STA CrossJumpPointer
+    LDA #>_2
+    STA CrossJumpPointer+1
+    LDA #_1
+    JSR CrossJumpToA
+.endm
+
+.macro CrossJumpToC000 _1, _2
+    LDA #<_2
+    STA CrossJumpPointer
+    LDA #>_2
+    STA CrossJumpPointer+1
+    LDA #_1
+    JSR CrossJumpToC
+.endm
+
 
 ; These are flags related to a video update stream value
 VU_VERT     = $80   ; Update in vertical (+32B) mode instead of horizontal (+1B) mode
@@ -404,7 +426,7 @@ MMC3_IRQENABLE  = $E001 ; Enables IRQ generation
 
     VBlank_Tick:        .dsb 1   ; can be used for timing, or knowing when an NMI just fired off
 
-                .dsb 1   ; $11 unused
+    CrossJumpBank:  .dsb 1   ; Bank to switch to when making a cross jump call.
 
     Horz_Scroll_Hi:     .dsb 1   ; Provides a "High" byte for horizontally scrolling, or could be phrased as "current screen"
     PPU_CTL1_Mod:       ; NOT DURING GAMEPLAY, this is used as an additional modifier to PPU_CTL1
@@ -534,8 +556,7 @@ PAD_RIGHT   = $01
     Controller1:        .dsb 1   ; Player 1's controller inputs -- R01 L02 D04 U08 S10 E20 B40 A80
     Controller2:        .dsb 1   ; Player 2's controller inputs -- R01 L02 D04 U08 S10 E20 B40 A80
 
-                .dsb 1   ; $F9 unused
-                .dsb 1   ; $FA unused
+    CrossJumpPointer:   .dsb 2   ; A pointer for cross jumps
                 .dsb 1   ; $FB unused
 
     Vert_Scroll:        .dsb 1   ; Vertical scroll of name table; typically at $EF (239, basically showing the bottom half)
@@ -3301,6 +3322,8 @@ OBJ_POWERUP_1UP     = $0B   ; 1-Up Mushroom
 OBJ_POWERUP_STARMAN = $0C   ; Starman (primarily, but also the super suits -- Tanooki, Frog, Hammer)
 OBJ_POWERUP_MUSHROOM    = $0D   ; Super Mushroom
 OBJ_BOSS_KOOPALING  = $0E   ; Koopaling (as appropriate to current world)
+OBJ_REX             = $15   ; SMW Rex (2 high)
+OBJ_REX_SQUISHED    = $16   ; SMW Rex (1 high)
 OBJ_SPINYCHEEP      = $17   ; Spiny cheep
 OBJ_BOSS_BOWSER     = $18   ; King Bowser
 OBJ_POWERUP_FIREFLOWER  = $19   ; Fire flower
@@ -4854,18 +4877,33 @@ TERMINATOR         = $00   ; Used in the credits as a terminator for end of list
     .include "PRG/prg029.asm"
     .pad $E000, $FF
 
+.if IS_EXPANDED_ROM == 1
+
+    ; Bank to store enemies
+    .base $A000
+    .include "PRG/prg030.asm"
+    .pad $C000, $FF
+
+    ; Add a series of 32 empty program banks
+    .rept 31
+        .base $A000
+        .pad $C000, $FF
+    .endr
+
+.endif
+
     ; This bank is ALWAYS active in ROM, sitting at 8000h-9FFFh
     ; Contains interrupt handling code and other constantly reused functionality
-    ; bank 30
+    ; bank 62
     .base $8000
-    .include "PRG/prg030.asm"
+    .include "PRG/prg062.asm"
     .pad $A000, $FF
 
     ; This bank is ALWAYS active in ROM, sitting at E000h-FFFFh
     ; Contains interrupt handling code and other constantly reused functionality
-    ; bank 31
+    ; bank 63
     .base $E000
-    .include "PRG/prg031.asm"
+    .include "PRG/prg063.asm"
 
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -5000,3 +5038,15 @@ TERMINATOR         = $00   ; Used in the credits as a terminator for end of list
     .incbin "CHR/chr126.chr"
     .incbin "CHR/chr127.chr"
 
+.if IS_EXPANDED_ROM != 0
+
+    .if INCLUDE_DINO
+        .incbin "CHR/dino.chr"
+    .endif
+
+    ; Pad a series of unused graphics
+    .rept UNUSED_EXTENDED_CHR_BANKS
+        .incbin "CHR/chr126.chr"
+    .endr
+
+.endif
