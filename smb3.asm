@@ -3374,6 +3374,7 @@ OBJ_FLOATINGBGCLOUD = $49   ; Floating background cloud
 OBJ_BOOMBOOMQBALL   = $4A   ; Boom Boom (?) end-level ball
 OBJ_BOOMBOOMJUMP    = $4B   ; Jumping Boom-Boom (can actually hit ? blocks!)
 OBJ_BOOMBOOMFLY     = $4C   ; Flying Boom-boom
+OBJ_THWIMP          = $4D   ; Thwimp from SMW
 OBJ_CHAINCHOMPFREE  = $4F   ; Jumping chain chomp head after he breaks free
 OBJ_BOBOMBEXPLODE   = $50   ; Ready-to-explode Bob-Omb
 OBJ_ROTODISCDUAL    = $51   ; Dual Rotodisc, sync, clockwise
@@ -5053,6 +5054,13 @@ TERMINATOR         = $00   ; Used in the credits as a terminator for end of list
     .else
         BUMPTY_CHR_BANK = DINO_CHR_BANK + 1
         .incbin "CHR/bumpty.chr"
+    .endif
+
+    .if INCLUDE_THWIMP == 0
+        THWIMP_CHR_BANK = BUMPTY_CHR_BANK
+    .else
+        THWIMP_CHR_BANK = BUMPTY_CHR_BANK + 1
+        .incbin "CHR/fortress.chr"
     .endif
 
     ; Pad a series of unused graphics

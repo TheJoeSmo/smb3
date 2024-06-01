@@ -29,7 +29,9 @@ W5T1L:      .include "PRG/levels/Fortress/W5Tower1.asm" ; World 5 Tower Part 1
 W5T3L:      .include "PRG/levels/Fortress/W5Tower3.asm" ; World 5 Tower Part 3
 W4F2L:      .include "PRG/levels/Fortress/4-F2.asm"     ; World 4 second fortress
 W4F1L:      .include "PRG/levels/Fortress/4-F1.asm"     ; World 4 first fortress
-Unused5L:   .include "PRG/levels/Fortress/Unused5.asm"  ; "Unused Level 5" (TCRF)
+.if KEEP_USED_LEVELS != 0
+  Unused5L:   .include "PRG/levels/Fortress/Unused5.asm"  ; "Unused Level 5" (TCRF)
+.endif
 W80FL:      .include "PRG/levels/Fortress/8-F.asm"      ; World 8 Fortress "blue" part
 W80F_AltL:  .include "PRG/levels/Fortress/8-FA.asm"     ; World 8 Fortress "grey" part
 W8BCL:      .include "PRG/levels/Fortress/Bowser.asm"   ; Bowser's Castle

@@ -1,0 +1,63 @@
+; Original address was $A95D
+; Level 1-Fortress's layout data
+	.byte $2A, $AA			 ; Next Area Layout Offset
+	.byte $51, $D3			 ; Next Area Enemy & Item Offset
+	.byte $09				 ; Level Size Index | Y-Start Index
+	.byte $04				 ; BG Pal | Enemy Pal | X-Start Index | Unused
+	.byte $C2				 ; Pipe Ends Level | VScroll Index | Vertical Flag | Next Area Object Set
+	.byte $02				 ; Level Entry Action | Graphic Set
+	.byte $03				 ; Time Index | Unused | Music Index
+
+	.byte $6E, $00, $3C, $9F ; Blank Background (used to block out stuff) @ (0, 14)
+	.byte $00, $00, $EF, $9F ; Horizontally oriented X-blocks @ (0, 0)
+	.byte $10, $00, $E5, $09 ; Horizontally oriented X-blocks @ (0, 16)
+	.byte $10, $0A, $E4, $00 ; Horizontally oriented X-blocks @ (10, 16)
+	.byte $10, $0B, $E3, $00 ; Horizontally oriented X-blocks @ (11, 16)
+	.byte $10, $0C, $E2, $00 ; Horizontally oriented X-blocks @ (12, 16)
+	.byte $16, $0E, $E0, $02 ; Horizontally oriented X-blocks @ (14, 22)
+	.byte $17, $0D, $E0, $03 ; Horizontally oriented X-blocks @ (13, 23)
+	.byte $18, $0C, $E0, $04 ; Horizontally oriented X-blocks @ (12, 24)
+	.byte $19, $00, $E1, $10 ; Horizontally oriented X-blocks @ (0, 25)
+	.byte $79, $11, $31, $18 ; Blank Background (used to block out stuff) @ (17, 25)
+	.byte $7A, $11, $40, $18 ; Lava @ (17, 26)
+	.byte $15, $14, $E5, $03 ; Horizontally oriented X-blocks @ (20, 21)
+	.byte $19, $11, $E1, $0C ; Horizontally oriented X-blocks @ (17, 25)
+	.byte $18, $1C, $E0, $00 ; Horizontally oriented X-blocks @ (28, 24)
+	.byte $16, $1D, $E2, $00 ; Horizontally oriented X-blocks @ (29, 22)
+	.byte $18, $21, $E0, $04 ; Horizontally oriented X-blocks @ (33, 24)
+	.byte $16, $2A, $E2, $02 ; Horizontally oriented X-blocks @ (42, 22)
+	.byte $17, $2D, $E1, $00 ; Horizontally oriented X-blocks @ (45, 23)
+	.byte $18, $2E, $E0, $00 ; Horizontally oriented X-blocks @ (46, 24)
+	.byte $19, $2A, $E1, $26 ; Horizontally oriented X-blocks @ (42, 25)
+	.byte $34, $24, $00		 ; '?' with flower @ (36, 20)
+	.byte $10, $2F, $E5, $0F ; Horizontally oriented X-blocks @ (47, 16)
+	.byte $15, $38, $02		 ; Rotodisc block @ (56, 21)
+	.byte $16, $43, $E0, $0A ; Horizontally oriented X-blocks @ (67, 22)
+	.byte $17, $42, $E0, $0C ; Horizontally oriented X-blocks @ (66, 23)
+	.byte $18, $41, $E0, $0F ; Horizontally oriented X-blocks @ (65, 24)
+	.byte $16, $47, $02		 ; Rotodisc block @ (71, 22)
+	.byte $12, $4A, $61		 ; Dungeon windows @ (74, 18)
+	.byte $7A, $51, $40, $0E ; Lava @ (81, 26)
+	.byte $18, $55, $E2, $01 ; Horizontally oriented X-blocks @ (85, 24)
+	.byte $17, $5A, $E3, $02 ; Horizontally oriented X-blocks @ (90, 23)
+	.byte $17, $5B, $02		 ; Rotodisc block @ (91, 23)
+	.byte $64, $51, $3B, $11 ; Blank Background (used to block out stuff) @ (81, 4)
+	.byte $18, $60, $E0, $00 ; Horizontally oriented X-blocks @ (96, 24)
+	.byte $19, $60, $E1, $3F ; Horizontally oriented X-blocks @ (96, 25)
+	.byte $10, $63, $E0, $2C ; Horizontally oriented X-blocks @ (99, 16)
+	.byte $36, $62, $01		 ; '?' with leaf @ (98, 22)
+	.byte $11, $64, $E0, $2B ; Horizontally oriented X-blocks @ (100, 17)
+	.byte $12, $66, $E0, $29 ; Horizontally oriented X-blocks @ (102, 18)
+	.byte $13, $68, $E0, $27 ; Horizontally oriented X-blocks @ (104, 19)
+	.byte $14, $6B, $E0, $24 ; Horizontally oriented X-blocks @ (107, 20)
+	.byte $15, $6F, $E3, $0A ; Horizontally oriented X-blocks @ (111, 21)
+	.byte $15, $61, $62		 ; Dungeon windows @ (97, 21)
+	.byte $17, $6D, $00		 ; Door @ (109, 23)
+	.byte $64, $63, $32, $0F ; Blank Background (used to block out stuff) @ (99, 4)
+	.byte $16, $7E, $64		 ; Dungeon windows @ (126, 22)
+	.byte $05, $72, $00		 ; Door @ (114, 5)
+	.byte $12, $93, $62		 ; Dungeon windows @ (147, 18)
+	.byte $10, $9F, $E8, $00 ; Horizontally oriented X-blocks @ (159, 16)
+	.byte $E7, $48, $54		 ; Jump object @ (0, 0)
+	.byte $E6, $68, $10		 ; Jump object @ (0, 0)
+	.byte $FF				 ; delimiter

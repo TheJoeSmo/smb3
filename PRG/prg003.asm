@@ -29,7 +29,11 @@ ObjectGroup02_InitJumpTable:
     .word ObjInit_BoomBoomQBall ; Object $4A - OBJ_BOOMBOOMQBALL
     .word ObjInit_BoomBoom      ; Object $4B - OBJ_BOOMBOOMJUMP
     .word ObjInit_BoomBoom      ; Object $4C - OBJ_BOOMBOOMFLY
+.if INCLUDE_THWIMP == 0
     .word ObjInit_DoNothing     ; Object $4D
+.else
+    .word ObjInit_Thwimp        ; Object $4D - OBJ_THWIMP
+.endif
     .word ObjInit_DoNothing     ; Object $4E
     .word ObjInit_DoNothing     ; Object $4F - OBJ_CHAINCHOMPFREE
     .word ObjInit_BobOmbExplode ; Object $50 - OBJ_BOBOMBEXPLODE
@@ -71,7 +75,11 @@ ObjectGroup02_NormalJumpTable:
     .word ObjNorm_BoomBoomQBall ; Object $4A - OBJ_BOOMBOOMQBALL
     .word ObjNorm_BoomBoom      ; Object $4B - OBJ_BOOMBOOMJUMP
     .word ObjNorm_BoomBoom      ; Object $4C - OBJ_BOOMBOOMFLY
+.if INCLUDE_THWIMP == 0
     .word ObjNorm_DoNothing     ; Object $4D
+.else
+    .word ObjNorm_Thwimp3       ; Object $4D - OBJ_THWIMP
+.endif
     .word ObjNorm_DoNothing     ; Object $4E
     .word ObjNorm_ChainChompFree    ; Object $4F - OBJ_CHAINCHOMPFREE
     .word ObjNorm_BobOmb        ; Object $50 - OBJ_BOBOMBEXPLODE
@@ -114,7 +122,11 @@ ObjectGroup02_CollideJumpTable:
     .word ObjHit_DoNothing  ; Object $4A - OBJ_BOOMBOOMQBALL
     .word ObjHit_DoNothing  ; Object $4B - OBJ_BOOMBOOMJUMP
     .word ObjHit_DoNothing  ; Object $4C - OBJ_BOOMBOOMFLY
+.if INCLUDE_THWIMP == 0
     .word ObjHit_DoNothing  ; Object $4D
+.else
+    .word ObjHit_DoNothing  ; Object $4D - OBJ_THWIMP
+.endif
     .word ObjHit_DoNothing  ; Object $4E
     .word ObjHit_DoNothing  ; Object $4F - OBJ_CHAINCHOMPFREE
     .word ObjHit_DoNothing  ; Object $50 - OBJ_BOBOMBEXPLODE
@@ -156,7 +168,11 @@ ObjectGroup02_Attributes:
     .byte OA1_PAL1 | OA1_HEIGHT16 | OA1_WIDTH16 ; Object $4A - OBJ_BOOMBOOMQBALL
     .byte OA1_PAL3 | OA1_HEIGHT32 | OA1_WIDTH32 ; Object $4B - OBJ_BOOMBOOMJUMP
     .byte OA1_PAL3 | OA1_HEIGHT32 | OA1_WIDTH32 ; Object $4C - OBJ_BOOMBOOMFLY
+.if INCLUDE_THWIMP == 0
     .byte OA1_PAL0 | OA1_HEIGHT16 | OA1_WIDTH8  ; Object $4D
+.else
+    .byte OA1_PAL2 | OA1_HEIGHT16 | OA1_WIDTH16 ; Object $4D - OBJ_THWIMP
+.endif
     .byte OA1_PAL0 | OA1_HEIGHT16 | OA1_WIDTH8  ; Object $4E
     .byte OA1_PAL1 | OA1_HEIGHT16 | OA1_WIDTH16 ; Object $4F - OBJ_CHAINCHOMPFREE
     .byte OA1_PAL3 | OA1_HEIGHT16 | OA1_WIDTH16 ; Object $50 - OBJ_BOBOMBEXPLODE
@@ -197,7 +213,11 @@ ObjectGroup02_Attributes2:
     .byte OA2_NOSHELLORSQUASH | OA2_TDOGRP1 ; Object $4A - OBJ_BOOMBOOMQBALL
     .byte OA2_STOMPDONTCARE | OA2_TDOGRP2   ; Object $4B - OBJ_BOOMBOOMJUMP
     .byte OA2_STOMPDONTCARE | OA2_TDOGRP2   ; Object $4C - OBJ_BOOMBOOMFLY
-    .byte OA2_TDOGRP0   ; Object $4D
+.if INCLUDE_THWIMP == 0
+    .byte OA2_TDOGRP0                       ; Object $4D
+.else
+    .byte OA2_TDOGRP1 | OA2_GNDPLAYERMOD    ; Object $4D - OBJ_THWIMP
+.endif
     .byte OA2_TDOGRP0   ; Object $4E
     .byte OA2_NOSHELLORSQUASH | OA2_TDOGRP1 ; Object $4F - OBJ_CHAINCHOMPFREE
     .byte OA2_STOMPDONTCARE | OA2_TDOGRP1   ; Object $50 - OBJ_BOBOMBEXPLODE
@@ -239,7 +259,11 @@ ObjectGroup02_Attributes3:
     .byte OA3_HALT_NORMALONLY | OA3_TAILATKIMMUNE   ; Object $4A - OBJ_BOOMBOOMQBALL
     .byte OA3_HALT_NORMALONLY | OA3_TAILATKIMMUNE   ; Object $4B - OBJ_BOOMBOOMJUMP
     .byte OA3_HALT_NORMALONLY | OA3_TAILATKIMMUNE   ; Object $4C - OBJ_BOOMBOOMFLY
-    .byte OA3_HALT_HOTFOOTSPECIAL   ; Object $4D
+.if INCLUDE_THWIMP == 0
+    .byte OA3_HALT_HOTFOOTSPECIAL                   ; Object $4D
+.else
+    .byte OA3_HALT_NORMALONLY | OA3_NOTSTOMPABLE | OA3_TAILATKIMMUNE    ; Object $4D - OBJ_THWIMP
+.endif
     .byte OA3_HALT_HOTFOOTSPECIAL   ; Object $4E
     .byte OA3_HALT_NORMALONLY | OA3_NOTSTOMPABLE    ; Object $4F - OBJ_CHAINCHOMPFREE
     .byte OA3_HALT_NORMALONLY   ; Object $50 - OBJ_BOBOMBEXPLODE
@@ -281,7 +305,11 @@ ObjectGroup02_PatTableSel:
     .byte OPTS_SETPT5 | $13 ; Object $4A - OBJ_BOOMBOOMQBALL
     .byte OPTS_SETPT6 | $33 ; Object $4B - OBJ_BOOMBOOMJUMP
     .byte OPTS_SETPT6 | $33 ; Object $4C - OBJ_BOOMBOOMFLY
-    .byte OPTS_NOCHANGE ; Object $4D
+.if INCLUDE_THWIMP == 0
+    .byte OPTS_NOCHANGE     ; Object $4D
+.else
+    .byte OPTS_NOCHANGE     ; Object $4D - OBJ_THWIMP
+.endif
     .byte OPTS_NOCHANGE ; Object $4E
     .byte OPTS_SETPT5 | $0A ; Object $4F - OBJ_CHAINCHOMPFREE
     .byte OPTS_SETPT5 | $36 ; Object $50 - OBJ_BOBOMBEXPLODE
@@ -326,7 +354,11 @@ ObjectGroup02_KillAction:
     .byte KILLACT_STANDARD  ; Object $4A - OBJ_BOOMBOOMQBALL
     .byte KILLACT_NORMALANDKILLED   ; Object $4B - OBJ_BOOMBOOMJUMP
     .byte KILLACT_NORMALANDKILLED   ; Object $4C - OBJ_BOOMBOOMFLY
-    .byte KILLACT_STANDARD  ; Object $4D
+.if INCLUDE_THWIMP == 0
+    .byte KILLACT_STANDARD          ; Object $4D
+.else
+    .byte KILLACT_STANDARD          ; Object $4D - OBJ_THWIMP
+.endif
     .byte KILLACT_STANDARD  ; Object $4E
     .byte KILLACT_NORMALANDKILLED   ; Object $4F - OBJ_CHAINCHOMPFREE
     .byte KILLACT_JUSTDRAW16X16 ; Object $50 - OBJ_BOBOMBEXPLODE
@@ -393,7 +425,9 @@ ObjectGroup02_PatternSets:
     ; (End restricted alignment space)
 
 ObjP49:
-ObjP4D:
+.if INCLUDE_THWIMP == 0
+    ObjP4D:
+.endif
 ObjP4E:
 ObjP4F:
 ObjP5D:
@@ -449,7 +483,10 @@ ObjP63:
     .byte $81, $83, $8D, $A1, $81, $83, $87, $89, $81, $83, $87, $89
 ObjP64:
     .byte $E7, $E9, $E7, $EF, $E7, $EF
-
+.if INCLUDE_THWIMP != 0
+    ObjP4D:
+        .byte $F5,$F5, $F7, $F7
+.endif
 
 ObjNorm_IceBlock:
 
@@ -6337,5 +6374,14 @@ PRG003_BFAE:
 
     JMP Object_ShakeAndDraw  ; Draw Rotodisc and don't come back!
 
-; Rest of ROM bank was empty
+.if INCLUDE_THWIMP == 1
+    ObjNorm_Thwimp3:
+        CrossJumpToA000 #30, ObjNorm_Thwimp
+        RTS
 
+    ObjInit_Thwimp:
+        ; Define the patterns to be used
+        LDA #THWIMP_CHR_BANK
+        STA PatTable_BankSel+5
+        RTS
+.endif
